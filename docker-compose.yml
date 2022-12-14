@@ -36,7 +36,7 @@ services:
       MYSQL_USER: root
       MYSQL_PASSWORD: password
       MYSQL_HOST: db
-      JWT_SECRET: secret
+      JWT_SECRET: 'secret'
 
   # Serviço que irá rodar o banco de dados
   db:
