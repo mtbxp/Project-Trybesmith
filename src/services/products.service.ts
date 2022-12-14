@@ -9,4 +9,10 @@ export default class ProductService {
 
     return allProducts;
   }
+
+  public async insertProduct(product: IProduct): Promise<IProduct> {
+    const newProduct = await this.productModel.insertProduct(product);
+
+    return newProduct;
+  }
 }
