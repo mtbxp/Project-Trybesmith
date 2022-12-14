@@ -6,8 +6,8 @@ const selectAllOrders = async (): Promise<TOrders[]> => {
   const [result] = await connection.execute<RowDataPacket[]>(
     `SELECT 
       o.id,
-      o.user_id,
-      JSON_ARRAYAGG(p.order_id) AS productsIds
+      o.user_id AS userId,
+      JSON_ARRAYAGG(p.id) AS productsIds
     FROM 
       Trybesmith.orders as o,
       Trybesmith.products as p WHERE (p.order_id = o.id) GROUP BY o.id;`,
