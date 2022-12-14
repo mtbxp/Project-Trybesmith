@@ -4,6 +4,8 @@ import {
   getAllProductsModel,
 } from '../models/products.model';
 
+// Correção no commit
+
 export const registerProductService = async (
   name:string,
   amount:string,
