@@ -6,3 +6,11 @@ export type Tproducts = {
   orderId?: number,
 
 };
+
+export type Tuser = { 
+  id?: number,
+  username: string,
+  vocation: string,
+  level: number,
+  password: string,
+};
