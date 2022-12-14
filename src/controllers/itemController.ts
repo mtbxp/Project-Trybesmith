@@ -5,10 +5,10 @@ import ItemService from '../services/itemService';
 class ItemsController {
   constructor(private itemService = new ItemService()) { }
 
-  // public getAll = async (_req: Request, res: Response) => {
-  //   const books = await this.bookService.getAll();
-  //   res.status(statusCodes.OK).json(books);
-  // };
+  public getAll = async (_req: Request, res: Response) => {
+    const items = await this.itemService.getAll();
+    res.status(statusCodes.OK).json(items);
+  };
 
   // public getById = async (req: Request, res: Response) => {
   //   const id = Number(req.params.id);

@@ -10,6 +10,11 @@ class ItemService {
     this.model = new ItemModel();
   }
 
+  public async getAll(): Promise<Item[]> {
+    const items = await this.model.getAll();
+    return items;
+  }
+
   public create(item: Item): Promise<Item> {
     return this.model.create(item);
   }
