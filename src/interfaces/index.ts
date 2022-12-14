@@ -14,3 +14,10 @@ export interface Status {
 export interface ProductService extends Status {
   result: IProduct;
 }
+
+export interface User {
+  username: string;
+  vocation: string;
+  level: number;
+  password: string;
+}
