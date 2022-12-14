@@ -7,3 +7,9 @@ export interface NewProduct {
 export interface IProducts extends NewProduct {
   id: number;
 }
+
+export interface Order {
+  id: number,
+  userId: number,
+  productsIds: number[],
+}
