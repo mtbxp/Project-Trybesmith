@@ -5,7 +5,7 @@ import connection from './connection';
 export default class ProductsModel {
   getAll = async (): Promise<Product[]> => {
     const [products] = await connection.execute<RowDataPacket[]>(
-      'SELECT * FROM TrybeSmith.products',
+      'SELECT * FROM Trybesmith.products',
     );
   
     return products as Product[];
