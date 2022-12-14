@@ -1,5 +1,6 @@
 import OrderModel from '../models/order.model';
 import connection from '../models/connection';
+import Order from '../interfaces/order.interface';
 
 export default class OrderService {
   public model;
@@ -8,7 +9,7 @@ export default class OrderService {
     this.model = new OrderModel(connection);
   }
 
-  public async getAll() {
+  public async getAll(): Promise<Order[]> {
     const orders = await this.model.getAll();
     return orders;
   }

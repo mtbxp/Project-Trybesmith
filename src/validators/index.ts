@@ -1,9 +1,5 @@
-const brand = require('./brand.validator');
-const sale = require('./sale.validator');
-const account = require('./account.validator');
+import login from './login.validator';
 
-module.exports = {
-  brand,
-  sale,
-  account,
+export default {
+  login,
 };
