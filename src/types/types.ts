@@ -7,3 +7,14 @@ export interface NewProduct {
 export interface TProduct extends NewProduct {
   id: number,
 }
+
+export interface User {
+  id?: number,
+  username: string,
+  vocation: string,
+  level: number,
+}
+
+export interface UserWithPassword extends User {
+  password: string,
+}
