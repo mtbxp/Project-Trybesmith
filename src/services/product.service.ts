@@ -15,8 +15,6 @@ class ProductService {
   }
 
   public create(product: Product): Promise<Product> {
-    // VALIDAÇÕES PENDENTES!
-
     return this.model.create(product);
   }
 }
