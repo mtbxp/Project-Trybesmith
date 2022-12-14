@@ -2,6 +2,7 @@ import { Router } from 'express';
 // const userController = require('../controllers/userController');
 import * as productsContoller from '../controllers/productsController';
 import * as usersContoller from '../controllers/usersController';
+import { ValidLogin } from '../middlewares/middleWares';
 
 // const midwares = require('../middlewares/middleWares');
 
@@ -16,6 +17,7 @@ productRoute.get('/orders/', productsContoller.getAllOrders);
 // productRoute.post('/products/', midwares.ValidLogin, productsController.addProduct);
 
 userRoute.post('/users/', usersContoller.createUser);
+userRoute.post('/login/', ValidLogin, usersContoller.login);
 
 export {
   productRoute,

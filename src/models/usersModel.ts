@@ -1,4 +1,4 @@
-import { ResultSetHeader } from 'mysql2';
+import { ResultSetHeader, RowDataPacket } from 'mysql2';
 import connection from './connection';
 import { User } from '../interfaces/interfaces';
 
@@ -14,7 +14,14 @@ const createUser = async (user: User) => {
   return { id: Number(insertId), user };
 };
 
-const login = async () => {
+const login = async (username: string, password: string) => {
+  const Query = 'SELECT * FROM Trybesmith.users WHERE username = ? AND password = ?';
+  const [[result]] = await connection.execute <RowDataPacket[]>(Query, [username, password]);
+  console.log(result, 'UM   20');
+  
+  // const response = { insertId, name, amount };
+  // console.log(insertId, 'PM_____12');
+  return result;
 };
 
 export {

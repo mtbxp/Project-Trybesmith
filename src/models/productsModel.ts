@@ -1,6 +1,6 @@
 import { ResultSetHeader, RowDataPacket } from 'mysql2/promise';
 import connection from './connection';
-import { Product } from '../interfaces/interfaces';
+import { Order, Product } from '../interfaces/interfaces';
 
 const addProd = async (product: Product): Promise<Product> => {
   const { name, amount } = product;
@@ -21,7 +21,7 @@ const getAllProds = async () => {
   return result as Product[];
 };
 
-const getAllOrders = async () => {
+const getAllOrders = async (): Promise<Order[]> => {
   const [result] = await connection.execute(
     `SELECT ord.id as id, ord.user_id as userId, JSON_ARRAYAGG(p.id) as productsIds
     FROM Trybesmith.orders as ord
@@ -29,7 +29,7 @@ const getAllOrders = async () => {
     ON p.order_id = ord.id
     GROUP BY ord.id`,
   );
-  return result;
+  return result as Order[];
 };
 
 export {

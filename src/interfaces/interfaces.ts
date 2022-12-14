@@ -11,3 +11,13 @@ export interface User {
   level: number,
   password: string
 }
+
+export interface Order {
+  userId?: number
+  productsIds: number[]
+}
+
+export interface ULogin {
+  username: string
+  password: string
+}

@@ -9,8 +9,14 @@ async function createUser(user: User) {
   return token;
 }
 
-async function login() {
-  console.log('oi');
+async function login(username: string, password: string) {
+  const result = await usersModel.login(username, password);
+  console.log(result);
+  if (result) {
+    const token = createToken(result.id);
+    return token;
+  }
+  return result;
 }
 
 export { 
