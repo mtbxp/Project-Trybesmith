@@ -14,3 +14,10 @@ export type Tuser = {
   level: number,
   password: string,
 };
+
+export type Torders = {
+
+  id?: number,
+  userId: number,
+
+};
