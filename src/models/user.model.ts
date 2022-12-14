@@ -9,10 +9,10 @@ export default class UserModel {
   }
 
   public async createUser(user: User):Promise<User> {
-    const { username, classe, level, password } = user;
+    const { username, vocation, level, password } = user;
     const [{ insertId }] = await this.connection.execute<ResultSetHeader>(
-      'INSERT INTO Trybesmith.users (username, classe, level, password) VALUES (?,?,?,?)', 
-      [username, classe, level, password],
+      'INSERT INTO Trybesmith.users (username, vocation, level, password) VALUES (?,?,?,?)', 
+      [username, vocation, level, password],
     );
 
     return { id: insertId, ...user };

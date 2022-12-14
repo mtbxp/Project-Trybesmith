@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import User from '../interfaces/user.interface';
 import UserService from '../services/user.service';
 import Jwt from '../auth/jwtConfig';
-import HttpError from '../errors/httpErrors';
+// import HttpError from '../errors/httpErrors';
 
 export default class UserController {
   public service:UserService;
