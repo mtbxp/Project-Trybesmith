@@ -5,4 +5,10 @@ export type TProduct = {
   orderId?: number | null,
 };
 
-export default TProduct;
+export type TUser = {
+  id?: number,
+  username: string,
+  vocation: string,
+  level: number,
+  password: string,
+};
