@@ -1,11 +1,11 @@
 import productsModel from '../models/productModel';
-import IProducts from '../interfaces/IProducts';
+import { Product } from '../interfaces/IProducts';
 
-const getAllProducts = async (): Promise<IProducts[]> => {
-  const products: IProducts[] = await productsModel.getAllProducts();
-  return products;
+const getAll = async ():Promise<Product[]> => {
+  const books = await productsModel.getAll();
+  return books;
 };
 
 export default {
-  getAllProducts,
+  getAll,
 };

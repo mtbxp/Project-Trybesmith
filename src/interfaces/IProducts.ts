@@ -1,5 +1,5 @@
-export default interface IProducts {
-  id: number;
+export interface Product {
+  id?: number;
   name: string;
   amount: string;
   orderId?: number;
