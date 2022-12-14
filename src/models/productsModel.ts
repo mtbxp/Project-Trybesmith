@@ -1,14 +1,8 @@
 import connection from './connection';
-
-interface IProducts {
-  id: number;
-  name: string;
-  amount: string;
-  orderId?: number;
-}
+import IProducts from '../interfaces/IProduct';
 
 const getAllProducts = async (): Promise<IProducts[]> => {
-  const query = 'SELECT * FROM products;';
+  const query = 'SELECT * FROM Trybesmith.products;';
   const [result] = await connection.execute(query);
   return result as IProducts[];
 };
