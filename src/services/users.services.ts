@@ -4,9 +4,7 @@ import { createToken } from '../auth/jsonWebToken';
 
 const addUser = async (user: InterfaceUser) => {
   const newUser = await usersModels.addUser(user);
-  const token = createToken(newUser);
-  console.log(token);
-  
+  const token = createToken(newUser);  
   return { status: 201, result: newUser, token };
 };
 

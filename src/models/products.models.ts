@@ -18,8 +18,17 @@ const getAllProducts = async (): Promise<InterfaceProduct[]> => {
   return products;
 };
 
+const getProductById = async (id: string) => {
+  const [product] = await connection.execute<RowDataPacket[]>(
+    'SELECT * FROM Trybesmith.products WHERE id = ?',
+    [id],
+  );
+  
+  return product[0];
+};
+
 export default {
   addProduct,
   getAllProducts,
-
+  getProductById,
 };
