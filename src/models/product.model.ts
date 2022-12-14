@@ -2,7 +2,7 @@ import { ResultSetHeader } from 'mysql2';
 import connection from './connection';
 import { Product } from '../interfaces/product.interface';
 
-export async function create(product: Product): Promise<Product> {
+export const create = async (product: Product): Promise<Product> => {
   const { name, amount } = product;
   const query = `INSERT INTO Trybesmith.products (name, amount)
   VALUES(?,?)`;
@@ -13,10 +13,10 @@ export async function create(product: Product): Promise<Product> {
 
   const newProduct: Product = { ...product, id };
   return newProduct;
-}
+};
 
-export async function getAll(): Promise<Product[]> {
+export const getAll = async (): Promise<Product[]> => {
   const query = 'SELECT * FROM Trybesmith.products';
   const [products] = await connection.execute(query);
   return products as Product[];
-}
+};

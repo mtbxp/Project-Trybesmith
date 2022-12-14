@@ -1,10 +1,11 @@
 import { Request, Response } from 'express';
 import { UserCredentials } from '../interfaces/user.interface';
-import * as userService from '../services/user.service';
+import createUser from '../services/user.service';
 
-export async function createNewUser(req: Request, res: Response) {
+const createNewUser = async (req: Request, res: Response) => {
   const user = req.body as UserCredentials;
-  const data = await userService.createNewUser(user); 
-  // console.log(data);
+  const data = await createUser(user); 
   return res.status(201).json({ token: data });
-}
+};
+
+export default createNewUser;
