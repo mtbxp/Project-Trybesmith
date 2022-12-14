@@ -6,7 +6,7 @@ import { Product, ProductDetail } from '../interfaces';
 export async function create(product: ProductDetail): Promise<Product> {
   const { name, amount } = product;
   
-  const query = 'INSERT INTO products (name, amount) VALUES (?, ?)';
+  const query = 'INSERT INTO Trybesmith.products (name, amount) VALUES (?, ?)';
   const values = [name, amount];
   
   const [result] = await connection.execute<ResultSetHeader>(query, values);
@@ -17,7 +17,7 @@ export async function create(product: ProductDetail): Promise<Product> {
 }
 
 export async function getAll(): Promise<Product[]> {
-  const query = 'SELECT * FROM products';
+  const query = 'SELECT * FROM Trybesmith.products';
   
   const [products] = await connection.execute(query);
   
