@@ -12,4 +12,8 @@ async function createProduct({ amount, name }: ProductInput): Promise<Product> {
   };
 }
 
-export { createProduct };
+async function getAllProducts(): Promise<Product[]> {
+  return productsModel.getAllProducts();
+}
+
+export { createProduct, getAllProducts };

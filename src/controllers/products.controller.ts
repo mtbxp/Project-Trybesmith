@@ -10,4 +10,10 @@ async function createProduct(request: Request, response: Response): Promise<Resp
   return response.status(201).json(product);
 }
 
-export { createProduct };
+async function getAllProducts(request: Request, response: Response): Promise<Response> {
+  const products = await productsService.getAllProducts();
+
+  return response.json(products);
+}
+
+export { createProduct, getAllProducts };
