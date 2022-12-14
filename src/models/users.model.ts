@@ -3,8 +3,6 @@ import { User, UserWithPassword } from '../types/types';
 import connection from './connection';
 
 const create = async (user: UserWithPassword): Promise<User> => {
-  console.log('model', user);
-  
   const { username, password, level, vocation } = user;
   const query = `INSERT INTO Trybesmith.users (username, password, level, vocation)  
   VALUES (?,?,?,?)`;

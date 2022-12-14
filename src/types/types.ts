@@ -18,3 +18,9 @@ export interface User {
 export interface UserWithPassword extends User {
   password: string,
 }
+
+export interface Order {
+  id: number,
+  userId: number,
+  productsIds: number[],
+}
