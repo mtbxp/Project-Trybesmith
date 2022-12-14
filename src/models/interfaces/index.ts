@@ -13,11 +13,9 @@ export type TUser = {
   password: string
 };
 
-export type TUserWithoutPassword = {
+export type TUserIdName = {
   id?: number,
   username: string,
-  vocation: string,
-  level: number,
 };
 
 export type TAuthorization = {
@@ -33,4 +31,9 @@ export type TOrder = {
   id?: number,
   userId: number,
   productsId: number[]
+};
+
+export type TLogin = {
+  username: string,
+  password: string,
 };
