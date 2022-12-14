@@ -2,7 +2,7 @@ import { ResultSetHeader, RowDataPacket } from 'mysql2';
 import { Product } from '../interfaces';
 import connection from './connection';
 
-export default class ProductsModel {
+export default class ProductModel {
   create = async ({ name, amount }: Product) => {
     const [{ insertId }] = await connection.execute<ResultSetHeader>(
       'INSERT INTO Trybesmith.products (name, amount) VALUES (?, ?)',

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import ProductsService from '../services/productsService';
+import ProductsService from '../services/productService';
 import statusCodes from '../statusCodes';
 import { HttpError } from '../interfaces';
 import 'express-async-errors';
@@ -11,11 +11,11 @@ export default class ProductsController {
     try {
       const { status, data } = await productsService.getAll();
   
-      res.status(status).json(data);
+      return res.status(status).json(data);
     } catch (error: unknown) {
       const { message } = error as HttpError;
       
-      res.status(statusCodes.SERVER_ERROR).json(message);
+      return res.status(statusCodes.SERVER_ERROR).json({ message });
     }
   };
 
@@ -25,11 +25,11 @@ export default class ProductsController {
     try {
       const { status, data } = await productsService.create(product);
 
-      res.status(status).json(data);
+      return res.status(status).json(data);
     } catch (error: unknown) {
       const { message } = error as HttpError;
 
-      res.status(statusCodes.SERVER_ERROR).json(message);
+      return res.status(statusCodes.SERVER_ERROR).json({ message });
     }
   };
 }

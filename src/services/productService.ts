@@ -1,18 +1,18 @@
 import { Product } from '../interfaces';
-import ProductsModel from '../models/productsModel';
+import ProductModel from '../models/productModel';
 import statusCodes from '../statusCodes';
 
-const productsModel = new ProductsModel();
+const productModel = new ProductModel();
 
 export default class ProductsService {
   getAll = async () => {
-    const data = await productsModel.getAll();
+    const data = await productModel.getAll();
   
     return { status: statusCodes.OK, data };
   };
 
   create = async (product: Product) => {
-    const id = await productsModel.create(product);
+    const id = await productModel.create(product);
 
     const data = { id, ...product };
 
