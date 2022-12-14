@@ -1,4 +1,4 @@
-import { ResultSetHeader } from 'mysql2/promise';
+import { ResultSetHeader, RowDataPacket } from 'mysql2/promise';
 import connection from './connection';
 import Product from '../interface/productInterface';
 
@@ -12,4 +12,12 @@ const productCreateModel = async (name: string, amount: string): Promise<Product
   return { id: insertId, name, amount };
 };
 
-export default productCreateModel;
+const productGetAllModel = async (): Promise<Product[]> => {
+  const [result] = await connection.execute<RowDataPacket[]>(
+    'SELECT id, name, amount, order_id AS orderId FROM Trybesmith.products',
+  );
+
+  return result as Product[];
+};
+
+export { productCreateModel, productGetAllModel };

@@ -1,4 +1,4 @@
-import productCreateModel from '../models/product.model';
+import { productCreateModel, productGetAllModel } from '../models/product.model';
 import Product from '../interface/productInterface';
 
 const productCreateService = async (name: string, amount: string): Promise<Product> => {
@@ -7,4 +7,10 @@ const productCreateService = async (name: string, amount: string): Promise<Produ
   return result;
 };
 
-export default productCreateService;
+const productGetAllService = async (): Promise<Product[]> => {
+  const result = await productGetAllModel();
+
+  return result;
+};
+
+export { productCreateService, productGetAllService };
