@@ -1,7 +1,10 @@
 import { ResultSetHeader, RowDataPacket } from 'mysql2';
 import connection from './connection';
 
-export const registerProduct = async (name:string, amount:string): Promise<ResultSetHeader[]> => {
+export const registerProductModel = async (
+  name:string,
+  amount:string,
+): Promise<ResultSetHeader[]> => {
   const product = await connection.execute(
     'INSERT INTO product VALUES (?, ?)',
     [name, amount],
@@ -9,7 +12,7 @@ export const registerProduct = async (name:string, amount:string): Promise<Resul
   return product as ResultSetHeader[];
 };
 
-export const getAllProducts = async (): Promise<RowDataPacket[]> => {
+export const getAllProductsModel = async (): Promise<RowDataPacket[]> => {
   const allProducts = await connection.execute(
     'SELECT * FROM products',
   );
