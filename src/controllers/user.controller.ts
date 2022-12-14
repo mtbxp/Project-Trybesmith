@@ -15,11 +15,6 @@ export default class UserController {
     const user:User = req.body;
     const payload = await this.service.createUser(user);
 
-    // if (payload) {
-    //   const httpError = new HttpError();
-    //   return httpError.setError(res, 404, 'Usuario não cadastrado');
-    // }
-  
     const { id, username } = payload;
     
     const jwt = new Jwt({ id, username });

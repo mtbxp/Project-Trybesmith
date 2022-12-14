@@ -22,12 +22,3 @@ export default class ProductModel {
     return { id: insertId, ...book };
   }
 }
-
-// const getAll = async () => {
-//   const result = await connection.execute('SELECT * FROM Trybesmith.Products');
-//   const [rows] = result;
-//   console.log(rows);
-    
-//   return rows as Product[];
-// };
-// export default getAll;
