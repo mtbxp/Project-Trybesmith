@@ -8,9 +8,9 @@ const getAll = async (req: Request, res: Response) => {
 };
 
 const create = async (req: Request, res: Response) => {
-    const product = req.body as TProduct;
-    const { status, data } = await productService.create(product);
-    res.status(status).json(data);
-  }
+  const product = req.body as TProduct;
+  const { status, data } = await productService.create(product);
+  res.status(status).json(data);
+};
 
 export default { getAll, create };
