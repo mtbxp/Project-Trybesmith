@@ -8,7 +8,8 @@ export type TUser = {
 
 export type TOrders = {
   id?: number,
-  userId: string  
+  userId: string,
+  productsIds?: Array<number>,   
 };
 
 export type Tproducts = {
