@@ -12,4 +12,9 @@ const addNewProduct = async (req: Request, res: Response) => {
   res.status(201).json(newProductAdded);
 };
 
-export default { addNewProduct };
+const getAllProducts = async (req: Request, res: Response) => {
+  const allProducts = await productsService.getAllProducts();  
+  res.status(200).json(allProducts);
+};
+
+export default { addNewProduct, getAllProducts };
