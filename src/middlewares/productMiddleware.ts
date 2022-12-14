@@ -25,7 +25,7 @@ export default function validateProductFields(
   const properties = ['name', 'amount'];
 
   for (let i = 0; i < properties.length; i += 1) {
-    if (!Object.prototype.hasOwnProperty.call(req.body, properties[i])) {
+    if (!Object.prototype.hasOwnProperty.call(req.body, properties[i])) { // Checa se no body há as propriedades necessárias
       const message = `"${properties[i]}" is required`;
 
       return res.status(statusCodes.BAD_REQUEST).json({ message });
