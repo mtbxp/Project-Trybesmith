@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import productService from '../services/product.service';
-// import { TProduct } from '../models/interfaces/product';
 
 const add = async (req: Request, res: Response) => {
   const productData = req.body;
@@ -8,4 +7,9 @@ const add = async (req: Request, res: Response) => {
   return res.status(201).send(newProduct);
 };
 
-export default { add };
+const getAll = async (req: Request, res: Response) => {
+  const products = await productService.getAll();
+  return res.status(200).send(products);
+};
+
+export default { add, getAll };
