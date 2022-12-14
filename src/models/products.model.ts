@@ -1,12 +1,17 @@
-import { RowDataPacket } from 'mysql2';
+import { RowDataPacket, ResultSetHeader } from 'mysql2';
 import connection from './connection';
 import { IProduct } from '../interfaces/products';
 
-export async function createNewProduct() :Promise<IProduct[]> {
-  const [products] = await connection.execute(
-    'INSERT name ',
+export async function createNewProduct(products: IProduct) :Promise<IProduct> {
+  const { name, amount } = products;
+  const query = 'INSERT INTO Trybesmith.products (name,amount) VALUES(?,?)';
+  const product = await connection.execute< ResultSetHeader & IProduct>(
+    query, 
+    [name, amount],
   );
-  return products as IProduct[];
+  const [dataInserted] = product;
+  const { insertId } = dataInserted;
+  return { id: insertId, ...products };
 }
 
 export async function getAll() :Promise<IProduct[]> {

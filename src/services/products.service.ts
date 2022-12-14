@@ -6,7 +6,7 @@ export async function getAllProducts(): Promise<IProduct[]> {
   return products as IProduct[];
 }
 
-export async function create() {
-  const crearteProduct = await createNewProduct();
+export async function create(product: IProduct): Promise<IProduct> {
+  const crearteProduct = await createNewProduct(product);
   return crearteProduct;
 }
