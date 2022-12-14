@@ -15,6 +15,8 @@ export default class JwtUtils {
     };
   }
 
-  public generateJwtToken = (user: Pick<IUser, 'id' | 'username'>): string => 
-    sign(user, this.TOKEN_SECRET, this.jwtConfig);
+  public generateJwtToken = (user: IUser) => {
+    const payload = { id: user.id, username: user.username };
+    return sign(payload, this.TOKEN_SECRET as string, this.jwtConfig);
+  };
 }

@@ -10,4 +10,12 @@ export default class UserController {
     const token = await this.userService.create(user);
     res.status(201).json(token);
   };
+
+  login = async (req: Request, res: Response) => {
+    const { status, token, error } = await this.userService.login(req.body);
+
+    if (error) return res.status(status).json(error);
+
+    res.status(status).json({ token });
+  };
 }
