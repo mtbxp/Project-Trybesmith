@@ -1,5 +1,5 @@
 import { ResultSetHeader } from 'mysql2';
-import connection from '../connection';
+import connection from './connection';
 import { TProducts } from '../type';
 
 const insertNewProduct = async (newProduct: TProducts):Promise<ResultSetHeader> => {

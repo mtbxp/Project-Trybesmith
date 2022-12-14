@@ -5,7 +5,7 @@ const insertNewProductService = async (newProduct:TProducts):Promise<TProducts |
   const createNewProduct = await productsModel.insertNewProduct(newProduct);
   console.log('RETORNO DE CREATE SERVICE', createNewProduct);
   
-  return { name: newProduct.name, amount: newProduct.amount };
+  return { id: createNewProduct.insertId, name: newProduct.name, amount: newProduct.amount };
 };
 
 export default { insertNewProductService };
