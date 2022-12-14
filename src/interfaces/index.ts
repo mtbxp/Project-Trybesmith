@@ -46,3 +46,7 @@ export interface Orders {
   id: number;
   orderId: number;
 }
+
+export interface OrderService extends Status {
+  result: Orders
+}
