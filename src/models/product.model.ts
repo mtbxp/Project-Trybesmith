@@ -11,7 +11,3 @@ export async function create(product: Product): Promise<IProduct> {
   
   return { id, name, ammount };
 }
-
-export async function getAll() {
-
-}
