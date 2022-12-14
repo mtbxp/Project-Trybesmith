@@ -1,6 +1,6 @@
 export type TUser = {
   id?: number,
-  userName: string,
+  username: string,
   vocation: string,
   level: number,
   password?: string
