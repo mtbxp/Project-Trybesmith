@@ -10,4 +10,8 @@ export async function insert(req: Request, res: Response) {
   return res.status(status.CREATED).json(newProduct);
 }
 
-export default insert;
+export async function getAll(_req: Request, res: Response) {
+  const posts = await productsService.getAll();
+
+  return res.status(status.OK).json(posts);
+}
