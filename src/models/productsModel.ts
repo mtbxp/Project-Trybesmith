@@ -5,7 +5,7 @@ import { Product } from '../interfaces/interfaces';
 const addProd = async (product: Product) => {
   const { name, amount } = product;
   const [result] = await connection.execute <ResultSetHeader>(
-    'INSERT INTO Trybesmith.Products(name, amount) VALUE (?, ?)',
+    'INSERT INTO Trybesmith.products(name, amount) VALUE (?, ?)',
     [name, amount],
   );
   const { insertId } = result;
@@ -16,7 +16,7 @@ const addProd = async (product: Product) => {
 
 const getAllProds = async () => {
   const [result] = await connection.execute <RowDataPacket[]>(
-    'SELECT * FROM Trybesmith.Products',
+    'SELECT * FROM Trybesmith.products',
   );
   return result as Product[];
 };
