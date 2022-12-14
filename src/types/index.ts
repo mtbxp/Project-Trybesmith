@@ -6,3 +6,13 @@ export interface Product {
 }
 
 export type ProductInput = Omit<Product, 'id' | 'orderId'>;
+
+export interface User {
+  id: number;
+  username: string;
+  vocation: string;
+  password: string;
+  level: number;
+}
+
+export type UserInput = Omit<User, 'id'>;
