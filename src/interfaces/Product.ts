@@ -1,0 +1,9 @@
+export interface NewProduct {
+  name: string,
+  amount: string,
+  orderId?: number,
+}
+
+export interface IProducts extends NewProduct {
+  id: number;
+}
