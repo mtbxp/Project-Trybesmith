@@ -1,4 +1,4 @@
-import { ResultSetHeader } from 'mysql2';
+import { ResultSetHeader, RowDataPacket } from 'mysql2';
 import mysql from './connection';
 import { IProduct } from '../interfaces/IProduct';
 
@@ -18,5 +18,13 @@ export default class ProductModel {
     const { insertId } = productInserted;
 
     return { id: insertId, ...product };
+  }
+
+  async getAllProducts(): Promise<IProduct[]> {
+    const [rows] = await this.connection.execute<IProduct[] & RowDataPacket[]>(
+      'SELECT id, name, amount, order_Id FROM Trybesmith.products',
+    );
+
+    return rows;
   }
 }
