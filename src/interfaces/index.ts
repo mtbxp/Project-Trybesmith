@@ -25,3 +25,15 @@ export interface User {
 export interface IUser extends User {
   id: number;
 }
+
+export interface UserService extends Status {
+  result: IUser;
+}
+
+export interface Token {
+  token: string;
+}
+
+export interface TokenService extends Status {
+  result: string;
+}
