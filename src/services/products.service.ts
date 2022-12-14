@@ -2,7 +2,7 @@ import connection from '../models/connection';
 import ProductsModel from '../models/products.model';
 import Product from '../interfaces/productInterface';
 
-export default class ProductService {
+export default class ProductsService {
   public model: ProductsModel;
 
   constructor() {
@@ -11,6 +11,12 @@ export default class ProductService {
 
   public async createProduct(product: Product): Promise<Product> {
     const result = await this.model.createProduct(product);
+
+    return result;
+  }
+
+  public async getAllProducts(): Promise<Product[]> {
+    const result = await this.model.getAllProducts();
 
     return result;
   }
