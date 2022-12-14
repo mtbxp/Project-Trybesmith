@@ -4,8 +4,6 @@ export interface HttpError {
 
 export interface Product {
   id?: number,
-  username: string,
-  vocation: string,
-  level: number,
-  password: string
+  name: string,
+  amount: string
 }
