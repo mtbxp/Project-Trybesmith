@@ -12,6 +12,7 @@ const userRoute = Router();
 
 productRoute.post('/products/', productsContoller.addProduct);
 productRoute.get('/products/', productsContoller.getAllProds);
+productRoute.get('/orders/', productsContoller.getAllOrders);
 // productRoute.post('/products/', midwares.ValidLogin, productsController.addProduct);
 
 userRoute.post('/users/', usersContoller.createUser);

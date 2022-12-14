@@ -21,7 +21,19 @@ const getAllProds = async () => {
   return result as Product[];
 };
 
+const getAllOrders = async () => {
+  const [result] = await connection.execute(
+    `SELECT ord.id as id, ord.user_id as userId, JSON_ARRAYAGG(p.id) as productsIds
+    FROM Trybesmith.orders as ord
+    INNER JOIN Trybesmith.products as p
+    ON p.order_id = ord.id
+    GROUP BY ord.id`,
+  );
+  return result;
+};
+
 export {
   addProd,
   getAllProds,
+  getAllOrders,
 };

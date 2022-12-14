@@ -11,7 +11,13 @@ async function getAllProds() {
   return result;
 }
 
+async function getAllOrders() {
+  const result = await productModel.getAllOrders();
+  return result;
+}
+
 export {
   addProduct,
   getAllProds,
+  getAllOrders,
 };

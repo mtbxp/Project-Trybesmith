@@ -14,7 +14,13 @@ const getAllProds = async (req: Request, res: Response) => {
   return res.status(200).json(result);
 };
 
+const getAllOrders = async (req: Request, res: Response) => {
+  const result = await productsService.getAllOrders();
+  return res.status(200).json(result);
+};
+
 export {
   addProduct,
   getAllProds,
+  getAllOrders,
 };
