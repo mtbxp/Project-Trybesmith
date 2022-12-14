@@ -20,10 +20,6 @@ export type TUserWithoutPassword = {
   level: number,
 };
 
-// export type TToken = {
-//   token: string
-// };
-
 export type TAuthorization = {
   authorization: string
 };
@@ -31,4 +27,10 @@ export type TAuthorization = {
 export type TJwtConfig = {
   algorithm: string,
   expiresIn: string,
+};
+
+export type TOrder = {
+  id?: number,
+  userId: number,
+  productsId: number[]
 };
