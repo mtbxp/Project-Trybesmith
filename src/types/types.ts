@@ -10,3 +10,15 @@ export interface RegisteredProduct extends NewProduct {
 export interface DatabaseProduct extends RegisteredProduct {
   orderId?: number,
 }
+
+export interface NewUser {
+  username: string,
+  vocation: string,
+  level: number,
+  password: string
+}
+
+export interface CreatedUser {
+  id: number,
+  username: string,
+}
