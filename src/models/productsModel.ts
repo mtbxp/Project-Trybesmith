@@ -19,10 +19,10 @@ export async function getAll(): Promise<TProduct[]> {
 //   return result;
 // };
   
-export async function insertProduct(name: string) {
+export async function insertProduct({ name, amount }: TProduct) {
   await connection.execute(
-    'INSERT INTO StoreManager.products (name) VALUES (?)',
-    [name],
+    'INSERT INTO Trybesmith.products (name, amount) VALUES (?, ?)',
+    [name, amount],
   );
 }
 
