@@ -7,7 +7,7 @@ export async function insert(req: Request, res: Response) {
   const post = req.body as TProduct;
   const newProduct = await productsService.insert(post);
 
-  return res.status(status.OK).json(newProduct);
+  return res.status(status.CREATED).json(newProduct);
 }
 
 export default insert;
