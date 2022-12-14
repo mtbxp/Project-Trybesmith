@@ -8,6 +8,8 @@ export async function create(product:TProduct):Promise<TProduct | null> {
   return prod;
 }
 
-export function getAll() {
+export async function getAll():Promise<TProduct[]> {
+  const products = await ProductModel.getAll();
 
+  return products;
 }

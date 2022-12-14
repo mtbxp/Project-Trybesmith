@@ -16,3 +16,9 @@ export async function getById(id:number):Promise<TProduct | null> {
   TProduct[]>('SELECT * FROM Trybesmith.products WHERE id = ?', [id]);
   return result;
 }
+
+export async function getAll():Promise<TProduct[]> {
+  const [result] = await connection.execute<RowDataPacket[] &
+  TProduct[]>('SELECT * FROM Trybesmith.products');
+  return result;
+}
