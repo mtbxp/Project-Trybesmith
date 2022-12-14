@@ -6,3 +6,14 @@ export interface ProductDetail {
 export interface Product extends ProductDetail {
   id: number;
 }
+
+export interface UserDetail {
+  username: string;
+  vocation: string;
+  level: number;
+  password: string;
+}
+  
+export interface User extends UserDetail {
+  id: number;
+}
