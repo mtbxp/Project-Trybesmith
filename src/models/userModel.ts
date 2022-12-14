@@ -1,5 +1,5 @@
 import { ResultSetHeader } from 'mysql2';
-import { User } from '../interfaces';
+import { Login, User } from '../interfaces';
 import connection from './connection';
 
 export default class UserModel {
@@ -12,11 +12,12 @@ export default class UserModel {
     return insertId;
   };
 
-  // getAll = async (): Promise<Product[]> => {
-  //   const [products] = await connection.execute<RowDataPacket[]>(
-  //     'SELECT * FROM Trybesmith.products',
-  //   );
-  
-  //   return products as Product[];
-  // };
+  login = async ({ username }: Login) => {
+    const [user] = await connection.execute<ResultSetHeader>(
+      'SELECT * FROM Trybesmith.users where username = ?',
+      [username],
+    );
+
+    return user || null;
+  };
 }

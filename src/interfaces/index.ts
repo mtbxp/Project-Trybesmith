@@ -8,12 +8,15 @@ export interface Product {
   amount: string
 }
 
-export interface User {
-  id?: number,
+export interface Login {
   username: string,
+  password: string  
+}
+
+export interface User extends Login {
+  id?: number,
   vocation: string,
   level: number,
-  password: string
 }
 
 export interface Order {
