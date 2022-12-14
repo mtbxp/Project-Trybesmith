@@ -41,3 +41,8 @@ export interface TokenService extends Status {
 export interface ServiceError extends Status {
   error: { message: string }
 }
+
+export interface Orders {
+  id: number;
+  orderId: number;
+}
