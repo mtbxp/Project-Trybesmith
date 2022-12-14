@@ -1,4 +1,4 @@
-import { ResultSetHeader, RowDataPacket } from 'mysql2/promise';
+import { ResultSetHeader } from 'mysql2/promise';
 import { IUser, User } from '../interfaces';
 import connection from './connection';
 
@@ -15,11 +15,12 @@ export async function create(user: User): Promise<IUser> {
   return { id, ...user };
 }
 
-export async function userByname(username: string): Promise<IUser | undefined> {
+export async function userByname(username: string): Promise<IUser | null> {
   const query = `SELECT * FROM ${TABLE} WHERE username = ?`;
   const value = [username];
 
-  const [result] = await connection.execute<RowDataPacket[] & IUser>(query, value);
+  const [data] = await connection.execute(query, value);
+  const [result] = data as IUser[];
 
-  return result;
+  return result || null;
 }
