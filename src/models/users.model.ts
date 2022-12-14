@@ -8,11 +8,12 @@ export default class ProductModel {
     this.connection = connection;
   }
     
-  public async createUser(user: Users): Promise<void> {
+  public async createUser(user: Users): Promise<Users> {
     const { username, vocation, level, password } = user;
-    await this.connection.execute<ResultSetHeader>(
+    const [{ insertId }] = await this.connection.execute<ResultSetHeader>(
       'INSERT INTO Trybesmith.users (username, vocation, level, password ) VALUES (?, ?, ?, ?)',
       [username, vocation, level, password],
     );
+    return { id: insertId, ...user };
   }
 }
