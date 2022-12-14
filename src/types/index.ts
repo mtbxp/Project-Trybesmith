@@ -16,3 +16,9 @@ export interface User {
 }
 
 export type UserInput = Omit<User, 'id'>;
+
+export interface Order {
+  id: number;
+  userId: number;
+  productsIds: number[];
+}
