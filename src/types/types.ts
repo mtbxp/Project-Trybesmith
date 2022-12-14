@@ -1,9 +1,9 @@
 export interface NewProduct {
   name: string,
   amount: string,
-  orderId: null | number,
+  orderId?: number,
 }
 
-export interface TProducts extends NewProduct {
+export interface TProduct extends NewProduct {
   id: number,
 }
