@@ -1,6 +1,6 @@
 export interface Product {
   name: string;
-  ammount: number;
+  amount: number;
 }
 
 export interface IProduct extends Product {

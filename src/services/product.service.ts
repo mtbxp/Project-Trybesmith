@@ -3,5 +3,5 @@ import * as productModel from '../models/product.model';
 
 export async function create(product: Product): Promise<ProductService> {
   const result = await productModel.create(product);
-  return { status: 200, result };
+  return { status: 201, result };
 }
