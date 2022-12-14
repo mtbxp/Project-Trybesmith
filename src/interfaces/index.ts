@@ -45,6 +45,7 @@ export interface ServiceError extends Status {
 export interface Orders {
   id: number;
   orderId: number;
+  productId: [number];
 }
 
 export interface OrderService extends Status {
