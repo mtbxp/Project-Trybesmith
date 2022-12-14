@@ -1,12 +1,12 @@
 import express from 'express';
 
-import loginRouter from './routers/login';
+import loginRouter from './utils/routers/login';
 
-import userRouter from './routers/users';
+import userRouter from './utils/routers/users';
 
-import ordersRouter from './routers/orders';
+import ordersRouter from './utils/routers/orders';
 
-import productsRouter from './routers/products';
+import productsRouter from './utils/routers/products';
 
 const app = express();
 
