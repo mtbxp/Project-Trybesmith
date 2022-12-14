@@ -8,3 +8,7 @@ export interface User {
 export interface NewUser extends User {
   password: string,
 }
+
+export interface FoundUser extends User {
+  password: string,
+}
