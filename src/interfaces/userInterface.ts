@@ -1,4 +1,4 @@
-interface User {
+export interface User {
   id?: number;
   username: string;
   vocation: string;
@@ -7,4 +7,7 @@ interface User {
   token?: string; 
 }
 
-export default User;
+export interface UserCredentials {
+  username: string;
+  password: string;
+} 
