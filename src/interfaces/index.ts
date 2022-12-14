@@ -37,3 +37,7 @@ export interface Token {
 export interface TokenService extends Status {
   result: string;
 }
+
+export interface ServiceError extends Status {
+  error: { message: string }
+}

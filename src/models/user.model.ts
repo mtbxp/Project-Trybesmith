@@ -15,9 +15,9 @@ export async function create(user: User): Promise<IUser> {
   return { id, ...user };
 }
 
-export async function userByEmail(email: string): Promise<IUser | undefined> {
-  const query = `SELECT * FROM ${TABLE} WHERE email = ?`;
-  const value = [email];
+export async function userByname(username: string): Promise<IUser | undefined> {
+  const query = `SELECT * FROM ${TABLE} WHERE username = ?`;
+  const value = [username];
 
   const [result] = await connection.execute<RowDataPacket[] & IUser>(query, value);
 
