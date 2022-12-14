@@ -5,3 +5,17 @@ export type TProduct = {
   orderId?: number,
       
 };
+
+export type TUser = {
+  id?: number,
+  username: string,
+  vocation: string,
+  level: number,
+  password: string,
+};
+
+export type TLogin = {
+  id?:number,
+  username: string,
+  password: string,
+};
