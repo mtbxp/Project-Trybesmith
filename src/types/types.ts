@@ -21,3 +21,11 @@ export type Torders = {
   userId: number,
 
 };
+
+export type TLogin = {
+
+  id?: number,
+  username: string,
+  password: string,
+
+};
