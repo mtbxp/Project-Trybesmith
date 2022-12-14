@@ -13,6 +13,12 @@ class ProductService {
     const products = await this.model.getAll();
     return products;
   }
+
+  public create(product: Product): Promise<Product> {
+    // VALIDAÇÕES PENDENTES!
+
+    return this.model.create(product);
+  }
 }
 
 export default ProductService;

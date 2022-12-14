@@ -7,12 +7,6 @@ const productController = new ProductController();
 
 router.get('/', productController.getAll);
 
-// router.get(booksSlashId, bookController.getById);
-
-// router.post('/books', bookController.create);
-
-// router.put(booksSlashId, bookController.update);
-
-// router.delete(booksSlashId, bookController.remove);
+router.post('/', productController.create);
 
 export default router;
