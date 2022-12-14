@@ -6,4 +6,13 @@ const getAllProducts = async (req: Request, res: Response) => {
   res.status(200).json(products);
 };
 
-export default { getAllProducts };
+const insertProducts = async (req: Request, res: Response) => {
+  const product = req.body;
+  const { type, message } = await service.insertProduct(product);
+
+  if (type) return res.status(type).json({ message });
+
+  return res.status(201).json(message);
+};
+
+export default { getAllProducts, insertProducts };

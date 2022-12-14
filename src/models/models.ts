@@ -13,4 +13,11 @@ const getAlProducts = async (): Promise<TProduct[]> => {
   return product;
 };
 
-export default { getAlProducts };
+const insertProduct = async ({ name, amount }:any) => {
+  await connection.execute(
+    'INSERT INTO Trybesmith.products (name, amount) VALUES (?, ?)',
+    [name, amount],
+  );
+};
+
+export default { getAlProducts, insertProduct };
