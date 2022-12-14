@@ -14,5 +14,5 @@ const getAllProducts = async (): Promise<IProducts[]> => {
 };
 
 export default {
-  getAllProducts
+  getAllProducts,
 };
