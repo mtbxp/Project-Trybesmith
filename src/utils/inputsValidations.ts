@@ -18,7 +18,7 @@ const vocationSchema = Joi.string().min(3).required().messages({
   'string.min': '"vocation" length must be at least 3 characters long',
 });
 
-const levelSchema = Joi.number().min(3).required().messages({
+const levelSchema = Joi.number().min(1).required().messages({
   'any.required': '"level" is required',
   'number.base': '"level" must be a number',
   'number.min': '"level" must be greater than or equal to 1',
