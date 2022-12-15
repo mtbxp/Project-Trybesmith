@@ -1,11 +1,14 @@
 import { Request, Response } from 'express';
-import { TUser } from '../types';
+// import { TUser } from '../types';
 import userService from '../services/userService';
+import generateToken from '../services/login.service';
 
 const createUser = async (req: Request, res: Response) => {
-  const user = req.body as TUser;
-  const { status, data } = await userService.createUser(user);
-  res.status(status).json(data);
+  const result = await userService.createUser(req.body);
+  if (result) {
+    const token = generateToken.generateToken(req.body.username);
+    res.status(201).json({ token });
+  }
 };
   
 export default { createUser };

@@ -26,4 +26,4 @@ const login = async (loginBody: TLogin) : Promise<Result> => {
   return { status: 200, token: generateToken(user) };
 };
   
-export default { login };
+export default { login, generateToken };
