@@ -11,5 +11,11 @@ export const addAProductService = async (name:string, amount:string) => {
 };
 
 export const getAllProductsService = async () => {
-
+  try {
+    const allProducts = await getAllProductsModel();
+    return { allProducts };
+  } catch (e) {
+    const err = e as TypeError;
+    return { error: true, message: err.message };
+  }
 };
