@@ -14,6 +14,7 @@ export async function postProducts(req: Request, res: Response) {
   return res.status(201).json(response);
 }
 
-export async function getProducts() {
-  return null;
+export async function getProducts(_req: Request, res: Response) {
+  const products = await service.getProducts();
+  return res.status(200).json(products);
 }

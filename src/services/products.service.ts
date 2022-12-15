@@ -7,5 +7,6 @@ export async function postProducts(product: ProductReq): Promise<number> {
 }
 
 export async function getProducts() {
-  return null;
+  const products = await models.getProducts();
+  return products;
 }
