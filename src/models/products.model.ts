@@ -1,14 +1,8 @@
 import { ResultSetHeader, RowDataPacket } from 'mysql2';
 import connection from './connection';
+import { TProducts } from '../types';
 
-export type Product = {
-  id: number;
-  name: string;
-  amount: string;
-  orderId: number;
-};
-
-const createProduct = async (name: string, amount: string): Promise<Product> => {
+const createProduct = async (name: string, amount: string): Promise<TProducts> => {
   const [product] = await connection.execute<ResultSetHeader>(
     'INSERT INTO Trybesmith.products (name, amount) VALUES (?, ?);',
     [name, amount],
@@ -20,16 +14,16 @@ const createProduct = async (name: string, amount: string): Promise<Product> => 
     id: insertId,
     name,
     amount,
-  } as Product;
+  } as TProducts;
 
   return productCreated;
 };
 
-const getAllProducts = async ():Promise<Product> => {
+const getAllProducts = async ():Promise<TProducts> => {
   const [products] = await connection
-    .execute<RowDataPacket[] & Product>('SELECT * FROM Trybesmith.products');
+    .execute<RowDataPacket[] & TProducts>('SELECT * FROM Trybesmith.products');
 
-  return products as Product;
+  return products as TProducts;
 };
 
 export default {

@@ -1,11 +1,12 @@
-import model, { Product } from '../models/products.model';
+import model from '../models/products.model';
+import { TProducts } from '../types';
 
-async function createProductService(name: string, amount: string): Promise<Product> {
+async function createProductService(name: string, amount: string): Promise<TProducts> {
   const products = await model.createProduct(name, amount);
   return products;
 }
 
-const getAllProductsService = async (): Promise<Product> => {
+const getAllProductsService = async (): Promise<TProducts> => {
   const products = await model.getAllProducts();
 
   return products;

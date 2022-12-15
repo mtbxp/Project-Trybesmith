@@ -1,10 +1,13 @@
 import express from 'express';
-import controller from '../controller/products.controller';
+import productsController from '../controller/products.controller';
+import usersController from '../controller/users.controller';
 
 const router = express.Router();
 
-router.post('/products', controller.createProductController);
+router.post('/products', productsController.createProductController);
 
-router.get('/products', controller.getAllProductsController);
+router.get('/products', productsController.getAllProductsController);
+
+router.post('/users', usersController.createUserController);
 
 export default router;
