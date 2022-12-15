@@ -13,7 +13,6 @@ const createProducts = async (req: Request, res: Response):Promise<void> => {
   res.status(201).json(createdProduct);
 };
 
-
 export default {
   getAllProducts,
   createProducts,
