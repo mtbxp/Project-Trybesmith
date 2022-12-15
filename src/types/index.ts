@@ -5,6 +5,20 @@ export type TProducts = {
   orderId: number
 };
 
+export type TPeople = {
+  id?: number,
+  username: string
+  vocation: string,
+  level: number,
+  password: string,
+};
+
+export type TOrders = {
+  id?: number,
+  userId: number,
+  productsIds: number[]
+};
+
 // CREATE TABLE Trybesmith.products(
 //   id INTEGER AUTO_INCREMENT PRIMARY KEY NOT NULL,
 //   name TEXT NOT NULL,
@@ -12,3 +26,10 @@ export type TProducts = {
 //   order_id INTEGER,
 //   FOREIGN KEY(order_id) REFERENCES Trybesmith.orders(id)
 // );
+
+// {
+//   "username": "MAX",
+//   "vocation": "swordsman",
+//   "level": 10,
+//   "password": "SavingPeople"
+// }
