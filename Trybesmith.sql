@@ -11,7 +11,7 @@ CREATE TABLE Trybesmith.users (
 
 CREATE TABLE Trybesmith.orders (
   id INTEGER AUTO_INCREMENT PRIMARY KEY NOT NULL,
-  user_id INTEGER,
+  user_id INTEGER,''
   FOREIGN KEY (user_id) REFERENCES Trybesmith.users (id)
 );
 
