@@ -32,8 +32,25 @@ const getAllOrders = async (): Promise<Order[]> => {
   return result as Order[];
 };
 
+async function updateProducts(orderId: number | undefined, productId: number) {
+  const query = 'UPDATE Trybesmith.products SET order_id = ? WHERE id = ?';
+  await connection.execute<ResultSetHeader>(query, [orderId, productId]);
+  return productId;
+}
+
+async function addOrder(userId: number | undefined, productsIds: number[]) {
+  const query = 'INSERT INTO Trybesmith.orders (user_id) VALUES (?)';
+  const [response] = await connection.execute<ResultSetHeader>(query, [userId]);
+  await Promise.all(productsIds.map(async (item) => {
+    await updateProducts(response.insertId, item);
+  }));
+  return { userId, productsIds };
+}
+
 export {
   addProd,
   getAllProds,
   getAllOrders,
+  addOrder,
+  updateProducts,
 };

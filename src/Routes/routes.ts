@@ -1,8 +1,8 @@
 import { Router } from 'express';
-// const userController = require('../controllers/userController');
 import * as productsContoller from '../controllers/productsController';
 import * as usersContoller from '../controllers/usersController';
-import { ValidLogin, checkProd, checkUsers, checkUsers2, checkUsers3 }
+import { validateToken } from '../auth/validateJWT';
+import { ValidLogin, checkProd, checkUsers, checkUsers2, checkUsers3, checkOrder }
   from '../middlewares/middleWares';
 
 // const midwares = require('../middlewares/middleWares');
@@ -15,7 +15,7 @@ const userRoute = Router();
 productRoute.post('/products/', checkProd, productsContoller.addProduct);
 productRoute.get('/products/', productsContoller.getAllProds);
 productRoute.get('/orders/', productsContoller.getAllOrders);
-// productRoute.post('/products/', midwares.ValidLogin, productsController.addProduct);
+productRoute.post('/orders/', validateToken, checkOrder, productsContoller.addOrder);
 
 userRoute.post('/users/', checkUsers, checkUsers2, checkUsers3, usersContoller.createUser);
 userRoute.post('/login/', ValidLogin, usersContoller.login);

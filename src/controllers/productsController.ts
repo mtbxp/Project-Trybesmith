@@ -19,8 +19,17 @@ const getAllOrders = async (req: Request, res: Response) => {
   return res.status(200).json(result);
 };
 
+const addOrder = async (req: Request, res: Response) => {
+  const { productsIds } = req.body;
+  const token = req.header('Authorization');
+  let result;
+  if (token) result = await productsService.addOrder(productsIds, token);
+  return res.status(201).json(result);
+};
+
 export {
   addProduct,
   getAllProds,
   getAllOrders,
+  addOrder,
 };
