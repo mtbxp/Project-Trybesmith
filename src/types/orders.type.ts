@@ -1,5 +1,5 @@
 export interface TOrders {
-    id: number,
-    userId: string,
-    productsIds: number[],
-  }
+  id: number,
+  userId: string,
+  productsIds: number[],
+}
