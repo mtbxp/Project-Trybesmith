@@ -17,6 +17,7 @@ export async function create(user:TUser):Promise<object> {
   return { token };
 }
 
-export function getAll() {
-
+export async function getByUser(name:string):Promise<TUser> {
+  const user = await UserModel.getByUser(name);
+  return user;
 }
