@@ -16,3 +16,13 @@ export async function insertUser(users: TUser) {
   
   return { token };
 }
+
+export async function getByLogin(login: TUser) {
+  const user = await usersModel.getByLogin(login);
+  console.log('user', user);
+  if (!user.length) return { type: 401, message: 'Username or password invalid' };
+  
+  const token = jwtConfig.createToken(user[0]);
+
+  return { type: null, message: { token } };
+}

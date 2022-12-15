@@ -10,14 +10,14 @@ export async function getAll(): Promise<TUser[]> {
   return users;
 }
   
-// const getById = async (id) => {
-//   const [result] = await connection.execute(
-//     'SELECT * FROM StoreManager.Users WHERE id = (?)', 
-//     [id],
-//   );
+export async function getByLogin({ username, password }: TUser): Promise<TUser[]> {
+  const [user] = await connection.execute<RowDataPacket[] & TUser[]>(
+    'SELECT * FROM Trybesmith.users WHERE username = (?) AND password = (?)', 
+    [username, password],
+  );
   
-//   return result;
-// };
+  return user;
+}
   
 export async function insertUser({ username, vocation, level, password }: TUser) {
   await connection.execute(
