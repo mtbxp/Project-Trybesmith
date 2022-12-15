@@ -1,4 +1,5 @@
 import express from 'express';
+import validateToken from './midleweres/validateToken';
 import { addAProductService, getAllProductsService } from './services/products.services';
 import { Iproduct } from './types';
 
@@ -18,5 +19,10 @@ app.get('/products', async (req, res) => {
   if (error) return res.status(400).json({ message });
   return res.status(200).json(allProducts);
 });
+
+app.post(
+  '/users', 
+  validateToken,
+);
 
 export default app;
