@@ -7,9 +7,9 @@ const createNewProductController = async (req: Request, res: Response) => {
   return res.status(201).json(newProduct);
 };
 
-const getAllProductsController = async (req: Request, res: Response) => {
+const getAllProductsController = async (_req: Request, res: Response) => {
   const getAllProducts = await productsService.selectAllProductsService();
   return res.status(200).json(getAllProducts);
 };
 
-export default { createNewProductController, getAllProductsController };
+export default { createNewProductController, getAllProductsController };  
