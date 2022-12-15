@@ -13,4 +13,12 @@ export default class OrderService {
     const orders = await this.model.listAll();
     return orders as OrderEtProducts[];
   }
+
+  public async post(productIds: number[], userId: number) {
+    const newOrder = await this.model.post(productIds, userId);
+    if (!newOrder) {
+      return { error: true, message: 'Could not post order' };
+    }
+    return { error: false, data: newOrder };
+  }
 }
