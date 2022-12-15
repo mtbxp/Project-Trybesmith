@@ -12,3 +12,15 @@ export interface NewUser extends User {
 export interface FoundUser extends User {
   password: string,
 }
+
+export interface Body {
+  productsIds: number[],
+  currentUser: {
+    id: number,
+    username: string,
+    vocation: string,
+    level: number,
+    iat: number,
+    exp: number
+  }
+}

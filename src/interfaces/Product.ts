@@ -13,3 +13,8 @@ export interface Order {
   userId: number,
   productsIds: number[],
 }
+
+export interface OrderCreated {
+  userId: number,
+  productsIds: number[],
+}
