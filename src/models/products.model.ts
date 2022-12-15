@@ -11,9 +11,9 @@ const getAllProducts = async (): Promise<TProduct[]> => {
 
 const createProducts = async (product: NewProduct): Promise<NewProduct> => {
   const [{ insertId }] = await connection.execute<ResultSetHeader>(
-  'INSERT INTO Trybesmith.products (name, amount) VALUES (?,?)',
-  [product.name, product.amount],
-    );
+    'INSERT INTO Trybesmith.products (name,amount) VALUES (?,?)',
+    [product.name, product.amount],
+  );
   
   return { id: insertId, name: product.name, amount: product.amount };
 };
