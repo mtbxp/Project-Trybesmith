@@ -5,3 +5,8 @@ export interface IUser {
   level: number,
   password: string,
 }
+
+export interface ILogin {
+  id?: number,
+  username: string;
+}
