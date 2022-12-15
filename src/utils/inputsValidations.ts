@@ -24,9 +24,17 @@ const levelSchema = Joi.number().min(3).required().messages({
   'number.min': '"level" must be greater than or equal to 1',
 });
 
+const loginSchema = Joi.object({
+  username: usernameSchema,
+  password: passwordSchema,
+  vocation: vocationSchema,
+  level: levelSchema,
+})
+
 export {
   usernameSchema,
   passwordSchema,
   vocationSchema,
   levelSchema,
+  loginSchema,
 }

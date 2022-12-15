@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import {  usernameSchema, passwordSchema } from '../utils/inputsValidations'
+import { usernameSchema, passwordSchema } from '../utils/inputsValidations';
 
 const validateLogin = (req: Request, res: Response, next: NextFunction) => {
   const { username, password } = req.body;
