@@ -23,6 +23,8 @@ export interface Order {
   productsIds: number[];
 }
 
+export type OrderInput = Omit<Order, 'id'>;
+
 export interface Credentials {
   username: string;
   password: string;
