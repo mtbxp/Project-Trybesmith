@@ -1,6 +1,6 @@
 import { RowDataPacket } from 'mysql2/promise';
 
-import { TProduct } from '../types';
+import { TProduct, TUser } from '../types';
 import connection from './connection';
 
 // RowDataPacket => SELECT
@@ -20,4 +20,21 @@ const insertProduct = async ({ name, amount }:any) => {
   );
 };
 
-export default { getAlProducts, insertProduct };
+const getAllUser = async (): Promise<TUser[]> => {
+  const [users] = await connection
+    .execute<RowDataPacket[] & TUser[]>('SELECT * FROM Trybesmith.users;');
+  return users;
+};
+
+const insertUser = async ({ username, vocation, level, password }:TUser) => {
+  await connection.execute(
+    'INSERT INTO Trybesmith.users (username, vocation, level,password) VALUES (?, ?, ?, ?)',
+    [username, vocation, level, password],
+  );
+};
+export default {
+  getAlProducts,
+  insertProduct,
+  getAllUser,
+  insertUser,
+};
