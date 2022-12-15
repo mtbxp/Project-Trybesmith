@@ -1,7 +1,9 @@
 import jwt, { Secret } from 'jsonwebtoken';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const SECRET_KEY:Secret = process.env.JWT_SECRET as string;
-// const SECRET_KEY:Secret = 'SECRET';
 
 export default (userId: number): string => {
   const payload = { userId };

@@ -9,6 +9,19 @@ class OrderController {
     const orders = await this.orderService.getAll();
     res.status(statusCodes.OK).json(orders);
   };
+
+  public create = async (req: Request, res: Response) => {
+    const { userId } = req.body.user;
+    const { productsIds } = req.body;
+
+    const order = {
+      user_id: userId,
+      productsIds,
+    };
+
+    await this.orderService.create(order);
+    res.status(statusCodes.CREATED).json({ userId, productsIds });
+  };
 }
 
 export default OrderController;

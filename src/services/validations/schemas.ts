@@ -35,3 +35,13 @@ export const userSchema = Joi.object<User>({
     .min(8)
     .required(),
 });
+
+export const productsIdsArrSchema = Joi.array()
+  .items(Joi.number().integer().min(1))
+  .min(1)
+  .required()
+  .label('productsIds')
+  .messages({
+    'number.base': '"productsIds" must include only numbers',
+    'array.min': '"productsIds" must include only numbers',
+  });

@@ -1,6 +1,8 @@
-interface Order {
+export interface Order {
   id?: number;
   user_id: string;
 }
 
-export default Order;
+export interface FullOrder extends Order {
+  productsIds: number[]
+}
