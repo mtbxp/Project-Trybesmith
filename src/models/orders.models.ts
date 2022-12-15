@@ -1,4 +1,4 @@
-import { RowDataPacket } from 'mysql2/promise';
+import { ResultSetHeader, RowDataPacket } from 'mysql2';
 import { InterfaceOrder } from '../interfaces';
 import connection from './connection';
 
@@ -15,6 +15,28 @@ const getAllOrders = async (): Promise<InterfaceOrder[]> => {
   return orders;
 };
 
+const addOrder = async (order: InterfaceOrder) => {
+  console.log(order);
+  
+  try {
+    const [{ insertId }] = await connection
+      .execute<ResultSetHeader>(
+      'INSERT INTO Trybesmith.orders (user_id) VALUES (?)',
+      [order.userId],
+    );
+    await Promise.all(order.productsIds.map(async (id) => {
+      await connection
+        .execute<ResultSetHeader>(
+        'UPDATE Trybesmith.products SET order_id = ? WHERE id = ?',
+        [insertId, id],
+      );
+    }));
+  } catch (error) {
+    console.log('Deu erro maninho', error);    
+  }
+};
+
 export default {
   getAllOrders,
+  addOrder,
 };

@@ -34,3 +34,11 @@ export const checkInputsUser = Joi.object({
   'number.min': numberMinError,
   'number.base': numberBaseError,
 });
+
+export const checkInputsOrder = Joi.object({
+  productsIds: Joi.array().min(1).required(),
+}).messages({
+  'any.required': anyRequiredError,
+  'array.base': '{#label} must be an array',
+  'array.min': '{#label} must include only numbers',
+});
