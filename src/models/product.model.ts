@@ -22,3 +22,11 @@ export async function getAll():Promise<TProduct[]> {
   TProduct[]>('SELECT * FROM Trybesmith.products');
   return result;
 }
+
+export async function updateById(orderId:number, productId:number) {
+  const [result] = await connection.execute(
+    'UPDATE Trybesmith.products SET order_id = ? WHERE id = ?',
+    [orderId, productId],
+  );
+  return result;
+}

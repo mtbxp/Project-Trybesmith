@@ -29,3 +29,10 @@ export type TOrders = {
   userId: number,
   productsIds: number[]
 };
+
+export type Tpayload = {
+  username: string,
+  password: string,
+  iat: number,
+  exp: number
+};

@@ -1,4 +1,4 @@
-import { RowDataPacket } from 'mysql2/promise';
+import { RowDataPacket, ResultSetHeader } from 'mysql2/promise';
 import connection from './connection';
 import { TOrders } from '../types';
 
@@ -11,6 +11,10 @@ export async function getAll():Promise<TOrders[]> {
   return result;
 }
 
-export function create() {
-
+export async function create(id:number) {
+  const [{ insertId }] = await connection.execute<ResultSetHeader>(
+    'INSERT INTO Trybesmith.orders (user_id) VALUES (?)',
+    [id],
+  );
+  return insertId;
 }
