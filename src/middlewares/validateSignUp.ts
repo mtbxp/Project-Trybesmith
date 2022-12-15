@@ -10,7 +10,7 @@ const setStatus = (type: string | undefined) => {
 };
 
 const validateSignUp = (req: Request, res: Response, next: NextFunction) => {
-  const {error} = loginSchema.validate(req.body)
+  const { error } = loginSchema.validate(req.body);
 
   if (error) {
     const status = setStatus(error?.details[0].type);
