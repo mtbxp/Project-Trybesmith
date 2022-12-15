@@ -7,9 +7,14 @@ async function postProduct(request: Product): Promise<Product> {
   return result;
 }
 
+async function getAllProducts(): Promise<Product[]> {
+  const result = await productModel.getAllProducts();
+  return result;
+}
+
 export default {
   // getProductById,
-  // getAllProducts,
+  getAllProducts,
   postProduct,
   // updateProduct,
 };
