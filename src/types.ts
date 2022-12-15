@@ -5,3 +5,10 @@ export interface Iproduct {
   amount:string,
   orderId?:number,
 }
+
+export interface Iuser { 
+  username: string,
+  vocation?: string,
+  level?: number,
+  password: string
+}
