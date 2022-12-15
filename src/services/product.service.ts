@@ -19,16 +19,3 @@ export default class ProductService {
     return result;
   }
 }
-
-// export default class ProductService {
-//   public model: ProductModel;
-
-//   constructor() {
-//     this.model = new ProductModel(connection);
-//   }
-
-//   public async createNewProduct(product:Product):Promise<Product> {
-//     const result = await this.model.createNewProduct(product);  
-//     return result;
-//   }
-// }

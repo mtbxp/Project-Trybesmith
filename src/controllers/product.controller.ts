@@ -23,19 +23,3 @@ export default class ProductController {
     return res.status(201).json(payload);
   }
 }
-
-// export default class ProductController {
-//   public service: ProductService;
-  
-//   constructor() {
-//     this.service = new ProductService();
-//   }
-
-//   public async createNewProduct(req: Request, res:Response) {
-//     const product:Product = req.body;
-    
-//     const payload = await this.service.createNewProduct(product);
-
-//     return res.status(201).json(payload);
-//   }
-// }
