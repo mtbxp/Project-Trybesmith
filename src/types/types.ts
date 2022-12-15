@@ -18,6 +18,10 @@ export interface NewUser {
   password: string
 }
 
+export interface DatabaseUser extends NewUser {
+  id: number,
+}
+
 export interface CreatedUser {
   id: number,
   username: string,
@@ -27,4 +31,9 @@ export interface OrdersArray {
   id: number,
   userId: number,
   productsIds: number[] 
+}
+
+export interface UserLogin {
+  username: string,
+  password: string
 }

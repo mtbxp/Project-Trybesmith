@@ -1,5 +1,5 @@
 import { generateToken } from '../auth/jwtValidations';
-import { NewUser } from '../types/types';
+import { NewUser, UserLogin } from '../types/types';
 import * as usersModel from '../models/user.model';
 
 export async function createUser(newUser: NewUser) {
@@ -8,6 +8,12 @@ export async function createUser(newUser: NewUser) {
   return { status: '', message: userToken };
 }
 
-export async function blabla() {
-  console.log('blabla');
+export async function login(user: UserLogin) {
+  const userExists = await usersModel.getUserByUsername(user.username);
+  if (!userExists || user.password !== userExists.password) {
+    return { status: 'NOT_FOUND', message: 'Username or password invalid' };
+  }
+
+  const token = generateToken({ id: userExists.id, username: userExists.username });
+  return { status: '', message: token };
 }
