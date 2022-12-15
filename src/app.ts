@@ -2,6 +2,7 @@ import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
 import ProductsRoutes from './routes/products.routes';
 import UsersRoutes from './routes/users.routes';
+import OrdersRoutes from './routes/orders.routes';
 
 const app = express();
 
@@ -9,6 +10,7 @@ app.use(express.json());
 
 app.use('/products', ProductsRoutes);
 app.use('/users', UsersRoutes);
+app.use('/orders', OrdersRoutes);
 
 app.use((err: Error, _req: Request, res: Response, next: NextFunction) => {
   const { name, message } = err as any;
