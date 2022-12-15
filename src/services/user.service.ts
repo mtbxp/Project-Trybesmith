@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { User } from '../interfaces';
+import { ServiceError, TokenService, User } from '../interfaces';
 import * as userModel from '../models/user.model';
 import { config, secret } from '../middlewares/jwtConfig';
 
@@ -15,6 +15,19 @@ export async function create(user: User) {
   return { status: 201, result: token };
 }
 
-export function oi() {
-  return 'oi';
+export async function login(user: User): Promise<TokenService | ServiceError> {
+  const { password, username } = user;
+  const userUser = await userModel.userByname(username);
+  
+  if (!userUser) return { status: 401, error: { message: 'não existe' } };
+  
+  const { password: userPassword, id, level, vocation } = userUser;
+
+  const newObj = { id, level, username, vocation };
+
+  const token = jwt.sign(newObj, secret, config);
+
+  if (userPassword === password) return { status: 401, error: { message: 'abc' } };
+
+  return { status: 200, result: token };
 }

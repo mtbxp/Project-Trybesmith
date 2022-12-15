@@ -15,12 +15,12 @@ export async function create(user: User): Promise<IUser> {
   return { id, ...user };
 }
 
-export async function userByname(username: string): Promise<IUser | null> {
+export async function userByname(username: string): Promise<IUser> {
   const query = `SELECT * FROM ${TABLE} WHERE username = ?`;
   const value = [username];
 
   const [data] = await connection.execute(query, value);
   const [result] = data as IUser[];
 
-  return result || null;
+  return result;
 }
