@@ -1,5 +1,6 @@
-import productSchema from './schemas';
+import { productSchema, userSchema } from './schemas';
 import Product from '../../interfaces/product.interface';
+import User from '../../interfaces/user.interface';
 
 export const validateNewProduct = async (product: Product) => {
   const { error } = productSchema.validate(product);
@@ -8,4 +9,9 @@ export const validateNewProduct = async (product: Product) => {
   return null;
 };
 
-export default validateNewProduct;
+export const validateNewUser = async (user: User) => {
+  const { error } = userSchema.validate(user);
+  if (error) return error.message;
+
+  return null;
+};

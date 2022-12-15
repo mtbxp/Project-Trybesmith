@@ -1,7 +1,8 @@
 import Joi from 'joi';
 import Product from '../../interfaces/product.interface';
+import User from '../../interfaces/user.interface';
 
-const productSchema = Joi.object<Product>({
+export const productSchema = Joi.object<Product>({
   name: Joi.string()
     .min(3)
     .required(),
@@ -10,4 +11,18 @@ const productSchema = Joi.object<Product>({
     .required(),
 });
 
-export default productSchema;
+export const userSchema = Joi.object<User>({
+  username: Joi.string()
+    .min(3)
+    .required(),
+  vocation: Joi.string()
+    .min(3)
+    .required(),
+  level: Joi.number()
+    .integer()
+    .min(1)
+    .required(),
+  password: Joi.string()
+    .min(8)
+    .required(),
+});
