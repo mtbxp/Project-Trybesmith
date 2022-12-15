@@ -10,7 +10,6 @@ const validationProduct = (req: Request, res: Response, next: NextFunction): Res
       return res.status(400).json({ message: error.message });
     } return res.status(422).json({ message: error.message });
   }
-  
   next();
 };
 
