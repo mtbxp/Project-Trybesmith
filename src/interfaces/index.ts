@@ -13,6 +13,11 @@ export interface InterfaceUser {
   password?: number
 }
 
+export interface InterfaceLogin {
+  username: string,
+  password?: number
+}
+
 export interface InterfaceOrder {
   id?: number,
   userId: number,

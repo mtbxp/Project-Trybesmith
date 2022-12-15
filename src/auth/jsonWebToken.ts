@@ -1,9 +1,9 @@
 import jwt from 'jsonwebtoken';
-import { InterfaceUser } from '../interfaces';
+import { InterfaceLogin, InterfaceUser } from '../interfaces';
 
-const secret = process.env.JWT_SECRET || 'suaSenhaSecreta' as string;
+const secret = 'suaSenhaSecreta' as string;
 
-export const createToken = (data: InterfaceUser) => {
+export const createToken = (data: InterfaceUser | InterfaceLogin) => {
   const token = jwt.sign({ data }, secret, { algorithm: 'HS256', expiresIn: '20min' });
   return token;
 };
