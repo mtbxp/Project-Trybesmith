@@ -6,6 +6,16 @@ import generateToken from '../utils/generateToken';
 class UserController {
   constructor(private userService = new UserService()) { }
 
+  public login = async (req: Request, res: Response) => {
+    const login = req.body;
+
+    const userLogged = await this.userService.checkUser(login);
+
+    const token = generateToken(Number(userLogged.id));
+
+    res.status(statusCodes.OK).json({ token });
+  };
+
   public create = async (req: Request, res: Response) => {
     const user = req.body;
 

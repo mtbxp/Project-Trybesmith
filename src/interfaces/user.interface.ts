@@ -1,9 +1,10 @@
-interface User {
-  id?: number;
+export interface Login {
   username: string;
-  vocation: string;
-  level: number;
   password: string;
 }
 
-export default User;
+export interface User extends Login {
+  id?: number;
+  vocation: string;
+  level: number;
+}

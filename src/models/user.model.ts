@@ -1,11 +1,19 @@
 import { Pool, ResultSetHeader } from 'mysql2/promise';
-import User from '../interfaces/user.interface';
+import { User } from '../interfaces/user.interface';
 
 export default class UserModel {
   public connection: Pool;
 
   constructor(connection: Pool) {
     this.connection = connection;
+  }
+
+  public async getByUsername(username: string): Promise<User> {
+    const result = await this.connection
+      .execute('SELECT * FROM Trybesmith.users WHERE username=?', [username]);
+    const [rows] = result;
+    const [user] = rows as User[];
+    return user;
   }
 
   public async create(user: User): Promise<User> {

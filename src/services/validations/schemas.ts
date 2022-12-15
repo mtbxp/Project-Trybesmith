@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import Product from '../../interfaces/product.interface';
-import User from '../../interfaces/user.interface';
+import { Login, User } from '../../interfaces/user.interface';
 
 export const productSchema = Joi.object<Product>({
   name: Joi.string()
@@ -8,6 +8,15 @@ export const productSchema = Joi.object<Product>({
     .required(),
   amount: Joi.string()
     .min(3)
+    .required(),
+});
+
+export const loginSchema = Joi.object<Login>({
+  username: Joi.string()
+    .min(3)
+    .required(),
+  password: Joi.string()
+    .min(8)
     .required(),
 });
 
