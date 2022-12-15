@@ -1,20 +1,15 @@
-import { ResultSetHeader, RowDataPacket } from 'mysql2';
+import { ProductRequest } from '../interfaces/products.interface';
 import {
   registerProductModel,
   getAllProductsModel,
 } from '../models/products.model';
 
-// Correção no commit
-
-export const registerProductService = async (
-  name:string,
-  amount:string,
-): Promise<ResultSetHeader[]> => {
-  const product = await registerProductModel(name, amount);
-  return product as ResultSetHeader[];
+export const registerProductService = async (product: ProductRequest) => {
+  const insertId = await registerProductModel(product);
+  return insertId;
 };
 
-export const getAllProductsService = async (): Promise<RowDataPacket[]> => {
+export const getAllProductsService = async () => {
   const allProducts = await getAllProductsModel();
-  return allProducts as RowDataPacket[];
+  return allProducts;
 };
