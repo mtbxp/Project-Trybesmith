@@ -3,4 +3,4 @@ export interface TProduct {
     name: string,
     amount: string,
     orderId?: number | null,
-  }
+}
