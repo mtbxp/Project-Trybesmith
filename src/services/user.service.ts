@@ -19,15 +19,17 @@ export async function login(user: User): Promise<TokenService | ServiceError> {
   const { password, username } = user;
   const userUser = await userModel.userByname(username);
   
-  if (!userUser) return { status: 401, error: { message: 'não existe' } };
+  if (!userUser) return { status: 401, error: { message: 'Username or password invalid' } };
   
   const { password: userPassword, id, level, vocation } = userUser;
-
+  
+  if (userPassword !== password) { 
+    return { status: 401, error: { message: 'Username or password invalid' } }; 
+  }
+  
   const newObj = { id, level, username, vocation };
 
   const token = jwt.sign(newObj, secret, config);
-
-  if (userPassword === password) return { status: 401, error: { message: 'abc' } };
 
   return { status: 200, result: token };
 }
