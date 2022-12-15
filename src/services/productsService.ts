@@ -6,7 +6,7 @@ export async function getAll(): Promise<Tproduct[]> {
   return products;
 }
 
-export async function insertProducts(product: Tproduct): Promise<Tproduct[]> {
+export async function insertProducts(product: Tproduct): Promise<Tproduct> {
   const products = await productsModel.insertProducts(product);
-  return products as Tproduct[];
+  return products as Tproduct;
 }

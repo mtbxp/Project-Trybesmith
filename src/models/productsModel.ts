@@ -1,4 +1,3 @@
-// import { RowDataPacket } from 'mysql2/promise';
 import { ResultSetHeader } from 'mysql2';
 import { Tproduct } from '../types';
 import connection from './connection';
@@ -8,11 +7,11 @@ export async function getAll(): Promise<Tproduct[]> {
   return products as Tproduct[];
 }
 
-export async function insertProducts(product: Tproduct): Promise<Tproduct[]> {
+export async function insertProducts(product: Tproduct): Promise<Tproduct> {
   const { name, amount } = product;
-  await connection.execute<ResultSetHeader>(
+  const [{ insertId }] = await connection.execute<ResultSetHeader>(
     'INSERT INTO Trybesmith.products (name, amount) VALUES (?, ?)',
     [name, amount],
   );
-  return getAll();
+  return { id: insertId, ...product };
 }  

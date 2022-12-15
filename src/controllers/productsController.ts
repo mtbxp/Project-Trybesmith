@@ -6,9 +6,9 @@ export async function getAll(_req: Request, res: Response) {
   return res.status(200).json(products);
 }
 
-export async function insertProducts(_req: Request, res: Response) {
-  const { productBody } = _req.body;
-  const products = await productsServices.insertProducts(productBody);
+export async function insertProducts(req: Request, res: Response) {
+  const product = req.body;
+  const productCreate = await productsServices.insertProducts(product);
 
-  return res.status(201).json(products);
+  return res.status(201).json(productCreate);
 }
