@@ -15,7 +15,7 @@ export async function create(user:TUser):Promise<object> {
   const token = jwt.sign(payload, secret, jwtConfig);
 
   return { token };
-}
+} 
 
 export async function getByUser(name:string):Promise<TUser> {
   const user = await UserModel.getByUser(name);
