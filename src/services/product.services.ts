@@ -1,4 +1,4 @@
-import Product from '../interfaces/product.interface';
+import { Product } from '../interfaces/interface';
 import productModel from '../models/product.models';
 
 async function postProduct(request: Product): Promise<Product> {
