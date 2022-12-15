@@ -5,7 +5,15 @@ import create from '../models/user.model';
 
 const createUser = async (user: UserCredentials) => {
   const payload = await create(user);
-  const token = jwt.sign({ payload }, secret, config);
+  const token = jwt
+    .sign(
+      { id: payload.id,
+        username: payload.username, 
+        vocation: payload.vocation,
+        level: payload.level }, 
+      secret,
+      config,
+    );
   return token;
 };
 

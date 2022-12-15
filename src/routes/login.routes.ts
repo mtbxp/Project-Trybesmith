@@ -4,6 +4,6 @@ import validation from '../middlewares/login.validation';
 
 const router = Router();
 
-router.get('/', validation, addLoginUser);
+router.post('/', validation, addLoginUser);
 
 export default router;
