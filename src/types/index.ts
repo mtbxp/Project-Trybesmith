@@ -23,3 +23,9 @@ export type IToken = {
   iat: number;
   exp: number;
 };
+
+export type TOrders = {
+  id: number;
+  userId: number,
+  productsIds: number[]
+};
