@@ -4,3 +4,11 @@ export type TProducts = {
   amount: string,
   orderId?: number,
 };
+
+export type TPessoa = {
+  id?: number,
+  username: string,
+  vocation: string,
+  level: number,
+  password: string,
+};
