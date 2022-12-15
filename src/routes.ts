@@ -10,6 +10,7 @@ routes.post('/products', productsController.createProduct);
 routes.get('/products', productsController.getAllProducts);
 
 routes.post('/users', usersController.createUser);
+routes.post('/login', usersController.login);
 
 routes.get('/orders', ordersController.getAllOrders);
 

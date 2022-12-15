@@ -1,7 +1,7 @@
-import { ResultSetHeader } from 'mysql2';
+import { ResultSetHeader, RowDataPacket } from 'mysql2';
 
 import connection from './connection';
-import { UserInput } from '../types';
+import { User, UserInput } from '../types';
 
 async function createUser({ level, password, username, vocation }: UserInput): Promise<number> {
   const [{ insertId }] = await connection.execute<ResultSetHeader>(
@@ -12,4 +12,14 @@ async function createUser({ level, password, username, vocation }: UserInput): P
   return insertId;
 }
 
-export { createUser };
+async function getUserByUsername(username: string): Promise<User> {
+  const [[user]] = await connection.execute<(
+  RowDataPacket & User)[]>(
+    'SELECT * FROM Trybesmith.users WHERE username = ?',
+    [username],
+    );
+
+  return user;
+}
+
+export { createUser, getUserByUsername };
