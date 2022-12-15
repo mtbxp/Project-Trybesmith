@@ -7,7 +7,8 @@ const login = async (loginBody: Login): Promise<MessageError> => {
   if (!userCreated || userCreated.password !== loginBody.password) { 
     return { type: 401, message: 'Username or password invalid' };
   }
-  const userToToken = { _password: userCreated.password, ...userCreated };
+  const { id, username, vocation, level } = userCreated;
+  const userToToken = { id, username, vocation, level };
   const tokenCreated = token.createToken(userToToken);
   return { type: 200, message: tokenCreated };
 };
