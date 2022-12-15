@@ -18,3 +18,9 @@ export type TOrder = {
   userId: number,
   productsIds: [number],
 };
+
+export type TLogin = {
+  id?: number,
+  username: string,
+  password?: string,
+};

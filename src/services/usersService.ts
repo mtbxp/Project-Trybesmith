@@ -4,8 +4,8 @@ import * as usersModel from '../models/usersModel';
 
 export async function insert(user: TUser): Promise<string> {
   const { username } = user;
-  await usersModel.insert(user);
-  const token = createToken(username);
+  const id = await usersModel.insert(user);
+  const token = createToken({ id, username });
   return token;
 }
 

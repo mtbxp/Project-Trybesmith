@@ -1,5 +1,6 @@
-import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import jwt from 'jsonwebtoken';
+import { TLogin } from '../types/index';
 
 dotenv.config();
 
@@ -10,8 +11,9 @@ const jwtConfig = {
   expiresIn: '1d',
 };
 
-export function createToken(data: string) {
-  const token = jwt.sign({ data }, secret, jwtConfig as object);
+export function createToken(data: TLogin) {
+  const payload = { id: data.id, username: data.username };
+  const token = jwt.sign(payload, secret, jwtConfig as object);
   return token;
 }
 
