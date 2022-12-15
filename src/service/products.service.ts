@@ -8,4 +8,11 @@ const insertNewProductService = async (newProduct:TProducts):Promise<TProducts |
   return { id: createNewProduct.insertId, name: newProduct.name, amount: newProduct.amount };
 };
 
-export default { insertNewProductService };
+const selectAllProductsService = async () => {
+  const getAllProducts = await productsModel.selectAllProducts();
+  console.log('RETORNO DE getAllProducts SERVICE', getAllProducts);
+  
+  return getAllProducts;
+};
+
+export default { insertNewProductService, selectAllProductsService };
