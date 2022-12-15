@@ -13,4 +13,15 @@ export default class OrderController {
   
     return res.status(200).json(orders);
   }
+
+  public async createOrder(req:Request, res:Response):Promise<Response> {
+    const { user, productsIds } = req.body;
+    const { id } = user;
+
+    console.log(req.body);
+    
+    const result = await this.service.createOrder(id, productsIds);
+  
+    return res.status(201).json(result);
+  }
 }

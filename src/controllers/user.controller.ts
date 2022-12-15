@@ -1,7 +1,10 @@
 import { Request, Response } from 'express';
+import { Secret } from 'jsonwebtoken';
 import User from '../interfaces/user.interface';
 import UserService from '../services/user.service';
 import Jwt from '../auth/jwtConfig';
+
+const secret: Secret = process.env.JWT_SECRET || 'segredo';
 
 export default class UserController {
   public service:UserService;
@@ -16,9 +19,9 @@ export default class UserController {
 
     const { id, username } = payload;
     
-    const jwt = new Jwt({ id, username });
+    const jwt = new Jwt(secret);
 
-    const token = jwt.createToken();
+    const token = jwt.createToken({ id, username });
 
     return res.status(201).json({ token });
   }

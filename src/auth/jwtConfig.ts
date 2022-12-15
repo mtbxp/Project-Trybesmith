@@ -1,18 +1,16 @@
 import jwt, { Secret } from 'jsonwebtoken';
 import User from '../interfaces/user.interface';
 
-const secret: Secret = process.env.JWT_SECRET || 'segredo';
-
 export default class Jwt {
-  public user;
+  public secret;
 
-  constructor(user: User) {
-    this.user = user;
+  constructor(secret: Secret) {
+    this.secret = secret;
   }
 
-  public createToken() {
+  public createToken(user: User) {
     try {
-      const token = jwt.sign(this.user, secret, { algorithm: 'HS256', expiresIn: '3d' });
+      const token = jwt.sign(user, this.secret, { algorithm: 'HS256', expiresIn: '3d' });
       return token;
     } catch (error) {
       console.log(error);
@@ -20,7 +18,13 @@ export default class Jwt {
     }
   }
 
-  // public async validateToken {
-
-  // }
+  public validateToken(token: string) {
+    try {
+      const payload = jwt.verify(token, this.secret);
+      return payload;
+    } catch (error) {
+      console.log(error);
+      return { isError: true, message: 'Invalid token' };
+    }
+  }
 }

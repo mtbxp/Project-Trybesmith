@@ -1,10 +1,12 @@
 import { NextFunction, Response, Request } from 'express';
 import Product from '../interfaces/product.interface';
 import User from '../interfaces/user.interface';
+import Order from '../interfaces/order.interface';
 
 import loginSchema from '../validators/login.validator';
 import productSchema from '../validators/product.validator';
 import userSchema from '../validators/user.validator';
+import orderSchema from '../validators/order.validator';
 
 const validateLogin = async (req: Request, res: Response, next: NextFunction) => {
   const userData = req.body;
@@ -58,11 +60,30 @@ const validateUserWithJoi = async (req: Request, res: Response, next: NextFuncti
   return next();
 };
 
+const validateOrder = async (req: Request, res: Response, next: NextFunction) => {
+  const { productsIds }: Order = req.body;
+  const { error } = orderSchema.validate(productsIds);
+  
+  if (error?.details[0].type === 'any.required') {    
+    return res.status(400).json({ message: error.message });
+  }
+
+  if (error?.details[0].type === 'array.base') {    
+    return res.status(422).json({ message: error.message });
+  }
+
+  if (error?.details[0].type === 'array.includesRequiredUnknowns') {    
+    return res.status(422).json({ message: error.message });
+  }
+  return next();
+};
+
 export {
   validateLogin,
   validateProduct,
   validateUserWithJoi,
   validateUser,
+  validateOrder,
 };
 
 // type Keys = keyof typeof validators;
