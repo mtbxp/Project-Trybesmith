@@ -1,32 +1,20 @@
-// require('dotenv/config');
-// const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 
-// const secret = process.env.JWT_SECRET || 'seusecretdetoken';
+import dotenv from 'dotenv';
+import { Users } from '../interfaces/users';
 
-// const jwtConfig = {
-//   expiresIn: '1h',
-//   algorithm: 'HS256',
-// };
+dotenv.config();
 
-// const createToken = (user) => {
-//   const token = jwt.sign({ data: user }, secret, jwtConfig);
-//     return token;
-// };
+const secret = process.env.JWT_SECRET || 'seusecretdetoken';
 
-// const validateToken = (token) => {
-//   try {
-//     const payload = jwt.verify(token, secret);
-//     return payload;
-//   } catch (error) {
-//     console.log(error);
-//     return {
-//       isError: true,
-//       message: 'Expired or invalid token',
-//     };
-//   }
-// };
+const jwtConfig = {
+  expiresIn: '1h',
+  algorithm: 'HS256',
+};
 
-// module.exports = {
-//   createToken,
-//   validateToken,
-// };
+const createToken = (user: Users) => {
+  const token = jwt.sign({ data: user }, secret, jwtConfig as object);
+  return token;
+};
+
+export default createToken;
