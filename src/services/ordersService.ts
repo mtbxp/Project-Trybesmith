@@ -6,4 +6,9 @@ export async function getAll(): Promise<TOrder[]> {
   return orders;
 }
 
-export default getAll;
+export async function insert(newOrder: TOrder): Promise<TOrder> {
+  await ordersModel.insert(newOrder);
+  console.log(newOrder);
+  
+  return newOrder;
+}

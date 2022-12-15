@@ -17,6 +17,11 @@ export function createToken(data: TLogin) {
   return token;
 }
 
-export default {
-  createToken,
-};
+export function verifyToken(authorization: string) {
+  try {
+    const payload = jwt.verify(authorization, secret);
+    return { payload };
+  } catch (e) {
+    return { isError: e };
+  }
+}

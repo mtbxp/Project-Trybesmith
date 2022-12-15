@@ -15,7 +15,7 @@ export type TUser = {
 
 export type TOrder = {
   id?: number,
-  userId: number,
+  userId?: number,
   productsIds: [number],
 };
 
