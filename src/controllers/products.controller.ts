@@ -5,8 +5,8 @@ import {
 } from '../services/products.service';
 
 export const registerProductController = async (
-  req:Request,
-  res:Response,
+  req: Request,
+  res: Response,
 ): Promise<void> => {
   const product = await registerProductService(req.body);
   res.status(201).json(product);
