@@ -17,8 +17,4 @@ export default class UserService {
 
     return { status: statusCodes.CREATED, data: { token } };
   };
-
-  // login = async (login: Login) => {
-  //   const 
-  // };
 }

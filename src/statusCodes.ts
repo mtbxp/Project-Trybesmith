@@ -3,6 +3,7 @@ const statusCodes = {
   CREATED: 201,
   DELETED: 204,
   REQUIRED: 400,
+  INVALID: 401,
   NOT_FOUND: 404,
   SERVER_ERROR: 500,
 };
