@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { productCreateService, productGetAllService } from '../services/product.service';
+import { productCreateService, productGetAllService } from '../services/products.service';
 import statusCodes from '../utils/statusCode';
 // import Product from '../interface/productInterface';
 

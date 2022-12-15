@@ -1,6 +1,6 @@
 import { ResultSetHeader, RowDataPacket } from 'mysql2/promise';
 import connection from './connection';
-import Product from '../interface/productInterface';
+import Product from '../interface/products.interface';
 
 const productCreateModel = async (name: string, amount: string): Promise<Product> => {
   const [result] = await connection.execute<ResultSetHeader>(

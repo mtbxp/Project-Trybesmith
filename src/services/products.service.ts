@@ -1,5 +1,5 @@
-import { productCreateModel, productGetAllModel } from '../models/product.model';
-import Product from '../interface/productInterface';
+import { productCreateModel, productGetAllModel } from '../models/products.model';
+import Product from '../interface/products.interface';
 
 const productCreateService = async (name: string, amount: string): Promise<Product> => {
   const result = await productCreateModel(name, amount);
