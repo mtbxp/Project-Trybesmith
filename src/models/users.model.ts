@@ -2,13 +2,6 @@ import ResultSetHeader from 'mysql2/typings/mysql/lib/protocol/packets/ResultSet
 import { TUsers } from '../types';
 import connection from './connection';
 
-/* TUsers = { 
-  username: string,
-  vocation: string,
-  level: number,
-  password: string,
-}; */
-
 const createUser = async (
   username: string, 
   vocation: string,
