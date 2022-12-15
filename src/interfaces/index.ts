@@ -4,3 +4,7 @@ export interface Product {
   amount: string;
   orderId?: number;
 }
+
+// export interface ProductStatus extends Product {
+//   statusCode: number;
+// }
