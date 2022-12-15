@@ -3,7 +3,7 @@ import connection from './connection';
 
 import { User, UserDetail } from '../interfaces';
 
-export default async function create(user: UserDetail): Promise<User> {
+export async function create(user: UserDetail): Promise<User> {
   const { username, vocation, level, password } = user;
   
   const query = `INSERT INTO Trybesmith.users 
@@ -15,4 +15,14 @@ export default async function create(user: UserDetail): Promise<User> {
   
   const newUser: User = { id, ...user };
   return newUser;
+}
+
+export async function getByUsername(username: string): Promise<User | null> {
+  const query = 'SELECT * FROM Trybesmith.users WHERE username = ?';
+  const values = [username];
+
+  const [data] = await connection.execute(query, values);
+  const [user] = data as User[];
+
+  return user || null;
 }

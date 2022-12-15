@@ -17,3 +17,8 @@ export interface UserDetail {
 export interface User extends UserDetail {
   id: number;
 }
+
+export interface UserLogin {
+  username: string;
+  password: string;
+}
