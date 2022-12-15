@@ -1,8 +1,10 @@
 import { NextFunction, Response, Request } from 'express';
 import Product from '../interfaces/product.interface';
+import User from '../interfaces/user.interface';
 
 import loginSchema from '../validators/login.validator';
 import productSchema from '../validators/product.validator';
+import userSchema from '../validators/user.validator';
 
 const validateLogin = async (req: Request, res: Response, next: NextFunction) => {
   const userData = req.body;
@@ -30,9 +32,37 @@ const validateProduct = async (req: Request, res: Response, next: NextFunction) 
   return next();
 };
 
+const validateUser = async (req: Request, res: Response, next: NextFunction) => {
+  const userData:User = req.body;
+
+  if (!userData.password) return res.status(400).json({ message: '"password" is required' });
+
+  if (userData.level === undefined) return res.status(400).json({ message: '"level" is required' });
+
+  if (!userData.vocation) return res.status(400).json({ message: '"vocation" is required' });
+
+  if (!userData.username) return res.status(400).json({ message: '"username" is required' });
+
+  return next();
+};
+
+const validateUserWithJoi = async (req: Request, res: Response, next: NextFunction) => {
+  const userData:User = req.body;
+  const { error } = userSchema.validate(userData);
+
+  if (error) {
+    console.log(error.isJoi);
+    
+    return res.status(422).json({ message: error.message });
+  }
+  return next();
+};
+
 export {
   validateLogin,
   validateProduct,
+  validateUserWithJoi,
+  validateUser,
 };
 
 // type Keys = keyof typeof validators;
