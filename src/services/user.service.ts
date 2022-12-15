@@ -8,8 +8,8 @@ export async function create(user: User) {
   
   if (result) return { status: 400, error: { message: 'usuario ja existente' } };
   
-  const { id, level, username, vocation } = await userModel.create(user);
-  const newObj = { id, level, username, vocation };
+  const { id, level, username, vocation, password } = await userModel.create(user);
+  const newObj = { id, level, username, vocation, password };
   const token = jwt.sign(newObj, secret, config);
 
   return { status: 201, result: token };
@@ -27,7 +27,7 @@ export async function login(user: User): Promise<TokenService | ServiceError> {
     return { status: 401, error: { message: 'Username or password invalid' } }; 
   }
   
-  const newObj = { id, level, username, vocation };
+  const newObj = { id, level, username, vocation, password };
 
   const token = jwt.sign(newObj, secret, config);
 

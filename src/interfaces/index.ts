@@ -48,6 +48,11 @@ export interface Orders {
   productId: [number];
 }
 
+export interface CreateOrderReturn {
+  userId: number;
+  productsIds: [number];
+}
+
 export interface OrderService extends Status {
   result: Orders
 }

@@ -1,5 +1,5 @@
-import { RowDataPacket } from 'mysql2';
-import { Orders } from '../interfaces';
+import { ResultSetHeader, RowDataPacket } from 'mysql2';
+import { Orders, CreateOrderReturn } from '../interfaces';
 import connection from './connection';
 
 const TABLE1 = 'Trybesmith.orders';
@@ -17,6 +17,16 @@ export async function getAll(): Promise<Orders[]> {
   return [result];
 }
 
-export async function oi() {
-  return 'oi';
+export async function create(id: number, products: [number]): Promise<CreateOrderReturn> {
+  const insertIntoOrders = `INSERT INTO ${TABLE1} (user_id) VALUES (?)`;
+  const value = [id];
+
+  const [{ insertId }] = await connection.execute<ResultSetHeader>(insertIntoOrders, value);
+
+  const insertIntoProducts = `UPDATE ${TABLE2} SET order_id = ? WHERE id = ?`;
+
+  await Promise.all(products.map((item: number) => connection
+    .execute(insertIntoProducts, [insertId, item])));
+
+  return { userId: id, productsIds: products };
 }

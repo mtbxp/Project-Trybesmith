@@ -7,6 +7,7 @@ export async function getAll(): Promise<OrderService> {
   return { status: 200, result };
 }
 
-export async function oi() {
-  return 'oi';
+export async function create(id: number, products: [number]) {
+  const result = await orderModel.create(id, products);
+  return { status: 201, result };
 }
