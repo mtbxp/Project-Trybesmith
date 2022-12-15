@@ -10,7 +10,6 @@ export default class JWT {
 
   public createToken(payload: User) {
     try {
-      console.log(payload);
       const token = jwt.sign(payload, this.secret, { algorithm: 'HS256' });
       return token;
     } catch (error) {
