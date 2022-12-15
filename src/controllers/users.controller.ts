@@ -26,6 +26,7 @@ async function login(request: Request, response: Response): Promise<Response> {
       message: error.message,
     });
   }
+
   try {
     const token = await usersService.login(value);
 

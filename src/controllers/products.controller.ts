@@ -1,11 +1,30 @@
 import { Request, Response } from 'express';
+import Joi from 'joi';
 
 import * as productsService from '../services/products.service';
 
-async function createProduct(request: Request, response: Response): Promise<Response> {
-  const { name, amount } = request.body;
+const createProductSchema = Joi.object({
+  name: Joi.string().min(3).required(),
+  amount: Joi.string().min(3).required(),
+});
 
-  const product = await productsService.createProduct({ name, amount });
+async function createProduct(request: Request, response: Response): Promise<Response> {
+  const { value, error } = createProductSchema.validate(request.body);
+
+  if (error) {
+    let status = 400;
+
+    if (
+      /must be a string/.test(error.message)
+      || /length must be at least 3 characters long/.test(error.message)
+    ) {
+      status = 422;
+    }
+
+    return response.status(status).json({ message: error.message });
+  }
+
+  const product = await productsService.createProduct(value);
 
   return response.status(201).json(product);
 }
