@@ -8,6 +8,6 @@ const userRouter = express.Router();
 const userController = new UserController();
 const middleware = new Middleware(userSchema);
 
-userRouter.post('/', middleware.validatefields, userController.create);
+userRouter.post('/', middleware.validateFields, userController.create);
 
 export default userRouter;

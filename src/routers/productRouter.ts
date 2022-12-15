@@ -8,7 +8,7 @@ const productsRouter = express.Router();
 const productController = new ProductController();
 const middleware = new Middleware(productSchema); 
 
-productsRouter.post('/', middleware.validatefields, productController.create);
+productsRouter.post('/', middleware.validateFields, productController.create);
 
 productsRouter.get('/', productController.getAll);
 

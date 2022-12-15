@@ -15,9 +15,9 @@ export default class LoginService {
       return { status: statusCodes.INVALID, data: { message: 'Username or password invalid' } };
     }
 
-    const id = await loginModel.login(loginBody);
+    const [user] = await loginModel.login(loginBody);
 
-    const payload = { id, username: data.username };
+    const payload = { id: user.id, username: data.username };
     const JWT_SECRET = process.env.JWT_SECRET || 'secretKey';
     const config = { expiresIn: '1d' };
 

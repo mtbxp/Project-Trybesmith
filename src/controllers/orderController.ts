@@ -17,4 +17,18 @@ export default class OrderController {
       return res.status(statusCodes.SERVER_ERROR).json({ message });
     }
   };
+
+  create = async (req: Request, res: Response) => {
+    const { user, productsIds } = req.body;
+
+    try {
+      const { status, data } = await orderService.create(productsIds, user?.id);
+
+      return res.status(status).json(data);
+    } catch (error: unknown) {
+      const { message } = error as HttpError;
+
+      return res.status(statusCodes.SERVER_ERROR).json({ message });
+    }
+  };
 }

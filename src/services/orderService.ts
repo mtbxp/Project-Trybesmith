@@ -9,4 +9,10 @@ export default class OrderService {
 
     return { status: statusCodes.OK, data };
   };
+
+  create = async (productsIds: number[], userId: number) => {
+    await orderModel.create(productsIds, userId);
+
+    return { status: statusCodes.CREATED, data: { userId, productsIds } };
+  };
 }

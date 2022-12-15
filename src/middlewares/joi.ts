@@ -5,6 +5,7 @@ const typeString = '{#label} must be a string';
 const typeNumber = '{#label} must be a number';
 const stringLength = '{#label} length must be at least {#limit} characters long';
 const minNumber = '{#label} must be greater than or equal to {#limit}';
+const arrayMin = '{#label} must include only numbers';
 
 export const loginSchema = Joi.object({
   username: Joi.string().required(),
@@ -33,4 +34,12 @@ export const userSchema = Joi.object({
   'string.min': stringLength,
   'number.base': typeNumber,
   'number.min': minNumber,
+});
+
+export const orderSchema = Joi.object({
+  user: Joi.object(),
+  productsIds: Joi.array().min(1).required(),
+}).required().messages({
+  'any.required': required,
+  'array.min': arrayMin,
 });

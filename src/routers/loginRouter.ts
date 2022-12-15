@@ -8,6 +8,6 @@ const loginRouter = express.Router();
 const loginController = new LoginController(); 
 const middleware = new Middleware(loginSchema);
 
-loginRouter.post('/', middleware.validatefields, loginController.login);
+loginRouter.post('/', middleware.validateFields, loginController.login);
 
 export default loginRouter;
