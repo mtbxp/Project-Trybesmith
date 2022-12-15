@@ -22,3 +22,9 @@ export interface CreatedUser {
   id: number,
   username: string,
 }
+
+export interface OrdersArray {
+  id: number,
+  userId: number,
+  productsIds: number[] 
+}
