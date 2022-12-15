@@ -23,3 +23,12 @@ export async function getAll(): Promise<Product[]> {
   
   return products as Product[];
 }
+
+export async function update(id: number, orderId: number): Promise<number> {
+  const query = 'UPDATE Trybesmith.products SET order_id = ? WHERE id = ?';
+  const values = [orderId, id];
+
+  await connection.execute(query, values);
+
+  return id;
+}

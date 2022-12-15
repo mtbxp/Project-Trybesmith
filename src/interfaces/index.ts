@@ -22,3 +22,14 @@ export interface UserLogin {
   username: string;
   password: string;
 }
+
+export interface Order {
+  id: number;
+  userId: number;
+}
+
+export interface OrderWithProduct {
+  id: number,
+  userId: number,
+  productsIds: number[]
+}
