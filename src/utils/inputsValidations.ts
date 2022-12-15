@@ -29,7 +29,24 @@ const loginSchema = Joi.object({
   password: passwordSchema,
   vocation: vocationSchema,
   level: levelSchema,
-})
+});
+
+const nameSchema = Joi.string().min(3).required().messages({
+  'any.required': '"name" is required',
+  'string.base': '"name" must be a string',
+  'string.min': '"name" length must be at least 3 characters long',
+});
+
+const amountSchema = Joi.string().min(3).required().messages({
+  'any.required': '"amount" is required',
+  'string.base': '"amount" must be a string',
+  'string.min': '"amount" length must be at least 3 characters long',
+});
+
+const productSchema = Joi.object({
+  name: nameSchema,
+  amount: amountSchema,
+});
 
 export {
   usernameSchema,
@@ -37,4 +54,5 @@ export {
   vocationSchema,
   levelSchema,
   loginSchema,
-}
+  productSchema,
+};
