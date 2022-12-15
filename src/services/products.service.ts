@@ -5,6 +5,13 @@ async function createProductService(name: string, amount: string): Promise<Produ
   return products;
 }
 
+const getAllProductsService = async (): Promise<Product> => {
+  const products = await model.getAllProducts();
+
+  return products;
+};
+
 export default {
   createProductService,
+  getAllProductsService,
 };

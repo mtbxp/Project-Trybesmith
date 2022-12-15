@@ -11,6 +11,16 @@ async function createProductController(req: Request, res: Response) {
   }
 }
 
+const getAllProductsController = async (_req: Request, res: Response) => {
+  try {
+    const products = await service.getAllProductsService();
+    return res.status(200).json(products);
+  } catch (e) {
+    return res.status(404).json('Deu ruim');
+  }
+};
+
 export default {
   createProductController,
+  getAllProductsController,
 };
