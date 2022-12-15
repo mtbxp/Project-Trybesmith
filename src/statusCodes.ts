@@ -5,6 +5,7 @@ const statusCodes = {
   REQUIRED: 400,
   INVALID: 401,
   NOT_FOUND: 404,
+  UNPROC: 422,
   SERVER_ERROR: 500,
 };
 

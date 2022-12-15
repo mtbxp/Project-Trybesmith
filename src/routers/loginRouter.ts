@@ -1,11 +1,13 @@
 import express from 'express';
 import LoginController from '../controllers/loginController';
-import loginMiddleware from '../middlewares';
+import Middleware from '../middlewares';
+import { loginSchema } from '../middlewares/joi';
 
 const loginRouter = express.Router();
 
 const loginController = new LoginController(); 
+const middleware = new Middleware(loginSchema);
 
-loginRouter.post('/', loginMiddleware, loginController.login);
+loginRouter.post('/', middleware.validatefields, loginController.login);
 
 export default loginRouter;

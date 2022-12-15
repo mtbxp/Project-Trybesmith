@@ -1,15 +1,26 @@
 import { NextFunction, Request, Response } from 'express';
+import { Schema } from 'joi';
 import statusCodes from '../statusCodes';
-import loginSchema from './joi';
 
-const loginMiddleware = async (req: Request, res: Response, next: NextFunction) => {
-  const loginBody = req.body;
+export default class Middleware {
+  private joiSchema: Schema;
 
-  const { error } = loginSchema.validate(loginBody);
+  constructor(joiSchema: Schema) {
+    this.joiSchema = joiSchema;
+  }
 
-  return error 
-    ? res.status(statusCodes.REQUIRED).json({ message: error.details[0].message })
-    : next(); 
-};
+  validatefields = async (req: Request, res: Response, next: NextFunction) => {
+    const fields = req.body;
+  
+    const { error } = this.joiSchema.validate(fields);
+    console.log(error);
+    
+    const code = error?.details[0].type === 'any.required' 
+      ? statusCodes.REQUIRED
+      : statusCodes.UNPROC;
 
-export default loginMiddleware;
+    return error   
+      ? res.status(code).json({ message: error.details[0].message })
+      : next();
+  };
+}
