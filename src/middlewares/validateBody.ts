@@ -19,7 +19,7 @@ function validateField(field: string, res: Response, fieldName:string) {
 }
 
 function validateNumber(field: number, res: Response, fieldName:string) {
-  if (!field) {
+  if (!field && field !== 0) {
     return res.status(400).json({ message: `"${fieldName}" is required` });
   }
     
