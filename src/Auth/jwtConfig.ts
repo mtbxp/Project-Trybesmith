@@ -14,15 +14,6 @@ const createToken = (user:TUser) => {
   return token;
 };
 
-const verifyToken = (token:any) => {
-  try {
-    const load = jwt.verify(token, secret);
-    return load;
-  } catch (error) {
-    return { isError: true, error };
-  }
-};
 export default {
   createToken,
-  verifyToken,
 };

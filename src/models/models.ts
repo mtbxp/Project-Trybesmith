@@ -28,13 +28,24 @@ const getAllUser = async (): Promise<TUser[]> => {
 
 const insertUser = async ({ username, vocation, level, password }:TUser) => {
   await connection.execute(
-    'INSERT INTO Trybesmith.users (username, vocation, level,password) VALUES (?, ?, ?, ?)',
+    'INSERT INTO Trybesmith.users (username, vocation, level, password) VALUES (?, ?, ?, ?)',
     [username, vocation, level, password],
   );
 };
+
+const getLogin = async ({ username, password }:TUser): Promise<TUser[]> => {
+  const [users] = await connection
+    .execute<RowDataPacket[] & TUser[]>(
+    'SELECT * FROM Trybesmith.users WHERE username = (?) AND password = (?);',
+    [username, password],
+  );
+  return users;
+};
+
 export default {
   getAlProducts,
   insertProduct,
   getAllUser,
   insertUser,
+  getLogin,
 };

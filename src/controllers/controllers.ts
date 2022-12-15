@@ -29,9 +29,16 @@ const insertUser = async (req: Request, res: Response) => {
   return res.status(201).json(message);
 };
 
+const getUser = async (req: Request, res: Response) => {
+  const user = req.body;
+  const products = await service.getUser(user);
+  res.status(200).json(products);
+};
+
 export default {
   getAllProducts,
   insertProducts,
   getAllUsers,
   insertUser,
+  getUser,
 };

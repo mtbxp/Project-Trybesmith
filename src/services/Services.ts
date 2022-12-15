@@ -30,9 +30,19 @@ const insertUser = async (user:TUser) => {
   return { type: null, message: { token } };
 };
 
+const getUser = async (users:TUser) => {
+  const user = await models.getLogin(users);
+
+  const token = jwtConfig.createToken(user[0]);
+  console.log(token);
+  
+  return { token };
+};
+
 export default {
   getAlProducts,
   insertProduct,
   getAllUsers,
   insertUser,
+  getUser,
 };
