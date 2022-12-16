@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from 'express';
-// import Joi from 'joi';
 import { IProduct } from '../../interfaces/products';
 
 export function validateBody(
