@@ -30,10 +30,5 @@ export const createProductSchema = Joi.object({
 
 export const newOrderSchema = Joi.object({
   productsIds: Joi.array().min(1).items(Joi.number()).required()
-    .messages({
-      'array.min': '{#label} must include only numbers',
-      'array.base': '{#label} must be an array',
-      'any.required': '{#label} is required',
-      'number.base': '{#label} must include only numbers',
-    }),
+    .messages(errorObject),
 });
