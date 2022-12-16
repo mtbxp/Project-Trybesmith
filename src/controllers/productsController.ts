@@ -6,6 +6,11 @@ export async function getAll(_req: Request, res: Response) {
   res.status(200).json(products);
 }
 
+export async function getAllOrders(_req: Request, res: Response) {
+  const orders = await productsService.getAllOrders();
+  res.status(200).json(orders);
+}
+
 export async function insertProduct(req: Request, res: Response) {
   const products = req.body;
   const result = await productsService.insertProduct(products);

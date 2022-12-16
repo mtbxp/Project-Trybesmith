@@ -12,3 +12,10 @@ export type TUser = {
   level: number,
   password: string,
 };
+
+export type TProductOrder = {
+  id?: number,
+  userId: number,
+  productId: number,
+  orderId: number,
+};
