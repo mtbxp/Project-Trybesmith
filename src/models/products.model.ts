@@ -15,6 +15,26 @@ export const getAllProductsModel = async () => {
   const [allProducs] = await connection.execute(
     'select * from Trybesmith.products',
   );
-
+  console.log(allProducs);
   return allProducs as Iproduct[];
 };
+
+const updateProductOrder = async (productsIDs:number[], orderId:number) => {
+  const QUERY = `
+  update Trybesmith.products  
+  set order_id = ${orderId}
+  where id in(${productsIDs.toString()})`;
+  console.log(QUERY);
+  await connection.execute(QUERY);
+};
+
+export const addAOrderModel = async (productsIds:number[], userId:number) => {
+  const [newOrder] = await connection.execute(
+    'INSERT INTO Trybesmith.orders (user_id) VALUES (?)',
+    [userId],
+  );
+  const { insertId } = newOrder as InewThing;
+  await updateProductOrder(productsIds, insertId);
+};
+
+addAOrderModel([5], 2).then(getAllProductsModel);
