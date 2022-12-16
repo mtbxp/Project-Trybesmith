@@ -16,6 +16,8 @@ export interface Users {
   password?: string
 }
 
-// export interface UserPassword extends Users {
-//   password: string,
-// }
+export interface Orders {
+  id?: number,
+  userId: number,
+  productsIds: number[],
+}

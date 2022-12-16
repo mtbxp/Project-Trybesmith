@@ -12,8 +12,6 @@ const registerUser = async (req: Request, res: Response):Promise<void> => {
   const newUser = await usersService.registerUser({ username, vocation, level, password });
   const token = await encodeToken(newUser);
 
-  console.log(token);
-
   res.status(201).json({ token });
 };
 
