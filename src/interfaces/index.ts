@@ -27,3 +27,9 @@ export interface UserInserted {
   statusCode: number;
   token: string;
 }
+
+export interface Orders {
+  id: number;
+  userId: number;
+  productsIds: number[];
+}

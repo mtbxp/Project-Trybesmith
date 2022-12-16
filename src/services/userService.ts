@@ -12,4 +12,4 @@ const insertNewUser = async (newUser: User): Promise<UserInserted> => {
   return { statusCode: 201, token };
 };
 
-export default insertNewUser;
+export default { insertNewUser };

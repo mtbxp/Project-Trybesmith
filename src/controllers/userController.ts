@@ -5,7 +5,7 @@ import userService from '../services/userService';
 const insertNewUser = async (req: Request, res: Response) => {
   const newUser = req.body;
 
-  const { statusCode, token } = await userService(newUser);
+  const { statusCode, token } = await userService.insertNewUser(newUser);
 
   return res.status(statusCode).json({ token });
 };
