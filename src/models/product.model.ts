@@ -10,9 +10,9 @@ const createProduct = async ({ name, amount }: ProductRequest): Promise<number> 
   return result.insertId;
 };
 
-const getAll = async (): Promise<Product> => {
+const getAll = async (): Promise<Product[]> => {
   const query = 'SELECT * FROM Trybesmith.products';
-  const [rows] = await connection.execute<RowDataPacket[] & Product>(query);
+  const [rows] = await connection.execute<RowDataPacket[] & Product[]>(query);
   return rows;
 };
 
