@@ -1,5 +1,4 @@
 import express from 'express';
-import validateToken from './midleweres/validateToken';
 import { validateloginFormat } from './midleweres/validations';
 import { getAllOrdersService } from './services/orders.services';
 import { addAProductService, getAllProductsService } from './services/products.services';
