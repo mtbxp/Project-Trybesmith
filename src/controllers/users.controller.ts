@@ -2,13 +2,13 @@ import { Request, Response } from 'express';
 
 import jwt from 'jsonwebtoken';
 
-import insertUsersService from '../services/users.service';
+import * as usersService from '../services/users.service';
 
 const secret = process.env.JWT_SECRET || 'secretToken';
 
 export default async function insertUsers(req: Request, res: Response) {
   const { body } = req;
-  const returnUser = await insertUsersService(body);
+  const returnUser = await usersService.insertProductService(body);
 
   const { id, username } = returnUser;
 

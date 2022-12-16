@@ -1,9 +1,15 @@
 import { TPessoa } from '../interfaces/types';
 
-import insertUsers from '../models/users.model';
+import * as usersModel from '../models/users.model';
 
-export default async function insertProductService(pessoa:TPessoa): Promise<TPessoa> {
-  const returnProducts = await insertUsers(pessoa);
+export async function insertProductService(pessoa:TPessoa): Promise<TPessoa> {
+  const returnProducts = await usersModel.insertUsers(pessoa);
 
   return returnProducts;
 }
+
+export async function getAll(): Promise<TPessoa[]> {  
+  const result = await getAll();
+
+  return result;
+} 
