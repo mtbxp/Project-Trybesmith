@@ -5,7 +5,7 @@ import { Iuser, TtokenOrError } from '../types';
 export const registerNewUser = async (newUserData : Iuser): Promise<TtokenOrError> => {
   try {
     await registerAuserModel(newUserData);
-    const token = await generateToken(newUserData);
+    const token = await generateToken({ ...newUserData, password: undefined });
     return { token };
   } catch (e) {
     const err = e as TypeError;
@@ -13,10 +13,12 @@ export const registerNewUser = async (newUserData : Iuser): Promise<TtokenOrErro
   }
 };
 
-export const getAuserService = async (userLogin :Iuser) => {
+export const verifyLoginService = async (userLogin :Iuser) => {
   try {
     const user = await getUserModel(userLogin);
-    return { user };
+    if (!user) throw new Error('Username or password invalid');
+    const token = await generateToken({ ...user, password: undefined });
+    return { token };
   } catch (e) {
     const err = e as TypeError;
     return { error: true, message: err.message };

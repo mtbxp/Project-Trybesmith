@@ -1,7 +1,7 @@
 import express from 'express';
-import validateToken from './midleweres/validateToken';
+import { validateloginFormat } from './midleweres/validations';
 import { addAProductService, getAllProductsService } from './services/products.services';
-import { registerNewUser } from './services/users.services';
+import { registerNewUser, verifyLoginService } from './services/users.services';
 import { Iproduct } from './types';
 
 const app = express();
@@ -11,8 +11,15 @@ app.use(express.json());
 app.post('/users', async (req, res) => {
   const newUser = req.body;
   const { token, error, message } = await registerNewUser(newUser);
-  if (error) return res.status(400).json({ message });
+  if (error) return res.status(401).json({ message });
   return res.status(201).json({ token });
+});
+
+app.post('/login', validateloginFormat, async (req, res) => {
+  const userLogin = req.body;
+  const { token, error, message } = await verifyLoginService(userLogin);
+  if (error) return res.status(401).json({ message });
+  return res.status(200).json({ token });
 });
 
 app.post('/products', async (req, res) => {
@@ -27,6 +34,5 @@ app.get('/products', async (req, res) => {
   if (error) return res.status(400).json({ message });
   return res.status(200).json(allProducts);
 });
-
 
 export default app;

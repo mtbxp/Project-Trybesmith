@@ -9,15 +9,9 @@ export const registerAuserModel = async (userData: Iuser) => {
 };
 
 export const getUserModel = async ({ username, password }: Iuser) => {
-  const QUERY = 'SELECT * from Trybesmith.users where username = ? and `password` = ?';
+  console.log(username, password);
+  const QUERY = 'SELECT * from Trybesmith.users where username = ? and password = ?';
   const [user] = await connection.execute(QUERY, [username, password]);
   const [userData] = user as Iuser[];
   return userData;
 };
-(async () =>
-  console.log(await registerAuserModel({
-    username: 'reigasal',
-    vocation: 'Guerreiro',
-    level: 10,
-    password: '1dragaonasfsfoceu',
-  })))();
