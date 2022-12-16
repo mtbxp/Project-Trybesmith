@@ -10,7 +10,7 @@ const jwtConfig:object = {
 
 const secret = process.env.JWT_SECRET || 'seusecretdetoken';
 
-export const generateToken = async (info = { nothing: 0 }) => {
+export const generateToken = async (info:object) => {
   const token = jwt.sign({ data: info }, secret, jwtConfig);
   return token;
 };

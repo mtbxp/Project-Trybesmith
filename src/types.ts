@@ -1,4 +1,7 @@
-export interface InewProduct { insertId:number }
+export interface Itoken {token?: string}
+export interface Ierror {error?:boolean, message?:string}
+export type TtokenOrError = Itoken & Ierror;
+export interface InewThing { insertId:number }
 export interface Iproduct {
   id?:number,
   name:string,
@@ -7,6 +10,7 @@ export interface Iproduct {
 }
 
 export interface Iuser { 
+  id?: number,
   username: string,
   vocation?: string,
   level?: number,
