@@ -3,7 +3,10 @@ import {
   getAllProductsController,
   registerProductController,
 } from './controllers/products.controller';
-import userController from './controllers/users.controller';
+import {
+  registerNewUserController,
+  userLoginController,
+} from './controllers/users.controller';
 import orderController from './controllers/orders.controller';
 
 const app: Application = express();
@@ -14,8 +17,10 @@ app.post('/products', registerProductController);
 
 app.get('/products', getAllProductsController);
 
-app.post('/users', userController.registerNewUserController);
+app.post('/users', registerNewUserController);
 
 app.get('/orders', orderController.getAllOrdersController);
+
+app.post('/login', userLoginController);
 
 export default app;
