@@ -1,5 +1,7 @@
 import express from 'express';
-import { validateloginFormat } from './midleweres/validations';
+import { validateloginFormat,
+  validateProductFormat,
+  validateUserFormat } from './midleweres/validations';
 import { getAllOrdersService } from './services/orders.services';
 import { addAProductService, getAllProductsService } from './services/products.services';
 import { registerNewUser, verifyLoginService } from './services/users.services';
@@ -15,7 +17,7 @@ app.get('/orders', async (req, res) => {
   return res.status(200).json(orders);
 });
 
-app.post('/users', async (req, res) => {
+app.post('/users', validateUserFormat, async (req, res) => {
   const newUser = req.body;
   const { token, error, message } = await registerNewUser(newUser);
   if (error) return res.status(401).json({ message });
@@ -29,7 +31,7 @@ app.post('/login', validateloginFormat, async (req, res) => {
   return res.status(200).json({ token });
 });
 
-app.post('/products', async (req, res) => {
+app.post('/products', validateProductFormat, async (req, res) => {
   const { name, amount } = req.body as Iproduct;
   const { newProduct, error, message } = await addAProductService(name, amount);
   if (error) return res.status(400).json({ message });
