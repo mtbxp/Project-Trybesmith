@@ -1,7 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
-import { createProductSchema, createUserSchema, loginRequestSchema } from './schemas';
+import { createProductSchema, 
+  createUserSchema, loginRequestSchema, newOrderSchema } from './schemas';
 
-export default function validateLogin(req: Request, res: Response, next: NextFunction) {
+export function validateLogin(req: Request, res: Response, next: NextFunction) {
   const loginRequest = req.body;
 
   const { error } = loginRequestSchema.validate(loginRequest);
@@ -45,6 +46,28 @@ export function validateNewUser(req: Request, res: Response, next: NextFunction)
       return res.status(400).json({ message: errorMessage });
     }
 
+    return res.status(422).json({ message: errorMessage });
+  }
+
+  next();
+}
+
+export function validateNewOrder(req: Request, res: Response, next: NextFunction) {
+  const { productsIds } = req.body;
+  const products = { productsIds };
+
+  const { error } = newOrderSchema.validate(products);
+
+  if (error) {
+    const errorType = error.details[0].type as string;
+    const errorMessage = error.details[0].message;
+      
+    if (
+      errorType === 'any.required' 
+      || errorType === 'string.empty') {
+      return res.status(400).json({ message: errorMessage });
+    }
+  
     return res.status(422).json({ message: errorMessage });
   }
 
