@@ -5,6 +5,25 @@ export interface Product {
   orderId?: number;
 }
 
-// export interface ProductStatus extends Product {
-//   statusCode: number;
-// }
+export interface ProductInserted {
+  statusCode: number;
+  newProduct: Product;
+}
+
+export interface AllProducts {
+  statusCode: number;
+  allProducts: Product[];
+}
+
+export interface User {
+  id?: number;
+  username: string;
+  vocation?: string;
+  level?: number;
+  password?: string;
+}
+
+export interface UserInserted {
+  statusCode: number;
+  token: string;
+}

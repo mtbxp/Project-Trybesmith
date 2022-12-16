@@ -5,7 +5,6 @@ const insertProduct = async (req: Request, res: Response) => {
   const product = req.body;
   const { name, amount } = product;
   const { statusCode, newProduct } = await productService.insertProduct(name, amount);
-  // const newProduct = await productService.insertProduct(name, amount);
 
   return res.status(statusCode).json(newProduct);
 };
