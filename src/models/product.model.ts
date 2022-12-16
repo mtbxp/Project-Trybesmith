@@ -13,7 +13,11 @@ export default class ProductModel {
       'INSERT INTO Trybesmith.products (name, amount) VALUE (?, ?)',
       [name, amount],
     );
-    console.log(result);
     return { id: result.insertId, name, amount };
+  }
+
+  public async getAllProducts(): Promise<Product[]> {
+    const [result] = await this.connection.execute('SELECT * FROM Trybesmith.products');
+    return result as Product[];
   }
 }
