@@ -1,7 +1,7 @@
 import { ResultSetHeader } from 'mysql2';
 import connection from './connection';
 
-const getOrders = async () => {
+export const getOrders = async () => {
   const query = `SELECT orders.id, 
   orders.user_id as userId, JSON_ARRAYAGG(products.id) as productsIds
   FROM Trybesmith.orders
@@ -13,4 +13,18 @@ const getOrders = async () => {
   return orders;
 };
 
-export default getOrders;
+export const addOrder = async (productsIds: number[], userId: number)
+:Promise <{ userId: number; productsIds: number[] }> => {
+  // console.log(userId);
+  const [{ insertId }] = await connection.execute<ResultSetHeader>(
+    'INSERT INTO Trybesmith.orders (user_id) VALUES (?)',
+    [userId],
+  );
+  await Promise.all(productsIds.map(async (id) => {
+    await connection.execute<ResultSetHeader>(
+      'UPDATE Trybesmith.products SET order_id = ? WHERE id = ?',
+      [insertId, id],
+    );
+  }));
+  return { userId, productsIds };
+};

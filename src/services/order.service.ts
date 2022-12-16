@@ -1,8 +1,11 @@
-import getOrders from '../models/order.model';
+import { getOrders, addOrder } from '../models/order.model';
 
-const getAll = async () => {
+export const getAll = async () => {
   const orders = await getOrders();
   return orders;
 };
 
-export default getAll;
+export const addNewOrder = async (productsIds: number[], userId: number) => {
+  const newOrder = await addOrder(productsIds, userId);
+  return newOrder;
+};

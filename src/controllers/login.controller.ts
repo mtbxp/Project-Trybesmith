@@ -13,7 +13,7 @@ const addLoginUser = async (req: Request, res: Response) => {
   const { id, username, vocation, level } = searchUser;
 
   if (searchUser) {
-    const token = jwt.sign({ id, username, vocation, level }, secret, config);
+    const token = jwt.sign({ userId: id, username, vocation, level }, secret, config);
     return res.status(200).json({ token });
   }
 };
