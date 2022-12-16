@@ -1,5 +1,7 @@
 import express from 'express';
+import validateToken from './midleweres/validateToken';
 import { validateloginFormat } from './midleweres/validations';
+import { getAllOrdersService } from './services/orders.services';
 import { addAProductService, getAllProductsService } from './services/products.services';
 import { registerNewUser, verifyLoginService } from './services/users.services';
 import { Iproduct } from './types';
@@ -7,6 +9,12 @@ import { Iproduct } from './types';
 const app = express();
 
 app.use(express.json());
+
+app.get('/orders', async (req, res) => {
+  const { orders, error, message } = await getAllOrdersService();
+  if (error) return res.status(401).json({ message });
+  return res.status(200).json(orders);
+});
 
 app.post('/users', async (req, res) => {
   const newUser = req.body;
