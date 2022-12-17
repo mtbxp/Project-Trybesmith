@@ -1,19 +1,24 @@
 import { ResultSetHeader } from 'mysql2';
-import { TProducts } from '../types/products.type';
+import { TOrder, TProducts } from '../types/products.type';
 import connection from './connection';
 
-async function insertProducts(name: string, amount: string): Promise<TProducts> {
-  const [result] = await connection
+export async function insertProducts(name: string, amount: string): Promise<TProducts> {
+  const [newProduct] = await connection
     .execute<ResultSetHeader>(
     'INSERT INTO Trybesmith.products (name, amount) VALUES (?, ?)', 
     [name, amount],
   );
-
+ 
   return {
-    id: result.insertId, 
+    id: newProduct.insertId, 
     name,
     amount,
   };
 }
 
-export default insertProducts;
+export async function getAllProducts(): Promise<TOrder[]> {
+  const [allProducts] = await connection
+    .execute('SELECT * FROM Trybesmith.products');
+
+  return allProducts as TOrder[];
+}
