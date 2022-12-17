@@ -6,6 +6,12 @@ const registerUser = async (user: Users):Promise<Users> => {
   return newUser;
 };
 
+const getUserByName = async (username: string) => {
+  const getUser = await userModel.getUserByName(username);
+  return getUser;
+};
+
 export default { 
   registerUser,
+  getUserByName,
 };

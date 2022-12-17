@@ -1,7 +1,9 @@
 import express from 'express';
+import loginController from './controllers/login.controller';
 import ordersControllers from './controllers/orders.controllers';
 import productController from './controllers/product.controller';
 import usersController from './controllers/users.controller';
+import { loginValidation } from './middleware/verifyLogin';
 
 const app = express();
 
@@ -13,5 +15,7 @@ app.post('/products', productController.createProduct);
 app.post('/users', usersController.registerUser);
 
 app.get('/orders', ordersControllers.getAllOrders);
+
+app.post('/login', loginValidation, loginController.login);
 
 export default app;
