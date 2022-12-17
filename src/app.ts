@@ -4,13 +4,15 @@ import ordersControllers from './controllers/orders.controllers';
 import productController from './controllers/product.controller';
 import usersController from './controllers/users.controller';
 import { loginValidation } from './middleware/verifyLogin';
+import { productAmountValidation, productNameValidation } from './middleware/validateProducts';
 
 const app = express();
 
 app.use(express.json());
 
 app.get('/products', productController.getAllProducts);
-app.post('/products', productController.createProduct);
+app.post('/products', productNameValidation, productAmountValidation, productController
+  .createProduct);
 
 app.post('/users', usersController.registerUser);
 
