@@ -1,5 +1,8 @@
 import { Request, Response } from 'express';
-import usersCreateService from '../services/users.service';
+import {
+  usersCreateService,
+  usersGetService,
+} from '../services/users.service';
 import statusCodes from '../utils/statusCode';
 import createToken from '../auth/token';
 
@@ -12,4 +15,14 @@ const usersCreateController = async (req: Request, res: Response) => {
   }
 };
 
-export default usersCreateController;
+const usersGetController = async (req: Request, res: Response) => {
+  const { type, message } = await usersGetService(req.body);
+  if (type === statusCodes.UNAUTHORIZED) {
+    return res.status(type).json({ message });
+  }
+
+  const token = createToken(req.body.password);
+  res.status(type).json({ token });
+};
+
+export { usersCreateController, usersGetController };

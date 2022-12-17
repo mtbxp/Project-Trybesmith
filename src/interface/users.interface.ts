@@ -6,4 +6,9 @@ interface Users {
   password: string,
 }
 
-export default Users;
+interface UsersLogin {
+  username: string,
+  password: string,
+}
+
+export { Users, UsersLogin };
