@@ -4,10 +4,9 @@ import connection from './connection';
 
 const createUser = async (user: UserRequest): Promise<number> => {
   const { username, vocation, level, password } = user;
-  const colums = Object.keys(user).join(', ');  
   const values = Object.keys(user).map((_element) => '?').join(', ');
-  const query = `INSERT INTO Trybesmith.products
-  (${colums}) VALUES
+  const query = `INSERT INTO Trybesmith.users
+  (username, vocation, level, password) VALUES
   (${values})`;
 
   const [result] = await connection
