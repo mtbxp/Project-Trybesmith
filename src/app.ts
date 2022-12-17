@@ -1,4 +1,5 @@
 import express from 'express';
+import validateToken from './midleweres/validateToken';
 import { validateloginFormat,
   validateProductFormat,
   validateUserFormat } from './midleweres/validations';

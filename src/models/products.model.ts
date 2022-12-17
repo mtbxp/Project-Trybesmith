@@ -1,4 +1,4 @@
-import connection from './connections';
+import connection from './connection';
 import { Iproduct, InewThing } from '../types';
 
 export const addAProductModel = async (name:string, amount:string) => {
@@ -36,5 +36,3 @@ export const addAOrderModel = async (productsIds:number[], userId:number) => {
   const { insertId } = newOrder as InewThing;
   await updateProductOrder(productsIds, insertId);
 };
-
-addAOrderModel([5], 2).then(getAllProductsModel);

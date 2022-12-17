@@ -1,5 +1,5 @@
 import { Iorder, Iuser } from '../types';
-import connection from './connections';
+import connection from './connection';
 
 export const registerAuserModel = async (userData: Iuser) => {
   const { username, vocation, level, password } = userData as Iuser;
