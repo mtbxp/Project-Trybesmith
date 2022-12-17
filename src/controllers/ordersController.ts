@@ -10,6 +10,7 @@ export async function getAllOrdersC(_req: Request, res: Response) {
 
 export async function createOrdersC(req: Request, res: Response) {
   const { user, productsIds } = req.body;
+  console.log(productsIds);
   const result = await createOrderS(user, productsIds);
   return res.status(status.CREATED).json(result);
 }
