@@ -29,8 +29,6 @@ const updateProductOrder = async (productsIDs:number[], orderId:number) => {
 };
 
 export const addAOrderModel = async (productsIds:number[], userId:number) => {
-  console.log("🚀 ~ file: products.model.ts:32 ~ addAOrderModel ~  userId",  userId)
-  console.log("🚀 ~ file: products.model.ts:32 ~ addAOrderModel ~ productsIds", productsIds);
   const [newOrder] = await connection.execute(
     'INSERT INTO Trybesmith.orders (user_id) VALUES (?)',
     [userId],
