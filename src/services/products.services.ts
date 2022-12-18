@@ -1,4 +1,6 @@
-import { addAProductModel, getAllProductsModel } from '../models/products.model';
+import { verifyToken } from '../auth/jwtFuncs';
+import { addAOrderModel, addAProductModel, getAllProductsModel } from '../models/products.model';
+import { Ierror } from '../types';
 
 export const addAProductService = async (name:string, amount:string) => {
   try {
@@ -14,6 +16,18 @@ export const getAllProductsService = async () => {
   try {
     const allProducts = await getAllProductsModel();
     return { allProducts };
+  } catch (e) {
+    const err = e as TypeError;
+    return { error: true, message: err.message };
+  }
+};
+
+export const addAOrderService = async (productsIds: number[], token:string): 
+Promise<Ierror & { userId?:number } > => {
+  try {
+    const { id = 0 } = (await verifyToken(token)).data;
+    await addAOrderModel(productsIds, id);
+    return { userId: id };
   } catch (e) {
     const err = e as TypeError;
     return { error: true, message: err.message };

@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 
 import dotenv from 'dotenv';
+import { Iuser } from '../types';
 
 dotenv.config();
 const jwtConfig:object = {
@@ -18,7 +19,7 @@ export const generateToken = async (info:object) => {
 export const verifyToken = async (token:string) => {
   try {
     const decoded = jwt.verify(token, secret);
-    return decoded;
+    return decoded as { data:Iuser };
   } catch (e) {
     throw new Error('Expired or invalid token');
   }

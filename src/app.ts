@@ -2,10 +2,14 @@ import express from 'express';
 import validateToken from './midleweres/validateToken';
 import { validateloginFormat,
   validateProductFormat,
+  validateproductIdsFormat,
   validateUserFormat } from './midleweres/validations';
 import { getAllOrdersService } from './services/orders.services';
-import { addAProductService, getAllProductsService } from './services/products.services';
-import { registerNewUser, verifyLoginService } from './services/users.services';
+import { addAOrderService,
+  addAProductService, 
+  getAllProductsService } from './services/products.services';
+import { registerNewUser, 
+  verifyLoginService } from './services/users.services';
 import { Iproduct } from './types';
 
 const app = express();
@@ -16,6 +20,17 @@ app.get('/orders', async (req, res) => {
   const { orders, error, message } = await getAllOrdersService();
   if (error) return res.status(401).json({ message });
   return res.status(200).json(orders);
+});
+
+app.post('/orders', validateToken, validateproductIdsFormat, async (req, res) => {
+  const token = req.header('authorization') as string;
+  const { productsIds } = req.body;
+  const { 
+    error,  
+    message,
+    userId } = await addAOrderService(productsIds, token);
+  if (error) return res.status(401).json({ message });
+  return res.status(201).json({ userId, productsIds });
 });
 
 app.post('/users', validateUserFormat, async (req, res) => {

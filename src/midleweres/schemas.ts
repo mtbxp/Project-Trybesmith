@@ -16,3 +16,7 @@ export const userSchema = joi.object({
   password: joi.string().min(8).required(),
   vocation: joi.string().min(3).required(),
 });
+
+export const productsIdsSchema = joi.object({
+  productsIds: joi.array().items(joi.number().required()).required(),
+});

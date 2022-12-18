@@ -10,7 +10,10 @@ const validateToken : RequestHandler = async (req, res, next) => {
     return next();
   } catch (e) {
     const err = e as TypeError;
-    return res.status(401).json({ message: err.message });
+    if (err.message === 'Token not found') {
+      return res.status(401).json({ message: err.message });
+    }
+    return res.status(401).json({ message: 'Invalid token' });
   }
 };
 
