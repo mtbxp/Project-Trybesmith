@@ -18,4 +18,17 @@ export default class ProductController {
       });
     }
   };
+
+  public getAllProducts = async (req: Request, res: Response) => {
+    try {
+      const allProducts = await this.productService.getAllProducts();
+      return res.status(statusCodes.OK).json(allProducts);
+    } catch (e) {
+      const erro = (e as Error).message;
+      return res.status(statusCodes.INTERNAL_ERROR).json({
+        message: 'Não foi possivel buscar todos os produtos',
+        erro,
+      });
+    }
+  };
 }
