@@ -2,5 +2,13 @@ export type Tproduct = {
   id?: number,
   name: string,
   amount: string,
-  orderId?: number,
+  orderId?: number
+};
+
+export type Iuser = {
+  id?: number,
+  username: string,
+  vocation: string,
+  level: number,
+  password: string
 };
