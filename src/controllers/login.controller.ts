@@ -13,5 +13,7 @@ export default async function loginUser(req: Request, res: Response) {
   const token = jwt
     .sign({ data: { username, id } }, secret, { expiresIn: '1d', algorithm: 'HS256' });
 
+  req.body.user = id;
+
   return res.status(200).json({ token });
 }
