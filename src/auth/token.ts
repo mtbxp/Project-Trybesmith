@@ -12,10 +12,8 @@ const jwtConfig = {
 };
 
 const createToken = (userToken: User) => {
-  const token = jwt.sign({ data: userToken }, secret, jwtConfig as object);
+  const token = jwt.sign(userToken, secret, jwtConfig as object);
   return token;
 };
 
-export default {
-  createToken,
-};
+export default createToken;

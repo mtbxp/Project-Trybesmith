@@ -1,4 +1,4 @@
-import { ResultSetHeader, RowDataPacket } from 'mysql2';
+import { ResultSetHeader } from 'mysql2';
 import { User } from '../interfaces/users.interface';
 import connection from './connection';
 
@@ -19,20 +19,29 @@ const registerNewUserModel = async ({
   return { id: insertId, username, vocation, level, password };
 };
 
-const userLoginModel = async (username: string): Promise<RowDataPacket[] & User[]> => {
-  const query = `SELECT *
-  FROM Trybesmith.users
-  WHERE username = (?)`;
+// const searchUsername = async (username: User): Promise<RowDataPacket[] & User[]> => {
+//   const query = `SELECT *
+//   FROM Trybesmith.users
+//   WHERE username = (?)`;
 
-  const [result] = await connection.execute<RowDataPacket[] & User[]>(
-    query,
-    [username],
-  );
+//   const [result] = await connection.execute<RowDataPacket[] & User[]>(
+//     query,
+//     [username],
+//   );
 
-  return result;
+//   return result;
+// };
+
+const getAllUsers = async (): Promise<User[]> => {
+  const query = 'SELECT * FROM Trybesmith.users';
+
+  const [result] = await connection.execute(query);
+
+  return result as User[];
 };
 
 export default {
   registerNewUserModel,
-  userLoginModel,
+  // searchUsername,
+  getAllUsers,
 };

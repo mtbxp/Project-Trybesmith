@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
 import orderService from '../services/orders.service';
 
-const getAllOrdersController = async (
+export const getAllOrdersController = async (
   _req: Request,
   res: Response,
-): Promise<void> => {
+) => {
   const allOrders = await orderService.getAllOrdersService();
-  res.status(200).json(allOrders);
+  return res.status(200).json(allOrders);
 };
 
 export default {
