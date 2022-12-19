@@ -25,7 +25,13 @@ class Orders {
   }
 
   public async getAll(): Promise<OrdersInterface[]> {
-    const [orders] = await this.connection.execute('SELECT * FROM Trybesmith.orders');
+    const [orders] = await this.connection
+      .execute(`SELECT orders.id, orders.user_id as userId,
+      JSON_ARRAYAGG(products.id) as productsIds
+      FROM Trybesmith.orders
+      INNER JOIN Trybesmith.products 
+      ON Trybesmith.orders.id = Trybesmith.products.order_id
+      GROUP BY orders.id;`);
     return orders as OrdersInterface[];
   }
 }
