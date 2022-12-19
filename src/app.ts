@@ -11,6 +11,12 @@ import { getAllOrdersController } from './controllers/orders.controller';
 import { userLoginController } from './controllers/login.controller';
 import { loginValidation } from './middlewares/loginValidation';
 import { nameValidation, amountValidation } from './middlewares/productValidation';
+import {
+  levelValidation,
+  passwordValidation,
+  usernameValidation,
+  vocationValidation,
+} from './middlewares/userValidation';
 
 const app: Application = express();
 
@@ -22,7 +28,14 @@ app.post('/products', nameValidation, amountValidation, registerProductControlle
 
 app.get('/products', getAllProductsController);
 
-app.post('/users', registerNewUserController);
+app.post(
+  '/users',
+  usernameValidation,
+  vocationValidation,
+  passwordValidation,
+  levelValidation,
+  registerNewUserController,
+);
 
 app.get('/orders', getAllOrdersController);
 
