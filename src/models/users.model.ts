@@ -10,6 +10,12 @@ const registerUser = async ({ username, vocation, level, password }: User) => {
   return result;
 };
 
+const getAllUsers = async (): Promise<User[]> => {
+  const [user] = await connection.execute('SELECT * FROM Trybesmith.users');
+  return user as User[];
+};
+
 export default {
   registerUser,
+  getAllUsers,
 };

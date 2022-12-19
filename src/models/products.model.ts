@@ -14,7 +14,6 @@ const registerProduct = async ({ name, amount }: Product) => {
 
 const getAllProducts = async (): Promise<Product[]> => {
   const [result] = await connection.execute('SELECT * FROM Trybesmith.products');
-  console.log(result);
   return result as Product[];
 };
 
