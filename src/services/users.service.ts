@@ -8,7 +8,7 @@ const registerUser = async (user: User) => {
 
 const getAllUsers = async () => {
   const users = await usersModel.getAllUsers();
-  console.log(users.find((u) => u.username === 'reigal'));
+  // console.log(users.find((u) => u.username === 'reigal'));
   return users;
 };
 
