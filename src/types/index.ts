@@ -2,7 +2,7 @@ export type TProduct = {
   id?: number,
   name: string,
   amount: string,
-  orderId: number,
+  orderId?: number,
 };
 
 export type TUser = {
@@ -17,5 +17,6 @@ export type TProductOrder = {
   id?: number,
   userId: number,
   productId: number,
-  orderId: number,
+  orderId?: number,
+  productsIds: number[],
 };

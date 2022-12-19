@@ -19,9 +19,9 @@ export async function insertProduct(req: Request, res: Response) {
 }
 
 export async function insertOrder(req: Request, res: Response) {
-  const products = req.body;
+  const { productsIds } = req.body;
   const { data } = req.body.user;
-  const result = await productsService.insertOrder(data.id, products);
+  const result = await productsService.insertOrder(data.id, productsIds);
 
   res.status(201).json(result);
 }
