@@ -1,13 +1,13 @@
 import { Request, Response } from 'express';
 import { User } from '../interfaces/users.interface';
-import usersService from '../services/users.service';
+import { registerNewUserService, getAllUsersService } from '../services/users.service';
 
 export const registerNewUserController = async (
   req: Request,
   res: Response,
 ): Promise<Response> => {
   const { username, vocation, level, password }: User = req.body;
-  const result = await usersService.registerNewUserService({
+  const result = await registerNewUserService({
     username,
     vocation,
     level,
@@ -21,7 +21,7 @@ export const getAllUsers = async (
   _req: Request,
   res: Response,
 ) => {
-  const result = await usersService.getAllUsers();
+  const result = await getAllUsersService();
 
   return res.status(200).json(result);
 };

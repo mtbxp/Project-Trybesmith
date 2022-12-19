@@ -11,9 +11,12 @@ const jwtConfig = {
   algorithm: 'HS256',
 };
 
-const createToken = (userToken: User) => {
-  const token = jwt.sign(userToken, secret, jwtConfig as object);
+export const createToken = (userToken: User) => {
+  const token = jwt.sign({ data: userToken }, secret, jwtConfig as object);
   return token;
 };
 
-export default createToken;
+export const verifyToken = (token: string) => {
+  const result = jwt.verify(token, secret);
+  return result;
+};

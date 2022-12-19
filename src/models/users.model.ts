@@ -19,18 +19,18 @@ const registerNewUserModel = async ({
   return { id: insertId, username, vocation, level, password };
 };
 
-// const searchUsername = async (username: User): Promise<RowDataPacket[] & User[]> => {
-//   const query = `SELECT *
-//   FROM Trybesmith.users
-//   WHERE username = (?)`;
+const searchUsername = async (username: User): Promise<User> => {
+  const query = `SELECT *
+  FROM Trybesmith.users
+  WHERE username = (?)`;
 
-//   const [[result]] = await connection.execute<RowDataPacket[] & User[]>(
-//     query,
-//     [username],
-//   );
+  const [[result]] = await connection.execute<RowDataPacket[] & User[]>(
+    query,
+    [username],
+  );
 
-//   return result;
-// };
+  return result;
+};
 
 const getAllUsers = async (): Promise<User[]> => {
   const query = 'SELECT * FROM Trybesmith.users';
@@ -42,6 +42,6 @@ const getAllUsers = async (): Promise<User[]> => {
 
 export default {
   registerNewUserModel,
-  // searchUsername,
+  searchUsername,
   getAllUsers,
 };

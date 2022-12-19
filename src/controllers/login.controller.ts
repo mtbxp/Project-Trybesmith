@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import usersService from '../services/users.service';
-import createToken from '../auth/token';
+import { checkUserPass, searchUsername } from '../services/users.service';
+import { createToken } from '../auth/token';
 
 export const userLoginController = async (
   req: Request,
@@ -9,13 +9,15 @@ export const userLoginController = async (
   try {
     const { username, password } = req.body;
 
-    const userData = await usersService.checkUserPass({ username, password });
+    const userData = await checkUserPass({ username, password });
   
     if (!userData || userData.password !== password) {
       return res.status(401).json({ message: 'Username or password invalid' });
     }
+
+    const user = await searchUsername(username);
   
-    const token = createToken({ username, password });
+    const token = createToken(user);
   
     return res.status(200).json({ token });
   } catch (error) {

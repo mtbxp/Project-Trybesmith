@@ -5,6 +5,13 @@ const getAllOrdersService = async () => {
   return allOrders;
 };
 
+const registerNewOrder = async (userId: number, productsIds: number[]) => {
+  await orderModel.registerNewOder(userId, productsIds);
+
+  return { userId, productsIds };
+};
+
 export default {
   getAllOrdersService,
+  registerNewOrder,
 };

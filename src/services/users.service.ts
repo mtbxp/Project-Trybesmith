@@ -1,8 +1,8 @@
 import userModel from '../models/users.model';
 import { User } from '../interfaces/users.interface';
-import createToken from '../auth/token';
+import { createToken } from '../auth/token';
 
-const registerNewUserService = async ({
+export const registerNewUserService = async ({
   username,
   vocation,
   level,
@@ -21,29 +21,22 @@ const registerNewUserService = async ({
   return newToken;
 };
 
-// const searchUsername = async (username: User) => {
-//   const user = await userModel.searchUsername(username);
+export const searchUsername = async (username: User) => {
+  const user = await userModel.searchUsername(username);
 
-//   const userToObject = user.find((item) => item);
+  delete user.password;
   
-//   return userToObject;
-// };
+  return user;
+};
 
-const getAllUsers = async () => {
+export const getAllUsersService = async () => {
   const allUsers = await userModel.getAllUsers();
   return allUsers;
 };
 
-const checkUserPass = async ({ username, password }: User) => {
+export const checkUserPass = async ({ username, password }: User) => {
   const users = await userModel.getAllUsers();
   const userReturn = users.find((user) => user.password === password && user.username === username);
 
   return userReturn;
-};
-
-export default {
-  registerNewUserService,
-  // searchUsername,
-  getAllUsers,
-  checkUserPass,
 };
