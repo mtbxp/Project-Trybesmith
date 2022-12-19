@@ -47,7 +47,7 @@ export const levelValidation = (
 ) => {
   const { level } = req.body;
 
-  if (level >= 1 || level === 0) {
+  if (level < 1 || level === 0) {
     return res.status(422)
       .json({ message: '"level" must be greater than or equal to 1' });
   }
