@@ -10,3 +10,8 @@ export interface AddedProductInterface {
   name: string;
   amount: string;
 }
+
+export interface ProductBodyInterface {
+  name: string;
+  amount: string;
+}
