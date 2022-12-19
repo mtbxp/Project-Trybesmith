@@ -4,7 +4,7 @@ import { User } from '../interfaces/users.interface';
 
 dotenv.config();
 
-const secret = process.env.JWT_SECRET || 'seusegredotoken';
+const secret: string = process.env.JWT_SECRET || 'seusegredotoken';
 
 const jwtConfig = {
   expiresIn: '1d',

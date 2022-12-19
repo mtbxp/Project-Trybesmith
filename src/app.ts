@@ -8,8 +8,9 @@ import {
   registerNewUserController,
 } from './controllers/users.controller';
 import { getAllOrdersController } from './controllers/orders.controller';
-import { loginValidation } from './middlewares/loginValidation';
 import { userLoginController } from './controllers/login.controller';
+import { loginValidation } from './middlewares/loginValidation';
+import { nameValidation, amountValidation } from './middlewares/productValidation';
 
 const app: Application = express();
 
@@ -17,7 +18,7 @@ app.use(express.json());
 
 app.post('/login', loginValidation, userLoginController);
 
-app.post('/products', registerProductController);
+app.post('/products', nameValidation, amountValidation, registerProductController);
 
 app.get('/products', getAllProductsController);
 
