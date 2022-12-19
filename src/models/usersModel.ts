@@ -25,20 +25,3 @@ export async function insertUser({ username, vocation, level, password }: TUser)
     [username, vocation, level, password],
   );
 }
-
-// const updateById = async (id, { name }) => connection.execute(
-//   'UPDATE StoreManager.Users SET name = (?) WHERE id = (?)',
-//   [name, id],
-// );
-
-// const deleteById = (id) => connection.execute(
-//   'DELETE FROM StoreManager.Users WHERE id = (?)', [id],
-// );
-
-// module.exports = {
-//   getAll,
-//   getById,
-//   insertUser,
-//   updateById,
-//   deleteById,
-// };

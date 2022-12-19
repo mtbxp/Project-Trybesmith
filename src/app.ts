@@ -29,12 +29,8 @@ app.post(
 );
 app.get('/products', productsController.getAll);
 
-app.post(
-  '/orders',
-  validateToken,
-  validateProduct.validateOrder,
-  productsController.insertOrder,
-);
+app.post('/orders', validateToken, validateProduct.validateOrder, productsController.insertOrder);
+
 app.get('/orders', productsController.getAllOrders);
 
 export default app;

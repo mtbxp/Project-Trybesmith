@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 
 const secret = process.env.JWT_SECRET || 'authToken';
 
-const validateToken = async (req: Request, res: Response, next: NextFunction) => {
+export default async function validateToken(req: Request, res: Response, next: NextFunction) {
   const token = req.header('Authorization');
 
   if (!token) {
@@ -11,12 +11,11 @@ const validateToken = async (req: Request, res: Response, next: NextFunction) =>
   }
 
   try {
-    const auth = jwt.verify(token, secret);
-    req.body.user = auth;
-    next();
+    const result = jwt.verify(token, secret);
+    req.body.user = result;
   } catch (error) {
     return res.status(401).json({ message: 'Invalid token' });
   }
-};
 
-export default validateToken;
+  next();
+}

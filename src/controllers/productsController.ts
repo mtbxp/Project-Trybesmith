@@ -20,8 +20,8 @@ export async function insertProduct(req: Request, res: Response) {
 
 export async function insertOrder(req: Request, res: Response) {
   const { productsIds } = req.body;
-  const { data } = req.body.user;
-  const result = await productsService.insertOrder(data.id, productsIds);
+  const { id } = req.body.user;
+  const result = await productsService.insertOrder(id, productsIds);
 
   res.status(201).json(result);
 }

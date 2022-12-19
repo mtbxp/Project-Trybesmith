@@ -12,7 +12,7 @@ export async function insertUser(users: TUser) {
   const allUsers = await usersModel.getAll();
   const insertedUser = allUsers.length - 1;
   const user = allUsers[insertedUser];
-  const token = createToken(user);
+  const token = await createToken(user);
   
   return { token };
 }
@@ -21,7 +21,7 @@ export async function getByLogin(login: TUser) {
   const user = await usersModel.getByLogin(login);
   if (!user.length) return { type: 401, message: 'Username or password invalid' };
   
-  const token = createToken(user[0]);
+  const token = await createToken(user[0]);
 
   return { type: null, message: { token } };
 }
