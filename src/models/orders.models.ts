@@ -16,12 +16,12 @@ class Orders {
     this.connection = connection;
   }
 
-  async save(): Promise<number> {
+  async save(userId: number, productsId: number[]): Promise<number> {
     const [{ insertId }] = await this.connection.execute<ResultSetHeader>(
-      'INSERT INTO Trybesmith.orders (userId, productId) VALUES (?, ?)',
-      [this.userId, this.productId],
+      'INSERT INTO Trybesmith.orders (userId) VALUES (?)',
+      [userId],
     );
-    await Promise.all(this.productId.map(async (id) => {
+    await Promise.all(productsId.map(async (id) => {
       await this.connection.execute<ResultSetHeader>(
         'UPDATE Trybesmith.products SET order_id = ? WHERE id = ?',
         [insertId, id],
