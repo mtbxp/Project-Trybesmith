@@ -1,12 +1,12 @@
 import Router from 'express';
 import { 
-  registerProduct,
-  getAllProducts } from '../controllers/products';
+  register,
+  getAll } from '../controllers/products.controllers';
 
 const router = Router();
 
 router
-  .put('/', registerProduct)
-  .get('/', getAllProducts);
+  .put('/', register)
+  .get('/', getAll);
 
 export default router;
