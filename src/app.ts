@@ -1,5 +1,6 @@
 import express from 'express';
 import productsRouter from './routes/products';
+import userRouter from './routes/users';
 
 const app = express();
 
@@ -7,7 +8,7 @@ app.use(express.json());
 
 // app.use('/login', require('./routes/login'));
 
-// app.use('/users', require('./routes/users'));
+app.use('/users', userRouter);
 
 app.use('/products', productsRouter);
 
