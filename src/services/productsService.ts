@@ -26,9 +26,18 @@ export async function getAllOrders(): Promise<TProductOrder[]> {
 }
 
 export async function insertProduct(products: TProduct) {
-  await Promise.all([products].map(async (product) => productsModel.insertProduct(product)));
+  await Promise.all([products]
+    .map(async (product) => productsModel.insertProduct(product)));
   const allProducts = await productsModel.getAll();
   const insertedProduct = allProducts.length - 1;
   
   return allProducts[insertedProduct];
+}
+
+export async function insertOrder(userId: TProductOrder, products: TProduct) {
+  const orderId: any = await productsModel.insertOrder(userId);
+  await Promise.all([products]
+    .map(async (product) => productsModel.updateProduct(orderId, product)));
+  
+  return { userId, productsIds: products };
 }

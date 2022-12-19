@@ -17,3 +17,11 @@ export async function insertProduct(req: Request, res: Response) {
 
   res.status(201).json(result);
 }
+
+export async function insertOrder(req: Request, res: Response) {
+  const products = req.body;
+  const { data } = req.body.user;
+  const result = await productsService.insertOrder(data.id, products);
+
+  res.status(201).json(result);
+}

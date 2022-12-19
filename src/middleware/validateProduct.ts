@@ -1,10 +1,7 @@
 import dotenv from 'dotenv';
 import { NextFunction, Request, Response } from 'express';
-import Joi from 'joi';
 
 dotenv.config();
-
-const verifyOrder = Joi.array().items().min(1).required();
 
 export async function validateProductName(req: Request, res: Response, next: NextFunction) {
   const { name } = req.body;
@@ -40,11 +37,20 @@ export async function validateProductAmount(req: Request, res: Response, next: N
   next();
 }
 
-const validateOrder = (req: Request, res: Response, next: NextFunction) => {
-  const { error } = verifyOrder(req.body.productsIds);
-  if (error) {
-    const status = setStatus(error?.details[0].type);
-    return res.status(status).json({ message: error?.details[0].message });
+export function validateOrder(req: Request, res: Response, next: NextFunction) {
+  const { productsIds } = req.body;
+
+  if (!productsIds) {
+    return res.status(400).json({ message: '"productsIds" is required' });
   }
+
+  if (!Array.isArray(productsIds)) {
+    return res.status(422).json({ message: '"productsIds" must be an array' });
+  }
+
+  if (!productsIds.length) {
+    return res.status(422).json({ message: '"productsIds" must include only numbers' });
+  }
+  
   next();
-};
+}

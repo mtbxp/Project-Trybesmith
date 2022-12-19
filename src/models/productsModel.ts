@@ -1,4 +1,4 @@
-import { RowDataPacket } from 'mysql2/promise';
+import { ResultSetHeader, RowDataPacket } from 'mysql2/promise';
 import { TProduct, TProductOrder } from '../types';
 import connection from './connection';
 
@@ -26,15 +26,13 @@ export async function getAllOrders(): Promise<TProductOrder[]> {
     
   return orders;
 }
-  
-// const getById = async (id) => {
-//   const [result] = await connection.execute(
-//     'SELECT * FROM StoreManager.products WHERE id = (?)', 
-//     [id],
-//   );
-  
-//   return result;
-// };
+
+export async function updateProduct(productId: TProduct, orderId: TProduct) {
+  connection.execute(
+    'UPDATE Trybesmith.products SET order_id = (?) WHERE id = (?)',
+    [orderId, productId],
+  );
+}
   
 export async function insertProduct({ name, amount }: TProduct) {
   await connection.execute(
@@ -43,19 +41,11 @@ export async function insertProduct({ name, amount }: TProduct) {
   );
 }
 
-// const updateById = async (id, { name }) => connection.execute(
-//   'UPDATE StoreManager.products SET name = (?) WHERE id = (?)',
-//   [name, id],
-// );
+export async function insertOrder({ userId }: TProductOrder) {
+  const [{ insertId }] = await connection.execute<ResultSetHeader>(
+    'INSERT INTO Trybesmith.orders (userId) VALUES (?)',
+    [userId],
+  );
 
-// const deleteById = (id) => connection.execute(
-//   'DELETE FROM StoreManager.products WHERE id = (?)', [id],
-// );
-
-// module.exports = {
-//   getAll,
-//   getById,
-//   insertProduct,
-//   updateById,
-//   deleteById,
-// };
+  return insertId;
+}
