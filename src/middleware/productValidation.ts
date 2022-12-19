@@ -7,7 +7,7 @@ const validateProduct = (req: Request, res: Response, next: NextFunction) => {
     amount: Joi.string().min(2).required(),
   }).required().messages({
     'any.required': '{#label} is required',
-    'string.required': '{#label} must b a string',
+    'string.required': '{#label} must be a string',
     'string.min': '{#label} length must be at least 3 characters long',
   });
   
