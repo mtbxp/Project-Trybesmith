@@ -3,7 +3,7 @@ import { OrdersInterface } from '../interfaces/orders.interfaces';
 
 const registerOrder = async (userId: number, productId: number[]) => {
   const newOrder = new Orders(userId, productId);
-  const addedOrderId = await newOrder.save();
+  const addedOrderId = await newOrder.save(userId, productId);
 
   const addedOrder = await new Orders(0, [0]).getAll().then((orders) => {
     const addOrder = orders.find((order) => order.id === addedOrderId);

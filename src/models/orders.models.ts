@@ -21,6 +21,12 @@ class Orders {
       'INSERT INTO Trybesmith.orders (userId, productId) VALUES (?, ?)',
       [this.userId, this.productId],
     );
+    await Promise.all(this.productId.map(async (id) => {
+      await this.connection.execute<ResultSetHeader>(
+        'UPDATE Trybesmith.products SET order_id = ? WHERE id = ?',
+        [insertId, id],
+      );
+    }));
     return insertId as number;
   }
 
