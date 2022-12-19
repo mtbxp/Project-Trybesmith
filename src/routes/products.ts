@@ -6,7 +6,7 @@ import {
 const router = Router();
 
 router
-  .put('/', register)
+  .post('/', register)
   .get('/', getAll);
 
 export default router;
