@@ -1,10 +1,13 @@
 import { RowDataPacket } from 'mysql2';
 
-interface TProduct extends RowDataPacket {
-  id?: number,
+export interface TProduct extends RowDataPacket {
+  id: number,
   name: string,
   amount: string,
   orderId: number,
 }
 
-export default TProduct;
+export interface TOrder extends RowDataPacket {
+  id: number,
+  userId: number,
+}
