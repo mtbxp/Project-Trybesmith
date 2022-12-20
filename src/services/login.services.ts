@@ -19,7 +19,7 @@ const userLogim = async (username: string, password: string) => {
 
   const token = jwt.sign({ data: loggedUser }, secret);
 
-  return { token };
+  return token as string;
 };
 
 export default userLogim;
