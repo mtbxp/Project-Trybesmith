@@ -1,5 +1,6 @@
 import { ResultSetHeader } from 'mysql2';
-import { TOrder, TProducts } from '../types/products.type';
+import { TOrder } from '../types/orders.type';
+import { TProducts } from '../types/products.type';
 import connection from './connection';
 
 export async function insertProducts(name: string, amount: string): Promise<TProducts> {
