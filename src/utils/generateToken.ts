@@ -8,7 +8,7 @@ const secret = process.env.JWT_SECRET || 'secret';
 
 export default function generateToken(username: TUser) {
   const token = jwt
-    .sign({ username }, secret, { algorithm: 'HS256', expiresIn: '1d' });
+    .sign(username, secret, { algorithm: 'HS256', expiresIn: '1d' });
 
   return token;
 }

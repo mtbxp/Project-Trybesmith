@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import generateToken from '../middlewares/generateToken';
 import usersService from '../services/users.service';
+import generateToken from '../utils/generateToken';
 
 export default async function insertNewUser(req: Request, res: Response) {
   const { username, vocation, level, password } = req.body;
