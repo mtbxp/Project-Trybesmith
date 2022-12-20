@@ -1,6 +1,5 @@
-/* import { Request, Response, NextFunction } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-import { Iuser } from '../types/index';
 
 const secret = process.env.SECRET as string;
 
@@ -10,11 +9,13 @@ export default async function verifyToken(req: Request, res: Response, next: Nex
     return res.status(401).json({ message: 'Token not found' });
   }
   try {
-    const decoded = jwt.verify(token, secret) as Iuser;
+    const decoded = jwt.verify(token, secret);
     req.body.user = decoded;
-
+    next();
+    const response = jwt.verify(token, secret);
+    req.body.user = response;
     next();
   } catch (error) {
     res.status(401).json({ message: 'Invalid token' });
   }
-} */
+}

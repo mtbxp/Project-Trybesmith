@@ -1,17 +1,16 @@
 import { ResultSetHeader } from 'mysql2';
-import { Tproduct } from '../types';
+import { Product } from '../types';
 import connection from './connection';
 
-export async function getAll(): Promise<Tproduct[]> {
+export async function getAll(): Promise<Product[]> {
   const [products] = await connection.execute('SELECT * FROM Trybesmith.products');
-  return products as Tproduct[];
+  return products as Product[];
 }
 
-export async function insertProducts(product: Tproduct): Promise<Tproduct> {
-  const { name, amount } = product;
-  const [{ insertId }] = await connection.execute<ResultSetHeader>(
+export async function insertProducts({ name, amount }: Product) {
+  const [result] = await connection.execute<ResultSetHeader>(
     'INSERT INTO Trybesmith.products (name, amount) VALUES (?, ?)',
     [name, amount],
   );
-  return { id: insertId, ...product };
+  return { id: result.insertId, name, amount };
 }  

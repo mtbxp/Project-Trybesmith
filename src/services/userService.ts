@@ -1,6 +1,13 @@
 import * as userModel from '../models/userModel';
-import { Iuser } from '../types';
+import { User } from '../types/index';
 
-export default async function insertUser(user: Iuser): Promise<void> {
-  await userModel.insertUser(user);
+export async function getAll(): Promise<User[]> {
+  const users = await userModel.getAll();
+
+  return users;
+}
+
+export async function insertUser(user: User) {
+  const createUser = await userModel.insertUser(user);
+  return createUser;
 }

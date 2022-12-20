@@ -1,12 +1,12 @@
 import * as productsModel from '../models/productsModel';
-import { Tproduct } from '../types';
+import { Product } from '../types/index';
 
-export async function getAll(): Promise<Tproduct[]> {
+export async function getAll(): Promise<Product[]> {
   const products = await productsModel.getAll();
   return products;
 }
 
-export async function insertProducts(product: Tproduct): Promise<Tproduct> {
+export async function insertProducts(product: Product): Promise<Product> {
   const products = await productsModel.insertProducts(product);
-  return products as Tproduct;
+  return products as Product;
 }
