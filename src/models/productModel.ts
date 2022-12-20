@@ -8,7 +8,6 @@ export const addProducts = async (payload: NewProductInput) => {
   INSERT INTO Trybesmith.products (name, amount) 
   VALUES (?, ?);
   `, [name, amount]) as RowDataPacket[];
-  console.log(created);
   return created;
 };
 
