@@ -17,3 +17,9 @@ export const getLastProduct = async () => {
   `) as unknown as LastProducts;
   return result;
 };
+
+export const AllProducts = async () => {
+  const [result] = await connection.execute(`
+  SELECT * FROM Trybesmith.products order by id`) as unknown as RowDataPacket[][];
+  return result;
+};
