@@ -29,10 +29,10 @@ class User {
     return insertId as number;
   }
 
-  public async login(user: string, pass: string): Promise<User[]> {
+  public async login(user: string): Promise<User[]> {
     const [users] = await this.connection.execute(`
       SELECT * FROM Trybesmith.users 
-      WHERE username = '${user}' AND password = '${pass}`);
+      WHERE username = '${user}'`);
     return users as User[];
   }
 }
