@@ -10,7 +10,7 @@ export async function getAll(): Promise<User[]> {
 
 export async function insertUser({ username, vocation, level, password }: User) {
   const [result] = await connection.execute<ResultSetHeader>(
-    'INSERT INTO Trybesmith.users (username, vocation, level, password]) VALUES (?, ?, ?, ?)',
+    'INSERT INTO Trybesmith.users (username, vocation, level, password) VALUES (?, ?, ?, ?)',
     [username, vocation, level, password],
   );
   return result;
