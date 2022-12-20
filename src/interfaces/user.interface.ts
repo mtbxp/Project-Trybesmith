@@ -6,10 +6,10 @@ export interface IUser {
   password: string,
 }
 
-export interface IUserWithoutPassword {
+export interface IPayload {
   id?: number,
   username: string,
-  vocation: string,
-  level: number,
+  vocation?: string,
+  level?: number,
   password?: string,
 }

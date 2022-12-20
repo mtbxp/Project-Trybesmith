@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { IUserWithoutPassword } from '../interfaces/user.interface';
+import { IPayload } from '../interfaces/user.interface';
 
 const secret = process.env.JWT_SECRET || 'seusecretdetoken';
 
@@ -8,8 +8,8 @@ const secret = process.env.JWT_SECRET || 'seusecretdetoken';
 //   expiresIn: '7d',
 // };
 
-const createToken = (userWithoutPassword: IUserWithoutPassword) => {
-  const token = jwt.sign({ data: userWithoutPassword }, secret, {
+const createToken = (payload: IPayload) => {
+  const token = jwt.sign({ data: payload }, secret, {
     algorithm: 'HS256',
     expiresIn: '7d',
   });
