@@ -32,9 +32,3 @@ export function validateAmount(req: Request, res: Response, next: NextFunction) 
 
   return next();
 }
-
-// export default function validateProduct(req: Request, res: Response, next: NextFunction) {
-//   validateName(req, res, next);
-//   validateAmount(req, res, next);
-//   return next();
-// }
