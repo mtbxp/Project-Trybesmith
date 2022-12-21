@@ -13,4 +13,9 @@ export default class ProductService {
     const newProduct = await this.productModel.addProduct(productData);
     return { status: 201, message: newProduct };
   }
+
+  async getAllProducts(): Promise<IProductReturn> {
+    const allProducts = await this.productModel.getAllProducts();
+    return { status: 200, message: allProducts };
+  }
 }
