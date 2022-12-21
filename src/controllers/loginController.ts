@@ -1,14 +1,25 @@
-/* import { Request, Response } from 'express';
-import loginService from '../services/loginService';
+import { Request, Response } from 'express';
+import * as userService from '../services/userService';
+import isToken from '../auth/token';
 
-const statusOk = 200;
+export async function login(req: Request, res: Response) {
+  try {
+    const { username, password } = req.body;
+    const user = await userService.getNameUser({ username, password });
 
-export default async function login(req: Request, res: Response): Promise<void> {
-  const login = req.body;
-  const result = await loginService.login(login);
+    if (!user.length || user[0].password !== password) {
+      return res.status(401).json({ message: 'Username or password invalid' });
+    }
+    const token = isToken({ username, password });
 
-  if (result.type !== statusOk) {
-    return res.status(result.type).json({ message: result.message });
-  } 
-  return res.status(200).json({ token: result.message });
-} */
+    return res.status(200).json({ token });
+  } catch (err) {
+    return res.status(401).json({ message: 'Invalid Fields', err });
+  }
+}
+
+export async function getAll(_req:Request, res: Response) {
+  const users = await userService.getAll();
+
+  return res.status(200).json(users);
+}

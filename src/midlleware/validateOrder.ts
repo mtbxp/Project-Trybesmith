@@ -1,4 +1,4 @@
-/* import { Request, Response, NextFunction } from 'express';
+import { Request, Response, NextFunction } from 'express';
 
 const validateOrder = (req: Request, res: Response, next: NextFunction) => {
   const { productsIds } = req.body;
@@ -19,4 +19,4 @@ const validateOrder = (req: Request, res: Response, next: NextFunction) => {
 
 export default { 
   validateOrder,
-}; */
+};

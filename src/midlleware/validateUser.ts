@@ -1,4 +1,4 @@
-/* import { Request, Response, NextFunction } from 'express';
+import { Request, Response, NextFunction } from 'express';
 
 export async function validateUser(req: Request, res: Response, next: NextFunction) {
   const { username } = req.body;
@@ -34,7 +34,7 @@ export async function validateLevel(req: Request, res: Response, next: NextFunct
     return res.status(422).json({ message: '"level" must be a number' });
   } if (level <= 1) {
     return res.status(422)
-      .json({ message: '"level" must be larger than or equal to 1' });
+      .json({ message: '"level" must be greater than or equal to 1' });
   }
   next();
 }
@@ -51,4 +51,3 @@ export async function validatePassword(req: Request, res: Response, next: NextFu
   }
   next();
 }
- */

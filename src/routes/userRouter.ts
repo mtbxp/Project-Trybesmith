@@ -1,20 +1,20 @@
 import { Router } from 'express';
 import * as userController from '../controllers/userController';
-/* import { 
+import { 
   validateUser,
   validateVocation,
   validateLevel,
   validatePassword,
-} from '../midlleware/validateUser'; */
+} from '../midlleware/validateUser';
 
 const userRouter = Router();
 
 userRouter.post(
   '/', 
-  /*  validateUser, 
+  validateUser, 
   validateVocation, 
   validateLevel, 
-  validatePassword, */ 
+  validatePassword,
   userController.insertUser,
 );
 export default userRouter;

@@ -1,14 +1,14 @@
 import { Router } from 'express';
 import * as productController from '../controllers/productsController';
-// import validateName, { validateAmount } from '../midlleware/validateProduct';
+import validateName, { validateAmount } from '../midlleware/validateProduct';
 
 const productRouter = Router();
 
 productRouter.get('/', productController.getAll);
 productRouter.post(
   '/', 
-  // validateName, 
-  // validateAmount, 
+  validateName, 
+  validateAmount, 
   productController.insertProducts,
 );
 

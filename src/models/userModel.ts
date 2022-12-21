@@ -16,9 +16,10 @@ export async function insertUser({ username, vocation, level, password }: User) 
   return result;
 }
 
-/* export async function getName(username: string): Promise<UserAndPassword> {
-  const [[user]] = await connection
-    .execute<RowDataPacket[]>(`SELECT * FROM Trybesmith.users 
-    WHERE username = ?`, [username]);
+export async function getName({ username, password }: User): Promise<User[]> {
+  const [user] = await connection.execute<RowDataPacket[] & User[]>(
+    'SELECT * FROM Trybesmith.users WHERE username = (?) AND password = (?)',
+    [username, password],
+  );
   return user;
-} */
+}
