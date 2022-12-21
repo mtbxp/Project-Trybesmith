@@ -2,13 +2,13 @@ import jwt from 'jsonwebtoken';
 import addUsers from '../models/userModel';
 import UserInput from '../types/user';
 
-const secret = 'banana';
+export const SECRET = 'banana';
 
 const addNewUser = async (userDate: UserInput) => {
   const { username, vocation, level } = userDate;
   const token = jwt.sign(
     { date: { username, vocation, level } }, 
-    secret,
+    SECRET,
   );
 
   await addUsers(userDate);
