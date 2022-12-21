@@ -1,5 +1,5 @@
 import * as jwt from 'jsonwebtoken';
-import { TUsers } from '../types/index';
+import { TUsers, TLogin } from '../types/index';
 
 require('dotenv/config');
 
@@ -10,6 +10,6 @@ const jwtConfig: object = {
   algorithm: 'HS256',
 };
 
-const createToken = (data: TUsers) => jwt.sign({ data }, secret, jwtConfig);
+const createToken = (data: TUsers | TLogin) => jwt.sign({ data }, secret, jwtConfig);
 
 export default createToken;
