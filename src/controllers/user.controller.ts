@@ -9,7 +9,7 @@ export default class UserController {
     try {
       const input = req.body;
       const token = await this.userService.createUser(input);
-      req.body.token = token;
+      req.body = token;
       return res.status(statusCodes.CREATED).json({ token });
     } catch (e) {
       const erro = (e as Error).message;

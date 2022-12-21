@@ -3,5 +3,5 @@ export default interface ILogin {
   username: string,
   vacation?: string,
   level?: number,
-  password: string,
+  password?: string,
 }

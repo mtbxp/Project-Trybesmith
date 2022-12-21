@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { IPayload } from '../interfaces/user.interface';
 
-const secret = process.env.JWT_SECRET || 'seusecretdetoken';
+const secret = 'seusecretdetoken';
 
 // const jwtConfig = {
 //   algorithm: 'HS256',

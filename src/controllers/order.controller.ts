@@ -23,4 +23,18 @@ export default class OrderController {
       });
     }
   };
+
+  public createOrder = async (req: Request, res: Response) => {
+    try {
+      const { productsIds, user } = req.body;
+      const newOrder = await this.orderService.createOrder(user.data.id, productsIds);
+      return res.status(statusCodes.CREATED).json(newOrder);
+    } catch (e) {
+      const error = (e as Error).message;
+      return res.status(statusCodes.INTERNAL_ERROR).json({
+        message: 'Erro ao tentar criar uma order',
+        error,
+      });
+    }
+  };
 }
