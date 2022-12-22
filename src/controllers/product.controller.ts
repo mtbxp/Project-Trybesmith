@@ -3,17 +3,17 @@ import statusCodes from '../statusCodes';
 import ProductService from '../services/products.service';
 
 class ProductController {
-  constructor(private bookService = new ProductService()) { }
+  constructor(private productService = new ProductService()) { }
 
   public getAll = async (_req: Request, res: Response) => {
-    const books = await this.bookService.getAll();
+    const books = await this.productService.getAll();
     res.status(statusCodes.OK).json(books);
   };
 
   public create = async (req: Request, res: Response) => {
     const product = req.body;
 
-    const productCreated = await this.bookService.create(product);
+    const productCreated = await this.productService.create(product);
     res.status(statusCodes.CREATED).json(productCreated);
   };
 }
