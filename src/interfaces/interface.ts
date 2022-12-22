@@ -18,8 +18,14 @@ interface UserWithoutPassword {
   level: number;
 }
 
+interface Order {
+  id?: number;
+  userId: string;
+}
+
 export {
   Product,
   User,
   UserWithoutPassword,
+  Order,
 };
