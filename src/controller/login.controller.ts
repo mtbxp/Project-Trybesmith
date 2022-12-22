@@ -1,9 +1,10 @@
 import { Request, Response } from 'express';
+import { RowDataPacket } from 'mysql2';
 import service from '../services/login.service';
-import { TLogin } from '../types';
-import createToken from '../utils/token';
+import generateToken from '../utils/token';
 
-async function checkLoginController(req: Request, res: Response):Promise<Response<TLogin>> {
+async function checkLoginController(req: Request, res: Response):
+Promise<Response<RowDataPacket[] | undefined>> {
   try {
     const { username, password } = req.body;
     
@@ -15,9 +16,9 @@ async function checkLoginController(req: Request, res: Response):Promise<Respons
       return res.status(400).json({ message: '"password" is required' });
     }
 
-    const user = await service.checkLoginService(username, password);
+    await service.checkLoginService(username, password);
     
-    const token = createToken(user);
+    const token = generateToken(username);
 
     return res.status(200).json({ token });
   } catch (e) {

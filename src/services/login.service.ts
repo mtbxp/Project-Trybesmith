@@ -1,9 +1,16 @@
+import { RowDataPacket } from 'mysql2';
 import model from '../models/login.model';
-import { TLogin } from '../types';
 
-async function checkLoginService(username: string, password: string):Promise<TLogin> {
+async function checkLoginService(username: string, password: string):
+Promise<RowDataPacket[] | undefined> {
   const login = await model.checkLogin(username, password);
 
+  console.log(login);
+
+  if (!login.length) {
+    throw new Error();
+  }
+  
   return login;
 }
 
