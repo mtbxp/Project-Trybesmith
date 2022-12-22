@@ -13,7 +13,7 @@ import connection from './connection';
 
 const getAll = async (): Promise<Tproducts[]> => {
   const [products] = await connection.execute(
-    'SELECT * FROM Trybesmith.',
+    'SELECT * FROM Trybesmith.products',
   );
   return products as Tproducts[];
 };

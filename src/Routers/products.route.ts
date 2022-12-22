@@ -3,7 +3,7 @@ import productsController from '../controllers/products.controller';
 
 const routes = Router();
 
-routes.get('/', productsController.getAll);
+routes.get('/products', productsController.getAll);
 
 export default 
 routes;
