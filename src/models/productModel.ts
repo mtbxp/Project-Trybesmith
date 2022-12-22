@@ -26,7 +26,6 @@ async function getAll(): Promise<Product[]> {
     'SELECT * FROM Trybesmith.products',
   );
 
-  console.log(result);
   return result as unknown as Product[];
 }
 
