@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { IUserWithoutPassword } from '../interfaces/index';
+import { ILoginWithoutPassword, IUserWithoutPassword } from '../interfaces/index';
 
 const secret = process.env.JWT_SECRET || 'secret';
 
@@ -9,8 +9,8 @@ const jwtConfig = {
 
 // Estrutura baseada no código da aula 6.4, disponível em https://github.com/tryber/sd-023-b-live-lectures/tree/back/lecture/6.4/src/auth
 
-export const createToken = (userWithoutPassword: IUserWithoutPassword) => {
-  const token = jwt.sign({ data: userWithoutPassword }, secret, jwtConfig);
+export const createToken = (data: IUserWithoutPassword | ILoginWithoutPassword) => {
+  const token = jwt.sign({ data }, secret, jwtConfig);
   
   return token;
 };

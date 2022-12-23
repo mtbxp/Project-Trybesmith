@@ -25,3 +25,25 @@ export interface IUserReturn {
   status: number,
   message: string,
 }
+
+export interface IOrder {
+  id: number,
+  userId: number,
+}
+
+export interface ILogin {
+  username: string,
+  password: string,
+  id?: number,
+}
+
+export interface ILoginWithoutPassword {
+  username: string,
+  id?: number,
+}
+
+export interface ILoginReturn {
+  status: number,
+  error: boolean,
+  message: ILogin | string,
+}
