@@ -4,7 +4,7 @@ import { Product, ProductParameters } from '../interfaces/product.interface';
 
 const createProductModel = async ({ name, amount }: ProductParameters): Promise<Product> => {
   const [result] = await connection.execute<ResultSetHeader>(
-    'INSERT INTO Trybesmith.products VALUE (?, ?)',
+    'INSERT INTO Trybesmith.products (name, amount) VALUES (?, ?)',
     [
       name,
       amount,
@@ -14,4 +14,6 @@ const createProductModel = async ({ name, amount }: ProductParameters): Promise<
   return { id: result.insertId, name, amount };
 };
 
-export default createProductModel;
+export default {
+  createProductModel,
+};

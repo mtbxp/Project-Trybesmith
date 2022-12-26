@@ -1,9 +1,11 @@
 import { ProductParameters } from '../interfaces/product.interface';
-import createProductModel from '../models/product.models';
+import productModel from '../models/product.models';
 
 const createProductService = async (product: ProductParameters) => {
-  const newProduct = await createProductModel(product);
+  const newProduct = await productModel.createProductModel(product);
   return newProduct;
 };
 
-export default createProductService;
+export default {
+  createProductService,
+};
