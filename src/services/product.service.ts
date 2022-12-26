@@ -6,6 +6,12 @@ const createProductService = async (product: ProductParameters) => {
   return newProduct;
 };
 
+const getAllProductsService = async () => {
+  const allProducts = await productModel.getAllProductsModel();
+  return allProducts;
+};
+
 export default {
   createProductService,
+  getAllProductsService,
 };
