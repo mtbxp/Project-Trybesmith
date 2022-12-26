@@ -1,12 +1,15 @@
 import express from 'express';
+
 import httpErrorMiddleware from './middlewares/http.error.middleware';
-import procuctsRoute from './routes/products.routes';
+import productsRoute from './routes/products.routes';
+import userRoute from './routes/user.routes';
 
 const app = express();
 
 app.use(express.json());
 
-app.use('/products', procuctsRoute);
+app.use('/users', userRoute);
+app.use('/products', productsRoute);
 
 app.use(httpErrorMiddleware);
 

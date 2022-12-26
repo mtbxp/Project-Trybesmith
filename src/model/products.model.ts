@@ -10,7 +10,7 @@ const createProductModel = async (product: TProduct):Promise<TProduct> => {
     [name, amount],
   );
   const productCreated = { id: result.insertId, name, amount };
-  // console.log(productCreated);
+
   return productCreated;
 };
 

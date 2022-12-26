@@ -2,7 +2,7 @@ import productsModel from '../model/products.model';
 import HttpException from '../shared/http.exception';
 import { TProduct } from '../types';
 
-const createProduct = async (product: TProduct): Promise<TProduct> => {
+const createProduct = async (product: TProduct):Promise<TProduct> => {
   try {
     const productCreated = await productsModel.createProductModel(product);
     return productCreated;

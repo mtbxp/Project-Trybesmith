@@ -7,12 +7,19 @@ export type TProduct = {
 
 export type TUser = {
   id: number,
-  userName: string,
+  username: string,
   vocation: string,
+  level: number,
   password: string,
 };
 
-export type Toder = {
+export type TOrder = {
   id: number,
   userId: number,
+};
+
+export type TLogin = {
+  id?: number,
+  username: string,
+  password?: string,
 };
