@@ -3,8 +3,8 @@ import userService from '../services/user.service';
 
 const createUser = async (req: Request, res: Response): Promise<void> => {
   const user = req.body;
-  const userToken = await userService.createUser(user);
-  res.status(201).json({ token: userToken });
+  const newToken = await userService.createUser(user);
+  res.status(201).json({ token: newToken });
 };
 
 export default {
