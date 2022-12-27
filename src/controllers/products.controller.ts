@@ -2,7 +2,9 @@ import { Request, Response } from 'express';
 import ProductService from '../services/products.service';
 import statusCodes from '../utils/statusCode';
 
-class ProductsController {
+// funcoes retiradas do couse.
+
+export default class ProductsController {
   public productService: ProductService;
 
   constructor() {
@@ -16,5 +18,3 @@ class ProductsController {
     res.status(statusCodes.CREATED).json(productCreated);
   };
 }
-
-export default ProductsController;
