@@ -7,7 +7,7 @@ import ConfigTokenUser from '../autenticadorToken/configToken';
 // funcoes retiradas do couse.
 const secret: Secret = process.env.JWT_SECRET || 'segredo';
 
-export default class ProductsController {
+export default class UserController {
   public userService: UserService;
 
   constructor() {

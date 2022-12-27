@@ -4,7 +4,7 @@ import connection from '../models/connection';
 
 // funcoes retiradas do couse.
 
-export default class ProductService {
+export default class UserService {
   public model: UserModel;
 
   constructor() {
