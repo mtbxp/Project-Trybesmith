@@ -7,6 +7,6 @@ const app = express();
 app.use(express.json());
 
 app.use('/products', product);
-app.use('/user', user);
+app.use('/users', user);
 
 export default app;

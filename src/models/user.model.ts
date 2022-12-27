@@ -9,8 +9,9 @@ const createUser = async (user: AddUser): Promise<User> => {
     .execute<ResultSetHeader>(qr, [username, vocation, level, password]);
     
   const { insertId } = result;
+  const userData = { id: insertId, username, level, vocation };
 
-  return { id: insertId, username, level, vocation };
+  return userData;
 };
 
 export default {
