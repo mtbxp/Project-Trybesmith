@@ -5,9 +5,9 @@ dotenv.config();
 
 const jwtSecret: string | undefined = process.env.JWT_SECRET;
 
-const generateToken = (params:Record<string, unknown> = {}) => {
+const generateToken = (params: object = {}) => {
   if (jwtSecret) {
-    jwt.sign(params, jwtSecret, { expiresIn: 360 });
+    return jwt.sign(params, jwtSecret, { expiresIn: 360 });
   }
 };
 
