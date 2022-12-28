@@ -9,6 +9,12 @@ export interface Iproducts extends InewProducts {
   orderId?: string | null
 } 
 
+export interface Iorders {
+  id: number,
+  userId: string,
+  productsIds: number[]
+}
+
 // export = {
 //   Tproducts,
 // };

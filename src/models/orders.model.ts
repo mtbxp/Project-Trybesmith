@@ -1,8 +1,14 @@
-// import connection from './connection';
+import { Iorders } from '../interfaces';
+import connection from './connection';
 
-// export async function getAll(): Promise<Iproducts[]> {
-//   const [products] = await connection.execute(
-//     'SELECT * FROM Trybesmith.orders',
-//   );
-//   return products as Iproducts[];
-// }
+// eslint-disable-next-line import/prefer-default-export
+export async function getAll(): Promise<Iorders[]> {
+  const [orders] = await connection.execute(
+    'SELECT * FROM Trybesmith.orders',
+  );
+  return orders as Iorders[];
+}
+
+// export {
+//   getAll,
+// };
