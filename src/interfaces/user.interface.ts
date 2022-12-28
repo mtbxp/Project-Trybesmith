@@ -6,12 +6,5 @@ export interface UserParameters {
 }
 
 export interface User extends UserParameters {
-  id:
-}
-
-{ 
-  "username": "MAX",
-  "vocation": "swordsman",
-  "level": 10,
-  "password": "SavingPeople"
+  id: number,
 }
