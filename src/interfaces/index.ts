@@ -1,9 +1,12 @@
-export interface Iproducts {
-  id?: number,
+export interface InewProducts {
   name: string,
   amount: string,
-  orderId?: string | null
 }
+
+export interface Iproducts extends InewProducts {
+  id: number,
+  orderId?: string | null
+} 
 
 // export = {
 //   Tproducts,
