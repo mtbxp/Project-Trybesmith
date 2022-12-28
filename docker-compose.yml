@@ -49,12 +49,13 @@ services:
     restart: always
     # Lista de portas mapeadas de dentro para fora do container
     # na notação porta_de_fora:porta_de_dentro
+    environment:
+      MYSQL_ROOT_PASSWORD: password
     ports:
       # Expõe a porta padrão do banco de dados
       - 3306:3306
       - 33060:33060
-    environment:
-      MYSQL_ROOT_PASSWORD: password
+  
 
 # Lista de redes que os containeres irão utilizar
 networks:
