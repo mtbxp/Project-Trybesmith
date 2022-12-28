@@ -9,8 +9,8 @@ async function getAll(_req: Request, res: Response): Promise<Response> {
 }
 
 async function createProducts(req: Request, res: Response): Promise<Response> {
-  const product = req.body;
-  const newProducts = await productsService.createProducts(product);
+  const { name, amount } = req.body;
+  const newProducts = await productsService.createProducts(name, amount);
 
   return res.status(statusCodes.CREATED).json(newProducts);
 }

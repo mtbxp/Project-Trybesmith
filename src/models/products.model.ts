@@ -10,13 +10,13 @@ async function getAll(): Promise<Iproducts[]> {
   return products as Iproducts[];
 }
 
-async function createProducts(product: InewProducts): Promise<number> {
+async function createProducts(name: string, amount: string): Promise<InewProducts> {
   const [{ insertId }] = await connection.execute<ResultSetHeader>(
     'INSERT INTO Trybesmith.products (name, amount) VALUES (?, ?);',
-    [product.name, product.amount],
+    [name, amount],
   );
 
-  return insertId;
+  return { id: insertId, name, amount };
 }
 
 async function getById(id: number): Promise<Iproducts | undefined> {
