@@ -2,8 +2,7 @@
 import { Iorders } from '../interfaces';
 import connection from './connection';
 
-// eslint-disable-next-line import/prefer-default-export
-export async function getAll(): Promise<Iorders[]> {
+export default async function getAll(): Promise<Iorders[]> {
   const [orders] = await connection.execute(
     `SELECT Trybesmith.orders.id, Trybesmith.orders.user_id AS userId, 
     JSON_ARRAYAGG(Trybesmith.products.id) AS productsIds

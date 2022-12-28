@@ -3,7 +3,7 @@ import * as orderController from '../controllers/orders.controller';
 
 const router = Router();
 
-router.get('/', orderController.getAll);
+router.get('/', orderController.default);
 
 export default 
 router;
