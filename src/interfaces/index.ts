@@ -1,9 +1,9 @@
-export type Tproducts = {
-  id: number,
+export interface Iproducts {
+  id?: number,
   name: string,
   amount: string,
-  orderId?: string | null,
-};
+  orderId?: string | null
+}
 
 // export = {
 //   Tproducts,

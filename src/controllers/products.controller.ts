@@ -1,11 +1,18 @@
 import { Request, Response } from 'express';
-import productsService from '../services/products.service';
+import * as productsService from '../services/products.service';
+import statusCodes from '../utils/statusCodes';
 
-const getAll = async (req: Request, res: Response): Promise<Response> => {
+async function getAll(_req: Request, res: Response): Promise<Response> {
   const products = await productsService.getAll();
   
-  return res.status(200).json(products);
-};
+  return res.status(statusCodes.OK).json(products);
+}
+
+// const getAll = async (_req: Request, res: Response): Promise<Response> => {
+//   const products = await productsService.getAll();
+  
+//   return res.status(statusCodes.OK).json(products);
+// };
 
 export default {
   getAll,

@@ -1,23 +1,31 @@
 // import { RowDataPacket } from 'mysql2/promise';
-import { Tproducts } from '../types';
+import { Iproducts } from '../interfaces';
 import connection from './connection';
 
-// const createProducts = async (name, amount) => {
-//   const [newProduct] = await connection.execute(
-//     'INSERT INTO Trybesmith.products (name, amount) VALUES (?, ?);',
-//     [name, amount],
-//   );
-
-//   return newProduct;
-// };
-
-const getAll = async (): Promise<Tproducts[]> => {
+async function getAll(): Promise<Iproducts[]> {
   const [products] = await connection.execute(
     'SELECT * FROM Trybesmith.products',
   );
-  return products as Tproducts[];
-};
+  return products as Iproducts[];
+}
 
-export default {
+async function createProducts(name: string, amount: string): Promise<Iproducts[]> {
+  const [newProduct] = await connection.execute(
+    'INSERT INTO Trybesmith.products (name, amount) VALUES (?, ?);',
+    [name, amount],
+  );
+
+  return newProduct as Iproducts[];
+}
+
+// const getAll = async (): Promise<Tproducts[]> => {
+//   const [products] = await connection.execute(
+//     'SELECT * FROM Trybesmith.products',
+//   );
+//   return products as Tproducts[];
+// };
+
+export {
   getAll,
+  createProducts,
 };
