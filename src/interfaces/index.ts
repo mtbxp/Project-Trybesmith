@@ -1,4 +1,5 @@
 export interface InewProducts {
+  id?: number,
   name: string,
   amount: string,
 }

@@ -6,9 +6,9 @@ export async function getAll():Promise<Iproducts[]> {
   return products as Iproducts[];
 }
 
-export async function createProducts(name: string, amount: string):Promise<InewProducts[]> {
-  const products = await productsModel.createProducts(name, amount);
-  return products as InewProducts[];
+export async function createProducts(product: InewProducts):Promise<number> {
+  const products = await productsModel.createProducts(product);
+  return products;
 }
 
 export async function getById(id:number): Promise<Iproducts | undefined> {

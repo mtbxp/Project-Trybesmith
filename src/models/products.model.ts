@@ -1,6 +1,6 @@
 // import { RowDataPacket } from 'mysql2/promise';
-import { RowDataPacket } from 'mysql2';
-import { Iproducts, InewProducts } from '../interfaces';
+import { ResultSetHeader, RowDataPacket } from 'mysql2';
+import { InewProducts, Iproducts } from '../interfaces';
 import connection from './connection';
 
 async function getAll(): Promise<Iproducts[]> {
@@ -10,13 +10,13 @@ async function getAll(): Promise<Iproducts[]> {
   return products as Iproducts[];
 }
 
-async function createProducts(name: string, amount: string): Promise<InewProducts[]> {
-  const [newProduct] = await connection.execute(
+async function createProducts(product: InewProducts): Promise<number> {
+  const [{ insertId }] = await connection.execute<ResultSetHeader>(
     'INSERT INTO Trybesmith.products (name, amount) VALUES (?, ?);',
-    [name, amount],
+    [product.name, product.amount],
   );
 
-  return newProduct as InewProducts[];
+  return insertId;
 }
 
 async function getById(id: number): Promise<Iproducts | undefined> {
