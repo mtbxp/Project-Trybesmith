@@ -4,3 +4,11 @@ export interface InternalErrResponse {
     message: unknown | undefined,
   },
 }
+
+export interface ErrorMessage {
+  message: string,
+}
+
+export interface TokenResponse {
+  token: string | undefined,
+}
