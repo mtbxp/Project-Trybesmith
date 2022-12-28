@@ -8,6 +8,7 @@ const app = express();
 app.use(express.json());
 app.use('/products', router.productsRoute);
 app.use('/orders', router.ordersRoute);
+app.use('/users', router.userRoute);
 
 // app.use((err: Error, _req: Request, res: Response, next: NextFunction) => {
 //   const { name, message, details } = err as any;

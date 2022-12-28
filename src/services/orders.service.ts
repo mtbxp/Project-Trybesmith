@@ -6,7 +6,3 @@ export default async function getAll():Promise<Iorders[]> {
   const products = await ordersModel();
   return products as Iorders[];
 }
-
-// export function getAll() {
-//   throw new Error('Function not implemented.');
-// }

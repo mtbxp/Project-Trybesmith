@@ -1,5 +1,5 @@
 // import { RowDataPacket } from 'mysql2/promise';
-import { ResultSetHeader, RowDataPacket } from 'mysql2';
+import { ResultSetHeader, RowDataPacket } from 'mysql2/promise';
 import { InewProducts, Iproducts } from '../interfaces';
 import connection from './connection';
 
@@ -24,16 +24,3 @@ export async function getById(id: number): Promise<Iproducts | undefined> {
     .execute<RowDataPacket[] & Iproducts[] >('SELEC * FROM Trybesmith.products WHERE id = ?', [id]);
   return products[0];
 }
-
-// const getAll = async (): Promise<Tproducts[]> => {
-//   const [products] = await connection.execute(
-//     'SELECT * FROM Trybesmith.products',
-//   );
-//   return products as Tproducts[];
-// };
-
-// export {
-//   getAll,
-//   createProducts,
-//   getById,
-// };
