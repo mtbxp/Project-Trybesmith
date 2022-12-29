@@ -1,8 +1,14 @@
 import { Request, Response } from 'express';
-import registerUser from '../services/user.service';
+import { registerUser, logUser } from '../services/user.service';
 
-export default async function registerNewUser(req: Request, res: Response): Promise<void> {
+export async function registerNewUser(req: Request, res: Response): Promise<void> {
   const newUser = req.body;
-  const token = await registerUser(newUser);
-  res.status(201).json(token);
+  const { status, data } = await registerUser(newUser);
+  res.status(status).json(data);
+}
+
+export async function loginUser(req: Request, res: Response): Promise<void> {
+  const user = req.body;
+  const { status, data } = await logUser(user); 
+  res.status(status).json(data);
 }

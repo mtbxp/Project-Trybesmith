@@ -1,24 +1,28 @@
-import { CreatedProduct, NewProduct, Product } from '../interfaces/Product';
-import { InternalErrResponse } from '../interfaces/Responses';
+import { NewProduct } from '../interfaces/Product';
+import { DefaultHttpResponse, InternalErrResponse } from '../interfaces/Responses';
 import { createProduct, findAllProducts } from '../models/products.model';
-import internalErrResponse from '../utils/responses';
+import { defaultHttpResponse, internalErrResponse } from '../utils/responses';
 
 export async function addProduct(product: NewProduct):
-Promise<CreatedProduct | InternalErrResponse> {
+Promise<DefaultHttpResponse | InternalErrResponse> {
   try {
     const createdProduct = await createProduct(product);
-    return createdProduct;
+    if (createdProduct) {
+      return defaultHttpResponse(201, createdProduct);
+    }
+    const errMessage = { message: 'Produto não cadastrado, database ERROR' };
+    return defaultHttpResponse(500, errMessage);
   } catch (err: unknown) {
     return internalErrResponse(err);
   }
 }
 
 export async function findProducts():
-Promise<Product[] | InternalErrResponse> {
+Promise<DefaultHttpResponse | InternalErrResponse> {
   try {
     const products = await findAllProducts();
-    return products;
-  } catch (err: unknown) {
+    return defaultHttpResponse(200, products);
+  } catch (err) {
     return internalErrResponse(err);
   }
 }

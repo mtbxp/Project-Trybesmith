@@ -1,13 +1,12 @@
-import { Orders } from '../interfaces/Order';
-import { InternalErrResponse } from '../interfaces/Responses';
+import { DefaultHttpResponse, InternalErrResponse } from '../interfaces/Responses';
 import findAllOrders from '../models/order.model';
-import internalErrResponse from '../utils/responses';
+import { defaultHttpResponse, internalErrResponse } from '../utils/responses';
 
 export default async function findOrders():
-Promise<InternalErrResponse | Orders> {
+Promise<InternalErrResponse | DefaultHttpResponse> {
   try {
     const orders = await findAllOrders();
-    return orders;
+    return defaultHttpResponse(200, orders);
   } catch (err) {
     return internalErrResponse(err);
   }

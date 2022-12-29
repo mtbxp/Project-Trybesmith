@@ -2,15 +2,20 @@ import { ResultSetHeader } from 'mysql2';
 import { CreatedProduct, NewProduct, Product } from '../interfaces/Product';
 import connection from './connection';
 
-export async function createProduct({ name, amount }: NewProduct): Promise<CreatedProduct> {
+export async function createProduct({ name, amount }: NewProduct): Promise<CreatedProduct | null> {
   const query = 'INSERT INTO Trybesmith.products (name, amount) VALUES (?, ?)';
   const [{ insertId }] = await connection
     .execute<ResultSetHeader>(query, [name, amount]);
-  return {
-    id: insertId,
-    name,
-    amount,
-  };
+
+  if (insertId) {
+    return {
+      id: insertId,
+      name,
+      amount,
+    };
+  }
+
+  return null;
 }
 
 export async function findAllProducts(): Promise<Product[]> {

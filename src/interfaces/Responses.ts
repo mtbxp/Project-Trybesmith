@@ -5,10 +5,7 @@ export interface InternalErrResponse {
   },
 }
 
-export interface ErrorMessage {
-  message: string,
-}
-
-export interface TokenResponse {
-  token: string | undefined,
+export interface DefaultHttpResponse {
+  status: number,
+  data: object,
 }
