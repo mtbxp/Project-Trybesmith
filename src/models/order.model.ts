@@ -1,7 +1,8 @@
 import { RowDataPacket } from 'mysql2';
+import { Orders } from '../interfaces/Order';
 import connection from './connection';
 
-export default async function findAllOrders() {
+export default async function findAllOrders(): Promise<Orders> {
   const query = `SELECT o.id, o.user_id AS 'userId', JSON_ARRAYAGG(p.id) AS 'productsIds'
   FROM Trybesmith.orders o
   INNER JOIN Trybesmith.products p 
@@ -10,5 +11,5 @@ export default async function findAllOrders() {
 
   const [response] = await connection.execute<RowDataPacket[]>(query);
 
-  return response;
+  return JSON.parse(JSON.stringify(response));
 }
