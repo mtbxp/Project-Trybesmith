@@ -30,8 +30,11 @@ export async function loginUser({ username, password }: LogUser): Promise<Logged
   AND u.password = ?`;
   const [[user]] = await connection.execute<RowDataPacket[]>(query, [username, password]);
 
-  return {
-    userId: user.id,
-    username,
-  };
+  if (user) {
+    return {
+      userId: user.id,
+      username,
+    };
+  }
+  return null;
 }
