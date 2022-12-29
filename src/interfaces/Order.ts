@@ -3,3 +3,5 @@ export interface Order {
   userId: number,
   productsIds: Array<number | null>
 }
+
+export type Orders = Array<Order>;
