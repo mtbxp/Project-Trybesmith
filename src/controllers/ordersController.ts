@@ -15,4 +15,4 @@ export async function insert(req: Request, res: Response) {
   const order = await ordersService.insert(newOrder);
 
   return res.status(status.CREATED).json(order);
-};
+}
