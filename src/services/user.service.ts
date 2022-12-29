@@ -1,6 +1,6 @@
 import { ErrorMessage, InternalErrResponse, TokenResponse } from '../interfaces/Responses';
 import { User } from '../interfaces/User';
-import createUser from '../models/user.model';
+import { createUser } from '../models/user.model';
 import generateToken from '../utils/authotization/jwt-generator';
 import internalErrResponse from '../utils/responses';
 

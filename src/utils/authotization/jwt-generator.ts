@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const jwtSecret: string | undefined = process.env.JWT_SECRET;
+const jwtSecret: string | undefined = process.env.JWT_SECRET || 'exemplo';
 
 const generateToken = (params: object = {}) => {
   if (jwtSecret) {

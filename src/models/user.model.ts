@@ -1,8 +1,8 @@
-import { ResultSetHeader } from 'mysql2';
-import { CreatedUser, User } from '../interfaces/User';
+import { ResultSetHeader, RowDataPacket } from 'mysql2';
+import { CreatedUser, LoggedUser, LogUser, User } from '../interfaces/User';
 import connection from './connection';
 
-export default async function createUser(newUser: User): Promise<CreatedUser | null> {
+export async function createUser(newUser: User): Promise<CreatedUser | null> {
   const { username, level, password, vocation } = newUser;
   const query = `
   INSERT INTO Trybesmith.users 
@@ -21,4 +21,17 @@ export default async function createUser(newUser: User): Promise<CreatedUser | n
   }
 
   return null;
+}
+
+export async function loginUser({ username, password }: LogUser): Promise<LoggedUser | null> {
+  const query = `SELECT id 
+  FROM Trybesmith.users u
+  WHERE u.username = ?
+  AND u.password = ?`;
+  const [[user]] = await connection.execute<RowDataPacket[]>(query, [username, password]);
+
+  return {
+    userId: user.id,
+    username,
+  };
 }
