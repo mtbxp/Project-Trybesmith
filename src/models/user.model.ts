@@ -18,4 +18,15 @@ const createUserModel = async (user: UserParameters): Promise<User> => {
   return { id: result.insertId, username, vocation, level, password}
 };
 
-export default createUserModel;
+const getAllUsersModel = async (): Promise<User[]> => {
+  const [results] = await connection.execute(
+    'SELECT * FROM Trybesmith.users;',
+  );
+
+  return results as User[];
+};
+
+export default {
+  createUserModel,
+  getAllUsersModel,
+};
