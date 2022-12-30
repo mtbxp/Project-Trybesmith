@@ -1,6 +1,6 @@
 export interface UserParameters {
   username: string,
-  vacation: string,
+  vocation: string,
   level: number,
   password: string
 }
