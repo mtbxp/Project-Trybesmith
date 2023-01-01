@@ -6,7 +6,7 @@ const createUserModel = async (user: UserParameters): Promise<User> => {
   const { username, vocation, level, password } = user;
 
   const [result] = await connection.execute<ResultSetHeader>(
-    'INSERT INTO Trybesmith.users (username, vocation, level, password) VALUES (?, ?, ?, ?):',
+    'INSERT INTO Trybesmith.users (username, vocation, level, password) VALUES (?, ?, ?, ?);',
     [
       username,
       vocation,
@@ -15,7 +15,7 @@ const createUserModel = async (user: UserParameters): Promise<User> => {
     ],
   );
 
-  return { id: result.insertId, username, vocation, level, password}
+  return { id: result.insertId, username, vocation, level, password };
 };
 
 const getAllUsersModel = async (): Promise<User[]> => {
