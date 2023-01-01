@@ -7,7 +7,7 @@ const createProductController = async (req: Request, res: Response) => {
   return res.status(httpStatusCodes.CREATED).json(newProduct);
 };
 
-const getAllProductController = async (req: Request, res: Response) => {
+const getAllProductController = async (_req: Request, res: Response) => {
   const allProducts = await productService.getAllProductsService();
   return res.status(httpStatusCodes.OK).json(allProducts);
 };
