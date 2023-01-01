@@ -1,9 +1,11 @@
+import { generateToken } from '../auth/tokenJWT';
 import { UserParameters } from '../interfaces/user.interface';
 import userModel from '../models/user.model';
 
 const createUserService = async (user: UserParameters) => {
   const newUser = await userModel.createUserModel(user);
-  return newUser;
+  const userToken = generateToken(newUser);
+  return userToken;
 };
 
 const getAllUsersService = async () => {

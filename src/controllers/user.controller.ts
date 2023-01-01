@@ -3,8 +3,9 @@ import httpStatusCodes from '../httpStatusCodes';
 import userService from '../services/user.service';
 
 const createUserController = async (req: Request, res: Response) => {
-  const newUser = await userService.createUserService(req.body);
-  return res.status(httpStatusCodes.CREATED).json(newUser);
+  const newUserToken = await userService.createUserService(req.body);
+  return res.status(httpStatusCodes.CREATED)
+    .json({ token: newUserToken });
 };
 
 const getAllUsersController = async (_req: Request, res: Response) => {
