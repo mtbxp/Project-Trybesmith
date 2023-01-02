@@ -24,6 +24,7 @@ export const newProductSchema = Joi.object({
     })
     .required(),
   amount: Joi.string()
+    .min(3)
     .messages({
       'string.empty': '"amount" is required',
       'any.required': '"amount" is required',
