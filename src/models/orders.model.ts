@@ -15,4 +15,6 @@ const getAllOrdersModel = async (): Promise<Order[]> => {
   return result as Order[];
 };
 
-export default getAllOrdersModel;
+export default {
+  getAllOrdersModel,
+};
