@@ -1,5 +1,5 @@
 import { ResultSetHeader, RowDataPacket } from 'mysql2';
-import connection from '../config/db';
+import connection from './connection';
 import { NewProduct, Product } from '../types';
 
 export default {
