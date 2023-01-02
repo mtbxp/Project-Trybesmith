@@ -10,7 +10,7 @@ Promise<DefaultHttpResponse | InternalErrResponse> {
   try {
     const createdUser = await createUser(newUser);
     if (createdUser) {
-      const token = { token: generateToken(newUser) };
+      const token = { token: generateToken(createdUser) };
       return defaultHttpResponse(201, token);
     }
     const errMessage = { message: 'Usuario nao cadastrado, database ERROR' };
@@ -25,7 +25,7 @@ Promise<DefaultHttpResponse | InternalErrResponse> {
   try {
     const loggedUser = await loginUser(user);
     if (loggedUser) {
-      const token = { token: generateToken(user) };
+      const token = { token: generateToken(loggedUser) };
       return defaultHttpResponse(200, token);
     }
     const errMessage = { message: 'Username or password invalid' };

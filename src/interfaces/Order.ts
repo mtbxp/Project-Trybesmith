@@ -5,3 +5,7 @@ export interface Order {
 }
 
 export type Orders = Array<Order>;
+
+export type NewOrder = {
+  productsIds: Array<number>
+};

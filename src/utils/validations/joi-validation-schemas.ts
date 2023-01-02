@@ -65,3 +65,12 @@ export const newUserSchema = Joi.object({
     })
     .required(),
 });
+
+export const newOrderSchema = Joi.object({
+  productsIds: Joi.array()
+    .messages({
+      'array.empty': '"productsIds" must include only numbers',
+      'any.required': '"productsIds" is required',
+    })
+    .required(),
+});
