@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-const logUserSchema = Joi.object({
+export const logUserSchema = Joi.object({
   username: Joi.string()
     .messages({
       'string.empty': '"username" is required',
@@ -15,4 +15,18 @@ const logUserSchema = Joi.object({
     .required(),
 });
 
-export default logUserSchema;
+export const newProductSchema = Joi.object({
+  name: Joi.string()
+    .min(3)
+    .messages({
+      'string.empty': '"name" is required',
+      'any.required': '"name" is required',
+    })
+    .required(),
+  amount: Joi.string()
+    .messages({
+      'string.empty': '"amount" is required',
+      'any.required': '"amount" is required',
+    })
+    .required(),
+});
