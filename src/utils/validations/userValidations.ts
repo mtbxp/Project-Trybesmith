@@ -1,9 +1,9 @@
 import { DefaultHttpResponse } from '../../interfaces/Responses';
-import { LogUser } from '../../interfaces/User';
+import { LogUser, User } from '../../interfaces/User';
 import { defaultHttpResponse } from '../responses';
-import { logUserSchema } from './joi-validation-schemas';
+import { logUserSchema, newUserSchema } from './joi-validation-schemas';
 
-const loginValidation = (loginData: LogUser): string | DefaultHttpResponse => {
+export const loginValidation = (loginData: LogUser): string | DefaultHttpResponse => {
   const { error } = logUserSchema.validate(loginData);
   if (error) {
     const errMessage = { message: error.details[0].message };
@@ -12,4 +12,14 @@ const loginValidation = (loginData: LogUser): string | DefaultHttpResponse => {
   return 'without errors';
 };
 
-export default loginValidation;
+export const newUserValidation = (newUser: User):string | DefaultHttpResponse => {
+  const { error } = newUserSchema.validate(newUser);
+  if (error) {
+    const errMessage = { message: error.details[0].message };
+    if (errMessage.message.includes('is required')) {
+      return defaultHttpResponse(400, errMessage);
+    }
+    return defaultHttpResponse(422, errMessage);
+  }
+  return 'without errors';
+};
