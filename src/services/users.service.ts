@@ -8,7 +8,7 @@ async function createUser(
   password: string,
 ) {
   const userData = await usersModel.createUser(username, vocation, level, password);
-  if (!userData) return { status: 400, message: 'was not possible create a new user' };
+  if (!userData) return { status: 404, message: 'was not possible create a new user' };
   const token = generateToken.generateToken(userData);
 
   return { status: 201, result: token };
