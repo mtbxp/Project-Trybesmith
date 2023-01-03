@@ -22,6 +22,11 @@ export interface Order {
   productsIds: number[],
 }
 
+export interface NewOrder {
+  userId: number,
+  productsIds: number[],
+}
+
 export interface Credentials {
   username: string,
   password: string,

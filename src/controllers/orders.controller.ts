@@ -7,4 +7,11 @@ export default {
 
     return res.status(200).json(output);
   },
+
+  createOrder: async (req: Request, res: Response) => {
+    const { id } = (req as Request & { user: { id: number } }).user;
+    const output = await ordersService.createOrder(id, req.body.productsIds);
+
+    return res.status(201).json(output);
+  },
 };

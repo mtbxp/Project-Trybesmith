@@ -1,9 +1,7 @@
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
+import HttpError from '../utils/errors';
 
-dotenv.config();
-
-const secret = <string>process.env.JWT_SECRET;
+const secret = <string>process.env.JWT_SECRET || 'xulapa';
 
 export const createToken = <T extends object>(payload: T): string => (
   jwt.sign(payload, secret)
@@ -13,6 +11,6 @@ export const validateToken = (token: string) => {
   try {
     return jwt.verify(token, secret);
   } catch (error) {
-    return { error: 'INVALID_TOKEN' };
+    throw new HttpError(401, 'Invalid token');
   }
 };

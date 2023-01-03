@@ -11,4 +11,20 @@ export default {
 
     return orders;
   },
+  
+  insert: async (userId: number, productsIds: number[]) => {
+    const [{ insertId }] = await connection.execute<ResultSetHeader>(
+      'INSERT INTO Trybesmith.orders (user_id) VALUES (?)',
+      [userId],
+    );
+
+    const promises = productsIds.map((id) => (
+      connection.execute(
+        'UPDATE Trybesmith.products SET order_id = ? WHERE id = ?', 
+        [insertId, id],
+      )
+    ));
+
+    await Promise.all(promises);
+  },
 };
