@@ -8,3 +8,10 @@ export interface Product {
   name: string,
   amount: number,
 }
+
+export interface NewUser { 
+  username: string,
+  vocation: string,
+  level: number,
+  password: string,
+}
