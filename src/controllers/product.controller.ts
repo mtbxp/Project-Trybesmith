@@ -6,9 +6,7 @@ class ProductController {
   constructor(private productService = new ProductService()) { }
 
   public createProduct = async (req: Request, res: Response) => {
-    const product = req.body;
-
-    const newProduct = await this.productService.createProduct(product);
+    const newProduct = await this.productService.createProduct(req.body);
     return res.status(statusCodes.CREATED).json(newProduct);
   };
 }
