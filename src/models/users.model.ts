@@ -1,5 +1,5 @@
 import { ResultSetHeader } from 'mysql2';
-import { NewUser } from '../types';
+import { NewUser, User } from '../types';
 import connection from './connection';
 
 export default {
@@ -10,5 +10,14 @@ export default {
     );
 
     return insertId;
+  },
+
+  findByName: async (username: string): Promise<User> => {
+    const [[user]] = await connection.execute<User[] & ResultSetHeader>(
+      'SELECT * FROM Trybesmith.users WHERE username = ?',
+      [username],
+    );
+
+    return user;
   },
 };

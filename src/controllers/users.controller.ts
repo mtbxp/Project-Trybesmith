@@ -7,4 +7,10 @@ export default {
 
     return res.status(201).json(output);
   },
+
+  login: async (req: Request, res: Response): Promise<Response> => {
+    const output = await usersService.login(req.body);
+
+    return res.status(200).json(output);
+  },
 };

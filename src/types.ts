@@ -21,3 +21,16 @@ export interface Order {
   userId: number,
   productsIds: number[],
 }
+
+export interface Credentials {
+  username: string,
+  password: string,
+}
+
+export interface User {
+  id: number,
+  username: string,
+  vocation: string,
+  level: number,
+  password: string,
+}
