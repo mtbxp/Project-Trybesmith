@@ -15,7 +15,7 @@ export async function create(userId: number): Promise<Order> {
 }
 
 export async function getAll(): Promise<OrderWithProduct[]> {
-  const query = `SELECT o.id, o.user_id AS userId, JSON_ARRAYAGG(p.id) AS productIds 
+  const query = `SELECT o.id, o.user_id AS userId, JSON_ARRAYAGG(p.id) AS productsIds 
   FROM Trybesmith.products AS p
   INNER JOIN Trybesmith.orders AS o
   ON o.id = p.order_id
