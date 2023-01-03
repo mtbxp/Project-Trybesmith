@@ -1,5 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import Joi from 'joi';
+import { JwtPayload } from 'jsonwebtoken';
+import { validateToken } from '../auth/token';
 import HttpError from '../utils/errors';
 
 const userSchema = Joi.object({
@@ -29,6 +31,18 @@ export default {
 
     if (error) throw new HttpError(400, error.message);
 
+    return next();
+  },
+
+  validateToken: (req: Request, _res: Response, next: NextFunction) => {
+    const { authorization } = req.headers;
+
+    if (!authorization) throw new HttpError(401, 'Token not found');
+
+    const { id } = <JwtPayload>validateToken(authorization);
+    
+    (req as Request & { user: { id: number } }).user = { id };
+    
     return next();
   },
 };
