@@ -4,7 +4,8 @@ import { TProduct } from '../types';
 
 async function getAllProducts(): Promise<TProduct[]> {
   const query = 'SELECT * FROM Trybesmith.products';
-  const [products] = await connection.execute(query);
+  const [products] = await connection
+    .execute(query);
 
   return products as TProduct[];
 }
@@ -14,7 +15,7 @@ async function insertProduct(name: string, amount:string): Promise<TProduct> {
   const values = [name, amount];
 
   const [insertedProduct] = await connection
-    .execute<ResultSetHeader>(query, values);
+    .execute<ResultSetHeader & TProduct>(query, values);
 
   return {
     id: insertedProduct.insertId,
