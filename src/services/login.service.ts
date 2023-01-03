@@ -5,8 +5,6 @@ async function checkLoginService(username: string, password: string):
 Promise<RowDataPacket[] | undefined> {
   const login = await model.checkLogin(username, password);
 
-  console.log(login);
-
   if (!login.length) {
     throw new Error();
   }

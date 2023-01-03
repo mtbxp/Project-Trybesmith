@@ -3,10 +3,16 @@ import productsController from '../controller/products.controller';
 import usersController from '../controller/users.controller';
 import ordersController from '../controller/orders.controller';
 import loginController from '../controller/login.controller';
+import middlewares from '../middlewares/verifyNameAndAmount.middleware';
 
 const router = express.Router();
 
-router.post('/products', productsController.createProductController);
+router.post(
+  '/products', 
+  middlewares.verifyName,
+  middlewares.verifyAmount, 
+  productsController.createProductController,
+);
 
 router.get('/products', productsController.getAllProductsController);
 
