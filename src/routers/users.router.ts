@@ -4,7 +4,7 @@ import userValidations from '../middlewares/userValidations';
 
 const router = express.Router();
 
-router.post('/users', usersController.createUser);
+router.post('/users', userValidations.validateUser, usersController.createUser);
 
 router.post('/login', userValidations.validateLogin, usersController.login);
 
