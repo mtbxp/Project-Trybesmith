@@ -7,14 +7,14 @@ class ProductController {
   public findAll = async (req: Request, res: Response) => {
     console.log('ahiu');
     const result = await this.productService.getAll();
-    res.status(200).json(result);
+    return res.status(200).json(result);
   };
 
   public create = async (req: Request, res: Response) => {
     const products = req.body;
 
     const message = await this.productService.create(products);
-    res.status(201).json(message);
+    return res.status(201).json(message);
   };
 }
 
