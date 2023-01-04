@@ -20,3 +20,10 @@ export async function create(product: Product) {
   const productCreated = await getById(idProductCreated);
   return productCreated;
 }
+
+export async function getProducts(): Promise<Product[] > {
+  const sql = 'SELECT * FROM Trybesmith.products';
+
+  const [rows] = await connection.execute<RowDataPacket[] & Product[]>(sql);
+  return rows;
+}
