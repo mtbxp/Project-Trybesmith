@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import userModel from '../models/userModel';
+import mo from '../models/userModel';
 import { User } from '../types';
 
 const generateToken = (user: User) => {
@@ -10,7 +10,7 @@ const generateToken = (user: User) => {
 };
 
 const createUser = async (userInfo: User) => {
-  await userModel.createUser(userInfo);
+  await mo.createUser(userInfo);
   return generateToken(userInfo);
 };
 
