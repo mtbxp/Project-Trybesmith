@@ -2,8 +2,8 @@ import { Request, Response } from 'express';
 import productService from '../services/productService';
 
 const getAll = async (_req: Request, res: Response) => {
-  const products = await productService.getAll();
-  res.status(200).json(products);
+  const produtos = await productService.getAll();
+  res.status(200).json(produtos);
 };
 
 const createProduct = async (req: Request, res: Response) => {

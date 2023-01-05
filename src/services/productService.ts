@@ -2,12 +2,12 @@ import productModel from '../models/productModel';
 import { TProduct } from '../types';
 
 const getAll = async (): Promise<TProduct[]> => {
-  const users = await productModel.getAll();
-  return users;
+  const listUsers = await productModel.getAll();
+  return listUsers;
 };
 const createProduct = async (productInfo: TProduct) => {
-  const newProduct = await productModel.createProduct(productInfo);
-  return { type: null, message: newProduct };
+  const novoProduto = await productModel.createProduct(productInfo);
+  return { type: null, message: novoProduto };
 };
 
 export default { getAll, createProduct };
