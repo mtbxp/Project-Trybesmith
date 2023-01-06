@@ -11,4 +11,4 @@ const getAllOrders = async (req: Request, res: Response, next: NextFunction) => 
   }
 };
 
-export default { getAllOrders };
+export default { getAllOrders }; 
