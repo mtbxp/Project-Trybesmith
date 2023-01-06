@@ -17,7 +17,9 @@ const create = async (prod: Prods): Promise<Prods> => {
 };
 
 const getAll = async (): Promise<Products[]> => {
-  const [rows] = await connection.execute<RowDataPacket[] & Products[]>('SELECT * FROM Trybesmith.products');
+  const [rows] = await connection.execute<RowDataPacket[] & Products[]>(
+    'SELECT * FROM Trybesmith.products',
+  );
   return rows as Products[];
 };
 
