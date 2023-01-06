@@ -6,8 +6,8 @@ const login = async (req: Request, res: Response) => {
   const result = await loginService.login(body);
   if (result.status === 401) {
     return res.status(401).json({
-      message:result.message,
-   });
+      message: result.message,
+    });
   } 
   res.status(200).json({ token: result.token });
 };
