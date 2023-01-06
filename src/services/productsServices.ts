@@ -6,8 +6,13 @@ const productAdd = async (product:TProduts):Promise<TProduts> => {
   
   return newProduct;
 };
+const getAll = async (): Promise<TProduts[]> => {
+  const products = await productsModel.getAll();
+  console.log('service', products);
+  return products;
+};
 
 export default {
-
   productAdd,
+  getAll,
 };
