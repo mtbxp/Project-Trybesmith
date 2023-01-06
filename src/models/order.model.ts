@@ -10,10 +10,11 @@ export default class OrderModel {
 
   public async getAllOrders(): Promise<Order[]> {
     const query = `SELECT ord.id, ord.user_id AS userId,
-      prod.order_id AS productsIds
+      JSON_ARRAYAGG(prod.id) AS productsIds
       FROM Trybesmith.orders AS ord
       INNER JOIN Trybesmith.products AS prod
-      ON ord.id = prod.order_id;`;
+      ON ord.id = prod.order_id
+      GROUP BY id;`;
     
     const result = await this.connection.execute(query);
     const [rows] = result;
