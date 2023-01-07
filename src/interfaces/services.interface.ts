@@ -1,0 +1,8 @@
+import IProduct from './product.interface';
+
+interface IServices {
+  type: null | 'NOT_FOUND'
+  message: string | IProduct[]
+}
+
+export default IServices;
