@@ -8,15 +8,15 @@ const Login = Joi.object({
      Joi.string()
        .required()
        .messages({
-         'any.required': '"username" is required',
-         'string.empty': '"username" cannot be empty',
+         'any.required': '{#label} is required',
+         'string.empty': '{#label} cannot be empty',
        }),
   password: 
      Joi.string()
        .required()
        .messages({
-         'any.required': '"password" is required',
-         'string.empty': '"password" cannot be empty',
+         'any.required': '{#label} is required',
+         'string.empty': '{#label} cannot be empty',
        }),
 });
 
