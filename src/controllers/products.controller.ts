@@ -16,4 +16,13 @@ export default class ProductsController {
 
     return res.status(statusCode.OK).json(message);
   };
+
+  public create = async (req: Request, res: Response) => {
+    const { name, amount } = req.body;
+    const { message } = await this.productsService.create({ name, amount });
+
+    // if (type) return res.status(statusCode[type]).json({ message });
+
+    return res.status(statusCode.CREATED).json(message);
+  };
 }
