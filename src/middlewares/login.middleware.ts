@@ -4,19 +4,20 @@ import { TLogin } from '../types';
 import { status } from '../utils/status';
 
 const Login = Joi.object({
-  username: Joi.string()
-    .required()
-    .messages({
-      'any.required': '"username" is required',
-      'string.empty': '"username" is required',
-    }),
+  username: 
+     Joi.string()
+       .required()
+       .messages({
+         'any.required': '"username" is required',
+         'string.empty': '"username" cannot be empty',
+       }),
   password: 
-    Joi.string()
-      .required()
-      .messages({
-        'any.required': '"password" is required',
-        'string.empty': '"password" is required',
-      }),
+     Joi.string()
+       .required()
+       .messages({
+         'any.required': '"password" is required',
+         'string.empty': '"password" cannot be empty',
+       }),
 });
 
 const validateLogin = (req: Request, res: Response, next: NextFunction) => {

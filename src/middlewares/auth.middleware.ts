@@ -9,13 +9,10 @@ const auth = (req: Request, _res: Response, next: NextFunction) => {
   } 
  
   try {
-    const user = jwt.verify(token, process.env.JWT_SECRET as string); 
-    console.log(user);
-    
+    const user = jwt.verify(token, process.env.JWT_SECRET as string);    
     req.body.user = user;
     return next();
   } catch (error) {
-    console.log(error);
     throw new HttpException(401, 'Não autorizado');
   }
 };

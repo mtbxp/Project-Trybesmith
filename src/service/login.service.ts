@@ -4,7 +4,7 @@ import createToken from '../auth/jsonWebToken';
 import loginModel from '../model/login.model';
 import { status } from '../utils/status';
 
-const loginUserService = async (user: TLogin) => {
+const loginUserService = async (user: TLogin):Promise<string> => {
   const userData = await loginModel.login(user);
 
   if (!userData || userData.password !== user.password) {
