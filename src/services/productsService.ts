@@ -7,4 +7,9 @@ export default class ProductsService {
   async create(product:ProductInferface):Promise<ProductInferface> {
     return this.newProduct.create(product);
   }
+
+  async getAllProducts(): Promise <ProductInferface[]> {
+    const allProducts = await this.newProduct.getAllProducts();
+    return allProducts;
+  }
 }

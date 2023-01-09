@@ -1,4 +1,4 @@
-import { ResultSetHeader } from 'mysql2';
+import { ResultSetHeader, RowDataPacket } from 'mysql2';
 import connect from './connection';
 import { ProductInferface } from '../interfaces/products.ifc';
 
@@ -12,7 +12,13 @@ export default class Product {
       'INSERT INTO Trybesmith.products (name, amount) VALUES (?, ?)',
       [name, amount],
     );
-
     return { id: insertId, ...product };
+  }
+  
+  async getAllProducts(): Promise<ProductInferface[]> {
+    const [allProducts] = await this.connection.execute<RowDataPacket[] & ProductInferface[]>(
+      'SELECT * FROM Trybesmith.products',
+    );
+    return allProducts;
   }
 }
