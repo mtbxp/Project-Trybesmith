@@ -3,7 +3,6 @@ import { TUser } from '../types';
 import connection from './connection';
 
 const createUser = async (user: TUser):Promise<TUser> => {
-  // console.log(user);
   const { username, vocation, level, password } = user;
 
   const [{ insertId }] = await connection.execute<ResultSetHeader>(

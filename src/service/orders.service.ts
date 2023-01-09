@@ -1,5 +1,6 @@
 import ordersModel from '../model/orders.model';
 import HttpException from '../shared/http.exception';
+import { TNewOrder } from '../types';
 import { status } from '../utils/status';
 
 const getOrdersService = async ():Promise<object[]> => {
@@ -11,4 +12,13 @@ const getOrdersService = async ():Promise<object[]> => {
   }
 };
 
-export default { getOrdersService };
+const createOrderService = async (newOrder:TNewOrder) => {
+  const newOrderCreated = await ordersModel.createOrder(newOrder);
+
+  if (!newOrderCreated) {
+    throw new HttpException(status.FAILED, 'Fail on creating order');
+  }
+  return newOrderCreated;
+};
+
+export default { getOrdersService, createOrderService };

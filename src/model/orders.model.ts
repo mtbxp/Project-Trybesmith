@@ -1,5 +1,5 @@
-import { RowDataPacket } from 'mysql2/promise';
-import { TOrders } from '../types';
+import { RowDataPacket, ResultSetHeader } from 'mysql2/promise';
+import { TOrders, TNewOrder } from '../types';
 import connection from './connection';
 
 const getOrders = async ():Promise<TOrders> => {
@@ -17,4 +17,20 @@ const getOrders = async ():Promise<TOrders> => {
   return result as TOrders;
 };
 
-export default { getOrders };
+const createOrder = async (newOrder:TNewOrder) => {
+  const { userId, productsIds } = newOrder;
+  
+  const [{ insertId }] = await connection.execute<ResultSetHeader>(
+    'INSERT INTO Trybesmith.orders (user_id) VALUES (?)',
+    [userId],
+  );
+  await Promise.all(productsIds.map(async (id) => {
+    await connection.execute<ResultSetHeader>(
+      'UPDATE Trybesmith.products SET order_id = ? WHERE id = ?',
+      [insertId, id],
+    );
+  }));
+  return newOrder;
+};
+
+export default { getOrders, createOrder };

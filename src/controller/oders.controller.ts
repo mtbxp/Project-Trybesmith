@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { status } from '../utils/status';
 import ordersService from '../service/orders.service';
+import { TNewOrder } from '../types';
 
 const getAllOrders = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -11,4 +12,17 @@ const getAllOrders = async (req: Request, res: Response, next: NextFunction) => 
   }
 };
 
-export default { getAllOrders }; 
+const createOrder = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { user: { id: userId }, productsIds } = req.body;
+    // console.log(productsIds, id);
+    const newOrderRequest = { userId, productsIds } as TNewOrder;
+    
+    const orderCreated = await ordersService.createOrderService(newOrderRequest);
+    return res.status(status.CREATED).json(orderCreated);
+  } catch (error) {
+    return next(error);
+  }
+};
+
+export default { getAllOrders, createOrder }; 

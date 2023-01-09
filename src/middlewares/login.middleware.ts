@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from 'express';
 import { TLogin } from '../types';
 import { status } from '../utils/status';
 
-const Login = Joi.object({
+const LoginSchema = Joi.object({
   username: 
      Joi.string()
        .required()
@@ -22,7 +22,7 @@ const Login = Joi.object({
 
 const validateLogin = (req: Request, res: Response, next: NextFunction) => {
   const user = req.body as TLogin;
-  const { error } = Login.validate(user);
+  const { error } = LoginSchema.validate(user);
 
   if (error) return res.status(status.INFO_IS_REQUIRED).json({ message: error.details[0].message });
 

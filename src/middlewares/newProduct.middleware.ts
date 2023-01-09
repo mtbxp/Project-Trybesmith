@@ -2,7 +2,7 @@ import Joi from 'joi';
 import { Request, Response, NextFunction } from 'express';
 import { status } from '../utils/status';
 
-const newProduct = Joi.object({
+const newProductSchema = Joi.object({
   name: Joi.string().required().min(3).messages({
     'string.base': '{#label} must be a string',
     'any.required': '{#label} is required',
@@ -18,7 +18,7 @@ const newProduct = Joi.object({
 });
 
 const validateNewProduct = (req: Request, res: Response, next: NextFunction) => {
-  const validation = newProduct.validate(req.body);
+  const validation = newProductSchema.validate(req.body);
   const { error } = validation;
 
   if (error) {
