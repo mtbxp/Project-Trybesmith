@@ -1,3 +1,4 @@
+import IOrders from './orders.interface';
 import IProduct from './product.interface';
 import IUser from './user.interface';
 
@@ -7,7 +8,7 @@ import IUser from './user.interface';
 
 interface IServices {
   type: null | 'NOT_FOUND'
-  message: string | IProduct | IProduct[] | IUser | IUser[]
+  message: string | IProduct | IProduct[] | IUser | IUser[] | IOrders | IOrders[]
 }
 
 export default IServices;
