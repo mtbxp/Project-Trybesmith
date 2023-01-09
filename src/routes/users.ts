@@ -12,10 +12,10 @@ router
   .post(
     '/', 
     validateUsername,
-    validateLevel,
     validateVocation,
-    registerUser,
+    validateLevel,
     validatePassword,
+    registerUser,
   );
 
 export default router;
