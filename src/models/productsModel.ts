@@ -1,8 +1,8 @@
 import { ResultSetHeader, RowDataPacket } from 'mysql2';
 import connect from './connection';
-import { ProductInferface } from '../interfaces/products.ifc';
+import ProductInferface from '../interfaces/products.ifc';
 
-export default class Product {
+export default class ProductsModel {
   private connection = connect;
 
   async create(product: ProductInferface): Promise<ProductInferface> {

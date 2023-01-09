@@ -1,8 +1,8 @@
-import Product from '../models/productsModel';
-import { ProductInferface } from '../interfaces/products.ifc';
+import ProductsModel from '../models/productsModel';
+import ProductInferface from '../interfaces/products.ifc';
 
 export default class ProductsService {
-  public newProduct = new Product();
+  public newProduct = new ProductsModel();
 
   async create(product:ProductInferface):Promise<ProductInferface> {
     return this.newProduct.create(product);

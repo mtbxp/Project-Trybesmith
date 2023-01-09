@@ -1,4 +1,4 @@
-export interface ProductInferface {
+export default interface ProductInferface {
   id?: number;
   name: string;
   amount: string;
