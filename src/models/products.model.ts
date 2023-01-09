@@ -1,5 +1,5 @@
 import { RowDataPacket, ResultSetHeader } from 'mysql2';
-import connection from './connections';
+import connection from './connection';
 
 import { TProduct } from '../types';
 
