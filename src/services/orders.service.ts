@@ -10,7 +10,6 @@ class OrdersService {
   }
 
   public async getAll(): Promise<IOrders[]> {
-    console.log('entrou na camada service');
     const orders = await this.ordersModel.findAll();
 
     return orders;

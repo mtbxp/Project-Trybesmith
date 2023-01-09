@@ -8,17 +8,15 @@ export default class OrdersModel {
     this.connection = connection;
   }
 
-  public async findAll(): Promise<IOrders[]> {
-    console.log('ENTROU NA MODEL: ');
-    
+  public async findAll(): Promise<IOrders[]> {    
     const [result] = await
     this.connection.execute<(RowDataPacket[] & IOrders[])>(
-      `SELECT or.id, or.user_id AS userId, 
-    JSON_ARRAYAGG(pro.id) AS productIds 
-    FROM Trybesmith.orders AS or 
+      `SELECT ord.id, ord.user_id AS userId, 
+    JSON_ARRAYAGG(pro.id) AS productsIds 
+    FROM Trybesmith.orders AS ord 
     INNER JOIN Trybesmith.products AS pro 
-    WHERE or.id = pro.order_id
-    GROUP BY or.id`);
+    WHERE ord.id = pro.order_id
+    GROUP BY ord.id`);
 
     return result;
   }
