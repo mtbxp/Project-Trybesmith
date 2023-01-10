@@ -6,7 +6,7 @@ import { status } from '../utils/status';
 const auth = (req: Request, _res: Response, next: NextFunction) => {
   const { authorization: token } = req.headers;
   if (!token) {
-    throw new HttpException(status.ERROR, 'Token not found');
+    throw new HttpException(status.FAILED, 'Token not found');
   } 
  
   try {
