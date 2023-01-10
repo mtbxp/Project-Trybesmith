@@ -9,7 +9,7 @@ app.use(express.json());
 
 // routes
 app.use('/products', productRoutes);
-app.use('/users', userRoutes);
+app.use('/', userRoutes);
 app.use('/orders', orderRoutes);
 
 export default app;
