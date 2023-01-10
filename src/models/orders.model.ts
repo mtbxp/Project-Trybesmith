@@ -24,6 +24,7 @@ const createOrder = async (newOrder:TNewOrder) => {
     'INSERT INTO Trybesmith.orders (user_id) VALUES (?)',
     [userId],
   );
+  
   await Promise.all(productsIds.map(async (id) => {
     await connection.execute<ResultSetHeader>(
       'UPDATE Trybesmith.products SET order_id = ? WHERE id = ?',

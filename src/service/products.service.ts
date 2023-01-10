@@ -1,4 +1,4 @@
-import productsModel from '../model/products.model';
+import productsModel from '../models/products.model';
 import HttpException from '../shared/http.exception';
 import { TProduct } from '../types';
 

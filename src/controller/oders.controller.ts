@@ -3,7 +3,7 @@ import { status } from '../utils/status';
 import ordersService from '../service/orders.service';
 import { TNewOrder } from '../types';
 
-const getAllOrders = async (req: Request, res: Response, next: NextFunction) => {
+const getAllOrders = async (_req: Request, res: Response, next: NextFunction) => {
   try {
     const orders = await ordersService.getOrdersService();
     return res.status(status.OK).json(orders);
@@ -15,7 +15,6 @@ const getAllOrders = async (req: Request, res: Response, next: NextFunction) => 
 const createOrder = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { user: { id: userId }, productsIds } = req.body;
-    // console.log(productsIds, id);
     const newOrderRequest = { userId, productsIds } as TNewOrder;
     
     const orderCreated = await ordersService.createOrderService(newOrderRequest);

@@ -1,5 +1,5 @@
 import { TUser } from '../types';
-import usersModel from '../model/users.model';
+import usersModel from '../models/users.model';
 import createToken from '../auth/jsonWebToken';
 import HttpException from '../shared/http.exception';
 import { status } from '../utils/status';

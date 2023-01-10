@@ -1,7 +1,7 @@
 import HttpException from '../shared/http.exception';
 import { TLogin } from '../types';
 import createToken from '../auth/jsonWebToken';
-import loginModel from '../model/login.model';
+import loginModel from '../models/login.model';
 import { status } from '../utils/status';
 
 const loginUserService = async (user: TLogin):Promise<string> => {

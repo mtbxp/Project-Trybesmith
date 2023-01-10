@@ -1,4 +1,4 @@
-import ordersModel from '../model/orders.model';
+import ordersModel from '../models/orders.model';
 import HttpException from '../shared/http.exception';
 import { TNewOrder } from '../types';
 import { status } from '../utils/status';
