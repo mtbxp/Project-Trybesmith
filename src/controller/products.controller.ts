@@ -1,12 +1,16 @@
 import { Request, Response } from 'express';
+import ProductService from '../services/products.service';
 
-import useService from '../services/products.service';
+export default class ProductController {
+  private service;
 
-const insert = async (req: Request, res: Response): Promise<Response> => {
-  const { type, message } = await useService.insert(req.body);
-  return res.status(type).json(message);
-};
+  constructor() {
+    this.service = new ProductService();
+  }
 
-export default {
-  insert,
-};
+  public insert = async (req: Request, res: Response): Promise<Response> => {
+    const { type, message } = await this.service.insert(req.body);
+
+    return res.status(type).json(message);
+  };
+}

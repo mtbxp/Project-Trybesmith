@@ -1,26 +1,21 @@
-import { RowDataPacket, ResultSetHeader } from 'mysql2';
-import connection from './connection';
+import { Pool, ResultSetHeader } from 'mysql2/promise';
+import { IProduct } from '../interfaces/products.interface';
 
-import { TProduct } from '../types';
+export default class ProductModel {
+  private connection: Pool;
 
-const getAll = async (): Promise<TProduct[]> => {
-  const [rows] = await connection.execute<RowDataPacket[] & TProduct[]>(
-    'SELECT * FROM Trybesmith.products',
-  );
-  return rows;
-};
+  constructor(connection: Pool) {
+    this.connection = connection;
+  }
 
-const insert = async (product: TProduct): Promise<number> => {
-  const [rows] = await connection.execute<ResultSetHeader>(
-    'INSERT INTO Trybesmith.products (name) VALUES (?, ?)',
-    [product.name, product.amount],
-  );
-  return rows.insertId as number;
-};
-
-export default {
-  getAll,
-  insert,
-};
-
-// const playList =https://www.youtube.com/watch?v=piTvLuHWLyg&list=RDfptYx9YBY3w&index=23
+  public insert = async (product: IProduct): Promise<IProduct> => {
+    const { amount, name } = product;
+    const result = await this.connection.execute<ResultSetHeader>(
+      'INSERT INTO Trybesmith.products (name, amount) VALUES (?, ?)',
+      [name, amount],
+    );
+    const [dataInserted] = result;
+    const { insertId } = dataInserted;
+    return { id: insertId, ...product };
+  };
+}

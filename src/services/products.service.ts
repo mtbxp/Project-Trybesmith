@@ -1,19 +1,20 @@
-import productsModel from '../models/products.model';
+import connection from '../models/connection';
+import ProductModel from '../models/products.model';
+import { IProduct, IProductResponse } from '../interfaces/products.interface';
 import status from '../utils/statusCode';
-import { TProduct, TProductResponse } from '../types';
 
-const insert = async (product: TProduct): Promise<TProductResponse> => {
-  const productId: number = await productsModel.insert(product);
+export default class ProductService {
+  private model;
 
-  const productResponse: TProduct = {
-    id: productId,
-    name: product.name,
-    amount: product.amount,
+  constructor() {
+    this.model = new ProductModel(connection);
+  }
+
+  public insert = async (
+    { name, amount }: IProduct,
+  ): Promise<IProductResponse> => {
+    const newProduct = await this.model.insert({ name, amount });
+
+    return { type: status.HTTP_CREATED, message: newProduct };
   };
-
-  return { type: status.HTTP_CREATED, message: productResponse } as TProductResponse;
-};
-
-export default {
-  insert,
-};
+}
