@@ -16,6 +16,7 @@ export async function getNameUser({ username, password }: User) {
   const users = await userModel.getAll();
   const userFilter = users.filter((user) => 
     user.username === username && user.password === password);
-  
+  console.log(userFilter);
+     
   return userFilter;
 }

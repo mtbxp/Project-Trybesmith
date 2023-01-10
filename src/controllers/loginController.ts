@@ -7,14 +7,16 @@ export async function login(req: Request, res: Response) {
     const { username, password } = req.body;
     const user = await userService.getNameUser({ username, password });
 
-    if (!user.length || user[0].password !== password) {
+    if (!user.length) {
       return res.status(401).json({ message: 'Username or password invalid' });
     }
+    /* await loginService({ username, password });
+     */ 
     const token = isToken({ username, password });
 
     return res.status(200).json({ token });
   } catch (err) {
-    return res.status(401).json({ message: 'Invalid Fields', err });
+    return res.status(401).json({ message: 'Username or password invalid', err });
   }
 }
 

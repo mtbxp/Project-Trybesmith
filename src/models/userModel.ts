@@ -3,7 +3,8 @@ import { User } from '../types/index';
 import connection from './connection';
 
 export async function getAll(): Promise<User[]> {
-  const [rows] = await connection.execute<RowDataPacket[] & User[]>('SELECT * FROM users');
+  const [rows] = await connection
+    .execute<RowDataPacket[] & User[]>('SELECT * FROM Trybesmith.users');
 
   return rows;
 }
