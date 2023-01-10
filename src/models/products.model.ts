@@ -1,4 +1,4 @@
-import { RowDataPacket } from 'mysql2/promise';
+import { RowDataPacket, ResultSetHeader } from 'mysql2/promise';
 import { TProducts } from '../types';
 import connection from './connection';
 
@@ -10,13 +10,18 @@ const getProducts = async (): Promise<TProducts[]> => {
 };
 
 const insertProduct = async (newProduct: TProducts) => {
-  const { id, name, amount } = newProduct;
-  await connection.execute(
-    'INSERT INTO Trybesmith.products (id, name, amount) VALUES (?, ?, ?)',
-    [id, name, amount],
+  const { name, amount } = newProduct;
+  const [product] = await connection.execute<ResultSetHeader>(
+    'INSERT INTO Trybesmith.products (name, amount) VALUES (?, ?)',
+    [name, amount],
   );
 
-  return getProducts();
+  const result = {
+    id: product.insertId,
+    ...newProduct,
+  };
+
+  return result;
 };
 
 export default {
