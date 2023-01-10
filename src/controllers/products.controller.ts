@@ -1,6 +1,11 @@
 import { Request, Response } from 'express';
-import productsService from '../services/products.service';
+import productsService from '../service/products.service';
 import { TProducts } from '../types';
+
+const getProducts = async (req: Request, res: Response) => {
+  const products = await productsService.getProducts();
+  res.status(200).json(products);
+};
 
 const insertProduct = async (req: Request, res: Response) => {
   const product: TProducts = req.body;
@@ -12,5 +17,6 @@ const insertProduct = async (req: Request, res: Response) => {
 };
 
 export default {
+  getProducts,
   insertProduct,
 };
