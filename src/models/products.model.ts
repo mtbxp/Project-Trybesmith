@@ -4,7 +4,7 @@ import connection from './connection';
 
 const getProducts = async (): Promise<TProducts[]> => {  
   const [result] = await connection
-    .execute<RowDataPacket[] & TProducts[]>('SELECT * FROM products;');
+    .execute<RowDataPacket[] & TProducts[]>('SELECT * FROM Trybesmith.products;');
 
   return result;
 };
