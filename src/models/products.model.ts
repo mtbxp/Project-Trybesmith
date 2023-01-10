@@ -11,6 +11,7 @@ export default {
 
     return product;
   },
+  
   create: async (product: Product) => {
     if (product) {
       const [rows] = await connection.execute<ResultSetHeader>(`

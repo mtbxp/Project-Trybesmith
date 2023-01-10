@@ -11,3 +11,11 @@ export type Result = {
 
   output: string | Product
 };
+
+export type User = {
+  id?: number;
+  username: string;
+  vocation: string;
+  password: string;
+  level: number;
+};
