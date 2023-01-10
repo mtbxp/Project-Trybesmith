@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import productsRegistrationService from '../services/productsServices';
+import { productsRegistrationService, getProductsService } from '../services/productsServices';
 
-export default async function productsRegistrationController(req: Request, res: Response) {
+export async function productsRegistrationController(req: Request, res: Response) {
   const { body } = req;
   const message = await productsRegistrationService(body);
   const returnMessage = {
@@ -12,7 +12,7 @@ export default async function productsRegistrationController(req: Request, res: 
   return res.status(201).json(returnMessage);
 }
 
-// const productsListController = async (req: object, res: any) => {
-//   const message = await productsService();
-//   return res.status(201).json(message);
-// };
+export async function getProductsController(_req: Request, res: Response) {
+  const message = await getProductsService();
+  return res.status(200).json(message);
+}
