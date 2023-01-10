@@ -7,6 +7,12 @@ const registerProduct = async (req: Request, res: Response) => {
   res.status(status).json(message);
 };
 
+const getAllProducts = async (req: Request, res: Response) => {
+  const { status, message } = await userService.getAllProducts();
+  res.status(status).json(message);
+};
+
 export default {
   registerProduct,
+  getAllProducts,
 };

@@ -7,6 +7,12 @@ const registerProduct = async (product: IProduct) => {
   return { status: 201, message: result };
 };
 
+const getAllProducts = async () => {
+  const products = await productModel.getAllProducts();
+  return { status: 200, message: products };
+};
+
 export default { 
   registerProduct,
+  getAllProducts,
 };
