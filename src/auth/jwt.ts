@@ -7,7 +7,7 @@ const auth = {
 };
 
 export default class JWT {
-  public secret;
+  public secret: string;
 
   constructor() {
     this.secret = auth.secret;
