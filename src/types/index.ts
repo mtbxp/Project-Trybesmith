@@ -11,3 +11,8 @@ export type TUsers = {
   level: number,
   password: string,
 };
+
+export type TLogin = {
+  username: string,
+  password: string,
+};
