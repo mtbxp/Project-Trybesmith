@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
 import Joi from 'joi';
-import { json } from 'stream/consumers';
 
 const newProductSchema = Joi.object({
   name: Joi.string().min(3).required(),
