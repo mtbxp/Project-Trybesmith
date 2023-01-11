@@ -1,8 +1,15 @@
-import userModel from '../models/userModel';
+import { userRegistrationModel, getAll } from '../models/userModel';
+import { User } from '../interfaces/index';
+import { createToken } from '../token/createToken';
 
-const getAllSevice = async () => {
-  const result = await userModel();
+export async function getAllSevice() {
+  const result = await getAll();
   return result; 
-};
+}
 
-export default getAllSevice;
+export async function userRegistrationService(user: User): Promise<string> {
+  const jwtPassword = '12345678';
+  await userRegistrationModel(user);
+  const result = createToken(jwtPassword);
+  return result;
+}

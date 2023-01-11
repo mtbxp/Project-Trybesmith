@@ -1,9 +1,13 @@
 import { Request, Response } from 'express';
-import userService from '../services/userServices';
+import { getAllSevice, userRegistrationService } from '../services/userServices';
 
-const getAllController = async (_req: Request, res: Response) => {
-  const message = await userService();
+export async function getAllController(_req: Request, res: Response) {
+  const message = await getAllSevice();
   return res.status(200).json(message);
-};
+}
 
-export default getAllController;
+export async function userRegistrationController(req: Request, res: Response) {
+  const { body } = req;
+  const message = await userRegistrationService(body);
+  return res.status(201).json({ token: message });
+}
