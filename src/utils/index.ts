@@ -1,5 +1,2 @@
-const CREATED_CODE = 201;
-
-export default {
-  CREATED_CODE,
-};
+export const OK_CODE = 200;
+export const CREATED_CODE = 201;
