@@ -4,12 +4,13 @@ import ValidateJWT from '../auth/ValidateJWT';
 
 const getAllUsers = async () => {
   const allUsers = await model.getAllUsers();
+  // delete allUsers.password 
   return allUsers;
 };
 
 const getUserByUsername = async (name: string) => {
   const user = await model.getUserByUsername(name);
-  delete user.password;
+  // delete user.password
   return user;
 };
 
