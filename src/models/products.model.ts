@@ -1,7 +1,7 @@
 import { ResultSetHeader, RowDataPacket } from 'mysql2';
 
 import conn from './connection';
-import Product from '../types';
+import { Product } from '../types';
 
 const getAllProducts = async (): Promise<Product[]> => {
   const [result] = await conn.execute<RowDataPacket[] & Product[]>(

@@ -1,5 +1,5 @@
 import model from '../models/products.model';
-import Product from '../types';
+import { Product } from '../types';
 
 const getAllProducts = async (): Promise<Product[]> => {
   const allProducts = await model.getAllProducts();
