@@ -19,3 +19,5 @@ export type User = {
   password: string;
   level: number;
 };
+
+export type ProductsIds = Array<number>;

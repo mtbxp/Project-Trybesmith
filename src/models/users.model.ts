@@ -11,6 +11,15 @@ export default {
 
     return result;
   },
+
+  findByPk: async (id: number) => {
+    const [[result]] = await connection.execute<RowDataPacket[]>(`
+      SELECT * FROM Trybesmith.users
+      WHERE id = ?
+    `, [id]);
+
+    return result;
+  },
   
   create: async (user: User) => {
     const [result] = await connection.execute<ResultSetHeader>(`

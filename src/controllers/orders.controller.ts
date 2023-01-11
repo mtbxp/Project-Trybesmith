@@ -7,4 +7,14 @@ export default {
 
     res.status(200).json(result.output);
   },
+
+  create: async (req: Request, res: Response) => {
+    const { productsIds, payload: { userId } } = req.body;
+    
+    const result = await ordersService.create(productsIds, userId);
+
+    if (result) {
+      res.status(201).json(result.output);
+    }
+  },
 };
