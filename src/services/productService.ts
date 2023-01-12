@@ -6,6 +6,12 @@ const registerProduct = async (product: TProduct): Promise<TProduct> => {
   return { id, ...product };
 };
 
+const getProducts = async () => {
+  const products = await productModel.getProducts();
+  return products;
+};
+
 export default {
   registerProduct,
+  getProducts,
 };
