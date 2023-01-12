@@ -5,7 +5,7 @@ export interface IProduct {
   orderId?: number;
 }
 
-export interface IProductResponse {
+export interface IProductResponse<T> {
   type: number,
-  message: number | string | IProduct,
+  message: T,
 }

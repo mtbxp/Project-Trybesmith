@@ -13,4 +13,10 @@ export default class ProductController {
 
     return res.status(type).json(message);
   };
+
+  public getAll = async (_req: Request, res: Response): Promise<Response> => {
+    const { type, message } = await this.service.getAll();
+  
+    return res.status(type).json(message);
+  };
 }

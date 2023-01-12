@@ -10,12 +10,20 @@ export default class ProductModel {
 
   public insert = async (product: IProduct): Promise<IProduct> => {
     const { amount, name } = product;
-    const result = await this.connection.execute<ResultSetHeader>(
+    const [result] = await this.connection.execute<ResultSetHeader>(
       'INSERT INTO Trybesmith.products (name, amount) VALUES (?, ?)',
       [name, amount],
     );
-    const [dataInserted] = result;
-    const { insertId } = dataInserted;
+
+    const { insertId } = result;
     return { id: insertId, ...product };
+  };
+
+  public getAll = async (): Promise<IProduct[]> => {
+    const [result] = await this.connection.execute(
+      'SELECT * FROM Trybesmith.products',
+    );
+
+    return result as IProduct[];
   };
 }
