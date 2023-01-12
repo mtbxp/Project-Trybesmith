@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { TUser } from '../types';
+import { TPayload } from '../types';
 
 const SECRET = process.env.JWT_SECRET as string;
 // const JWT_CONFIG = {
@@ -7,7 +7,7 @@ const SECRET = process.env.JWT_SECRET as string;
 //   expiresIn: '5min',
 // };
 
-export const createToken = (user: TUser) => jwt.sign(user, SECRET, {
+export const createToken = (user: TPayload) => jwt.sign(user, SECRET, {
   algorithm: 'HS256',
   expiresIn: '5min',
 });

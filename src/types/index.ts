@@ -13,6 +13,22 @@ export type TUser = {
   password?: string,
 };
 
+export type TSimpleUser = {
+  id: number,
+  username: string,
+  password: string,
+};
+
+export type TLogin = {
+  username: string,
+  password: string,
+};
+
+export type TPayload = {
+  id: number,
+  username: string,
+};
+
 export type TOrder = {
   id: number,
   userId: number,
@@ -20,4 +36,7 @@ export type TOrder = {
 };
 
 export type Id = number;
-export type Token = string;
+export type Token = {
+  token?: string
+  error?: boolean,
+};
