@@ -9,7 +9,7 @@ const login = async (req: Request, res: Response) => {
     return res.status(401).json({ message: 'Username or password invalid' });
   }
   const token = ValidateJWT({ username, password });
-  res.status(201).json({ token });
+  res.status(200).json({ token });
 };
 
 export default {
