@@ -13,5 +13,11 @@ export type TUser = {
   password?: string,
 };
 
+export type TOrder = {
+  id: number,
+  userId: number,
+  productsIds: [number, number],
+};
+
 export type Id = number;
 export type Token = string;
