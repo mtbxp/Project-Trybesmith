@@ -11,6 +11,25 @@ const registerUser = async (user: User): Promise<number> => {
   return insertId;
 };
 
+// const getAllUsers = async (): Promise<User[]> => {
+//   const query = 'SELECT * FROM Trybesmith.users';
+
+//   const [users] = await connection.execute(query);
+//   return users as User[];
+// };
+
+const getUserByUsername = async (username: string): Promise<User> => {
+  const query = 'SELECT * FROM Trybesmith.users WHERE username = ?';
+  const values = [username];
+
+  const [result] = await connection.execute(query, values);
+  const [user] = result as User[];
+
+  return user;
+};
+
 export default {
   registerUser,
+  getUserByUsername,
+  // getAllUsers,
 };
