@@ -8,7 +8,7 @@ export default class ProductModel {
   public async addProducts(name: string, amount: string): Promise<IProduct> {
     const [{ insertId }] = await this
       .connection.execute<ResultSetHeader>(
-      'INSERT INTO Trybesmith.Products (name, amount) VALUES (?,?)',
+      'INSERT INTO Trybesmith.products (name, amount) VALUES (?,?)',
       [name, amount],
     );
 
@@ -17,7 +17,7 @@ export default class ProductModel {
 
   public async findAll(): Promise<IProduct[]> {
     const [resultFindAll] = await this.connection
-      .execute<IProduct[] & RowDataPacket[]>('SELECT * FROM Trybesmith.Products;');
+      .execute<IProduct[] & RowDataPacket[]>('SELECT * FROM Trybesmith.products;');
     return resultFindAll;
   }
 }

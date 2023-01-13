@@ -1,7 +1,7 @@
 export default interface IUser {
   id?: number,
   username: string,
-  classe: string,
+  vocation: string,
   level: string,
   password: string,
 }

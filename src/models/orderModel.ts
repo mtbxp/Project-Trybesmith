@@ -8,11 +8,11 @@ export default class OrderModel {
   public async findAll(): Promise<IOrder[]> {
     const [resultFindAll] = await this.connection
       .execute<IOrder[] & RowDataPacket[]>(`SELECT
-      Orders.id, Orders.userId, JSON_ARRAYAGG(Products.id) AS productsIds
-      FROM Trybesmith.Orders AS Orders 
-      INNER JOIN Trybesmith.Products AS Products ON Orders.id = Products.orderId
+      Orders.id, Orders.user_id AS userId, JSON_ARRAYAGG(Products.id) AS productsIds
+      FROM Trybesmith.orders AS Orders 
+      INNER JOIN Trybesmith.products AS Products ON Orders.id = Products.order_id
       GROUP BY Orders.id
-      ORDER BY Orders.userId;`);
+      ORDER BY Orders.user_id;`);
     return resultFindAll;
   }
 }
