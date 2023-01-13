@@ -1,14 +1,6 @@
 import { ResultSetHeader } from 'mysql2';
+import { Product, ProductR } from '../interfaces';
 import connections from './connection';
-
-interface Product {
-  name: string;
-  amount: string;
-}
-
-interface ProductR extends Product {
-  id: number;
-}
 
 const addNewProduct = async (product: Product): Promise<ProductR> => {
   const [{ insertId }] = await connections.execute<ResultSetHeader>(`
