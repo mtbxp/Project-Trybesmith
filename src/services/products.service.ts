@@ -1,9 +1,16 @@
-import { Product, ProductR } from '../interfaces/Product';
+import { Product } from '../interfaces/Product';
 import productsModel from '../models/products.model';
 
-const addNewProduct = async (product: Product): Promise<ProductR> => {
+const addNewProduct = async (product: Product) => {
   const result = await productsModel.addNewProduct(product);
-  return result;
+
+  if (!result.id) return { statusErro: 'NOT_CREATED', response: 'Product not Created' };
+  return { statusErro: null, response: result };
+};
+
+const getAllProducts = async () => {
+  const result = await productsModel.getAllProducts();
+  return { statusErro: null, response: result };
 };
 
 export default {
