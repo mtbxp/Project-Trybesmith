@@ -20,6 +20,7 @@ export default class Product {
     const [products] = await this.connection.execute<RowDataPacket[] & ProductInterface[]>(
       'SELECT * FROM Trybesmith.products',
     );
+
     return products;
   }
 }
