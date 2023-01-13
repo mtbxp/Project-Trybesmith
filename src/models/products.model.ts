@@ -1,4 +1,4 @@
-import { ResultSetHeader, RowDataPacket } from 'mysql2';
+import { ResultSetHeader } from 'mysql2';
 import { Product, ProductOrd, ProductR } from '../interfaces/Product';
 import connections from './connection';
 
@@ -10,7 +10,7 @@ const addNewProduct = async (product: Product): Promise<ProductR> => {
 
 const getAllProducts = async (): Promise<ProductOrd[]> => {
   const [result] = await connections.execute('SELECT * FROM Trybesmith.products ORDER BY id');
-  return result as ProductOrd[]; // why type at the end again ?
+  return result as ProductOrd[];
 };
 
 export default {
