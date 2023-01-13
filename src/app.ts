@@ -1,9 +1,9 @@
 import express from 'express';
-import registerProducts from './routes/registerProducts';
+import routesProduct from './routes/routesProduct';
 
 const app = express();
 
 app.use(express.json());
-app.use('/products', registerProducts);
+app.use('/products', routesProduct);
 
 export default app;
