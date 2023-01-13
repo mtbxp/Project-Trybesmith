@@ -35,6 +35,10 @@ export type TOrder = {
   productsIds: [number, number],
 };
 
+// export type TError = {
+//   message: string,
+// };
+
 export type Id = number;
 export type Token = {
   token?: string
