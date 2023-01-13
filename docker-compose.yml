@@ -52,7 +52,7 @@ services:
     ports:
       # Expõe a porta padrão do banco de dados
       - 3307:3306
-      - 33070:33060
+      - 33060:33060
     environment:
       MYSQL_ROOT_PASSWORD: password
 
