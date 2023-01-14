@@ -1,10 +1,8 @@
-import { RowDataPacket } from 'mysql2';
-import { Product } from '../types';
+import { IProduct } from '../interfaces';
 import connection from './connection';
 
-const listAllProducts = async () => {
-  const [rows] = await connection.execute<RowDataPacket[]>('SELECT * FROM Trybesmith.products');
-  return rows as Product[];
-};
-
-export default listAllProducts;
+export default async function listAllProductsModel(): Promise<IProduct[]> {
+  const query = 'SELECT * FROM Trybesmith.products';
+  const [products] = await connection.execute(query);
+  return products as IProduct[];
+}
