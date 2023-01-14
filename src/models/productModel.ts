@@ -6,8 +6,8 @@ const productCadastro = async (product: NewProduct): Promise<TProduct> => {
   const banco = 'INSERT INTO Trybesmith.products (name, amount) VALUES (?,?)';
   const [response] = await connection
     .execute<ResultSetHeader>(banco, [product.name, product.amount]);
-  const criandoTodosProdutos = { id: response.insertId, ...product }; 
-  return criandoTodosProdutos;
+  const criandoProdutos = { id: response.insertId, ...product }; 
+  return criandoProdutos;
 };
 const getAll = async (): Promise<TProduct[]> => {
   const [products] = await connection
