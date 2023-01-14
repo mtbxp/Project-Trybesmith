@@ -3,7 +3,7 @@ import { UserCredential } from '../interfaces';
 import { secret, config } from '../middlewares/jwtConfig';
 import * as userModel from '../models/userModel';
 
-export default async function createUser(user: UserCredential) {
+export async function createUser(user: UserCredential) {
   const payload = await userModel.create(user);
   const token = jwt.sign({ payload }, secret, config);
   const data = { token };
