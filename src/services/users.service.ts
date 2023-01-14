@@ -1,15 +1,6 @@
-import jwt from 'jsonwebtoken';
 import usersModel from '../models/users.model';
 import User from '../interfaces/user.interface';
-
-const newToken = ({ id, username, vocation, level }: User) => {
-  const token = jwt.sign(
-    { id, username, vocation, level }, 
-    process.env.JWT_SECRET || '',
-    { algorithm: 'HS256', expiresIn: '6h' },
-  );
-  return token;
-};
+import token from '../middlewares/generateToken';
 
 const registerUser = async (user: User): Promise<string> => {
   const userId = await usersModel.registerUser(user);
@@ -21,11 +12,17 @@ const registerUser = async (user: User): Promise<string> => {
     level: user.level,
   };
 
-  const userToken = newToken(newUser);
+  const userToken = token(newUser);
 
   return userToken;
 };
 
+const findAllUsers = async () => {
+  const users = await usersModel.findAllUsers();  
+  return users;
+};
+
 export default {
   registerUser,
+  findAllUsers,
 };
