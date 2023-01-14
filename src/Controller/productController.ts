@@ -1,11 +1,14 @@
 import { Request, Response } from 'express';
-import listAllProducts from '../service/productService';
+import { ProductDetail } from '../interfaces';
+import * as ProductService from '../service/productService';
 
-export async function cadastro(req: Request, res: Response) {
-  return 'ok';
+export async function create(req: Request, res: Response) {
+  const product = req.body as ProductDetail;
+  const { status, data } = await ProductService.create(product);
+  res.status(status).json(data);
 }
 
 export async function listAllProductsController(req: Request, res: Response) {
-  const { status, data } = await listAllProducts();
+  const { status, data } = await ProductService.listAllProducts();
   res.status(status).json(data);
 }

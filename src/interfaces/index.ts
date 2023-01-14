@@ -10,11 +10,12 @@ export interface IUser {
   password: string,
 }
 
-export interface User extends IUser {
-  id: number;
+export interface ProductDetail {
+  name: string,
+  amount: string,
 }
 
-export interface IProduct {
+export interface IProduct extends ProductDetail {
   id: number,
   name: string,
   amount: string,
