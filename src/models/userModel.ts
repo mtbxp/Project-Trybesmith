@@ -3,7 +3,7 @@ import connection from './connection';
 
 import { IUser, UserCredential } from '../interfaces';
 
-export default async function create(user: UserCredential): Promise<IUser> {
+export async function create(user: UserCredential): Promise<IUser> {
   const { username, vocation, level, password } = user;
   const query = `INSERT INTO Trybesmith.users 
   (username, vocation, level, password) VALUES (?, ?, ?, ?)`;
@@ -12,4 +12,12 @@ export default async function create(user: UserCredential): Promise<IUser> {
   const { insertId: id } = result;
   const newUser: IUser = { id, ...user };
   return newUser;
+}
+
+export async function getUsername(username: string): Promise<IUser | null> {
+  const query = 'SELECT * FROM Trybesmith.users WHERE username = ?';
+  const values = [username];
+  const [data] = await connection.execute(query, values);
+  const [user] = data as IUser[];
+  return user || null;
 }

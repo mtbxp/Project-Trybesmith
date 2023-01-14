@@ -5,6 +5,11 @@ export interface UserCredential {
   password: string,
 }
 
+export interface LoginCredential {
+  username: string,
+  password: string,
+}
+
 export interface IUser extends UserCredential {
   id: number;
 }

@@ -1,9 +1,15 @@
 import { Request, Response } from 'express';
 import { UserCredential } from '../interfaces';
-import createUser from '../service/userService';
+import * as userService from '../service/userService';
 
-export default async function create(req: Request, res: Response) {
+export async function create(req: Request, res: Response) {
   const user = req.body as UserCredential;
-  const { status, data } = await createUser(user);
+  const { status, data } = await userService.createUser(user);
   res.status(status).json(data);
+}
+
+export async function login(req: Request, res: Response) {
+  const user = req.body as UserCredential;
+  const { status, data, error } = await userService.login(user);
+  return error ? res.status(status).json(error) : res.status(status).json(data);
 }
