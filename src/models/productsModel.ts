@@ -14,6 +14,7 @@ const registerProduct = async (product: IProduct): Promise<IProduct> => {
     name,
     amount,
   };
+
   return resultWithId;
 };
 

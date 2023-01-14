@@ -12,8 +12,8 @@ export interface IUser {
   password?: string;
 }
 
-export interface IJwtConfig {
-  expiresIn: string;
-  algorithm: string;
-
+export interface IOrder {
+  id: number;
+  userId: number;
+  productsId: number[];
 }

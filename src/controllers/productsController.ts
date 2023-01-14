@@ -3,13 +3,13 @@ import productsService from '../services/productsService';
 
 const registerProduct = async (req: Request, res: Response) => {
   const { body } = req;
-  const { status, message } = await productsService.registerProduct(body);
-  res.status(status).json(message);
+  const product = await productsService.registerProduct(body);
+  res.status(201).json(product);
 };
 
 const getAllProducts = async (_req: Request, res: Response) => {
-  const { status, message } = await productsService.getAllProducts();
-  res.status(status).json(message);
+  const product = await productsService.getAllProducts();
+  res.status(200).json(product);
 };
 
 export default {

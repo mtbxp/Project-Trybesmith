@@ -6,13 +6,16 @@ const secretOrPrivateKey = process.env.JWT_SECRET || 'secret';
 
 const createToken = (user: IUser) => {
   const payload = { id: user.id, username: user.username };
-  return jwt.sign(payload, secretOrPrivateKey, { expiresIn: '15d', algorithm: 'HS256' });
+
+  const token = jwt.sign(payload, secretOrPrivateKey, { expiresIn: '1d', algorithm: 'HS256' });
+
+  return token;
 };
 
 const registerUser = async (user: IUser) => {
   await usersModel.registerUser(user);
   const token = createToken(user);
-  return { status: 201, token };
+  return token;
 };
 
 export default {
