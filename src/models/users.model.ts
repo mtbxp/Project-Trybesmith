@@ -9,9 +9,7 @@ const addNewUser = async (user: User): Promise<UserPublic> => {
     INSERT INTO Trybesmith.users (username, vocation, level, password) VALUES (?,?,?,?)`,
     [username, vocation, level, password],
   );
-  console.log('log model');
-  console.log(insertId);
-  
+   
   return { id: insertId, username, level, vocation };
 };
 
