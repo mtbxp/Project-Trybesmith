@@ -1,5 +1,5 @@
 import { Secret, sign, verify } from 'jsonwebtoken';
-import { User } from '../interfaces/User';
+import { UserPublic } from '../interfaces/User';
 
 const secretJWT = process.env.JWT_SECRET as Secret;
 
@@ -8,7 +8,7 @@ const jwtConfig = {
   expiresIn: '1h',
 } as object;
 
-const generateToken = (user: User) => {
+const generateToken = (user: UserPublic) => {
   const token = sign({ data: user }, secretJWT, jwtConfig);
   return token;
 };

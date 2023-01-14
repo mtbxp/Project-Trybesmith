@@ -1,10 +1,12 @@
 import { User } from '../interfaces/User';
 import usersModel from '../models/users.model';
+import jwt from '../auth/jwt';
 
 const addNewUser = async (user: User) => {
   const result = await usersModel.addNewUser(user);
-
+    
   if (!result.id) return { statusErro: 'NOT_CREATED', response: 'User not Created' };
+  const token = jwt.generateToken(result);
   return { statusErro: null, response: token };
 };
 
