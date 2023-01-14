@@ -1,13 +1,12 @@
 export interface UserCredential {
-  email: string,
+  username: string,
+  vocation: string,
+  level: number,
   password: string,
 }
 
-export interface IUser {
-  username: string,
-  vocations: string,
-  level: number,
-  password: string,
+export interface IUser extends UserCredential {
+  id: number;
 }
 
 export interface ProductDetail {
