@@ -6,9 +6,12 @@ const addNewUser = async (user: User): Promise<UserPublic> => {
   const { username, password, level, vocation } = user;
   const [{ insertId }] = await connections.execute<ResultSetHeader>(
     `
-    INSERT INTO Trybesmith.users (username, password, level, vocation) VALUES (?,?,?,?)`,
+    INSERT INTO Trybesmith.users (username, vocation, level, password) VALUES (?,?,?,?)`,
     [username, vocation, level, password],
   );
+  console.log('log model');
+  console.log(insertId);
+  
   return { id: insertId, username, level, vocation };
 };
 
