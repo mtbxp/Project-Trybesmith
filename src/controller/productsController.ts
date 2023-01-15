@@ -7,4 +7,9 @@ const addProductController = async (req: Request, res: Response) => {
   return res.status(201).send(newProduct);
 };
 
-export default { addProductController };
+const getProductController = async (req: Request, res: Response) => {
+  const products = await productService.getProductService();
+  return res.status(200).send(products);
+};
+
+export default { addProductController, getProductController };

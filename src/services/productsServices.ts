@@ -6,4 +6,9 @@ const addProductService = async (productData: TProduct): Promise<TProduct> => {
   return newProduct;
 };
 
-export default { addProductService };
+const getProductService = async (): Promise<TProduct[]> => {
+  const products = await productModel.getProductModel();
+  return products;
+};
+
+export default { addProductService, getProductService };
