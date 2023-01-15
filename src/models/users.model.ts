@@ -19,10 +19,10 @@ export default class UserModel {
     return { id: insertId, ...user };
   };
 
-  public async login(user: string): Promise<IUser[]> {
+  public async login(user: string, password: string): Promise<IUser[]> {
     const [users] = await this.connection.execute(`
       SELECT * FROM Trybesmith.users 
-      WHERE username = '${user}'`);
+      WHERE username = ? AND password = ?`, [user, password]);
 
     return users as IUser[];
   }

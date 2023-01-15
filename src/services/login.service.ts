@@ -13,15 +13,9 @@ export default class LoginService {
   }
 
   public login = async (username: string, password: string): Promise<ILoginResponse<string>> => {
-    const userLogin: IUser[] = await this.model.login(username);
+    const userLogin: IUser[] = await this.model.login(username, password);
 
-    if (!userLogin.length) {
-      return { type: status.HTTP_UNAUTHORIZED, message: 'Username or password invalid' };
-    }
-
-    const loggedUser = userLogin.find((user) => user.password === password);
-
-    if (!loggedUser) {
+    if (userLogin.length === 0) {
       return { type: status.HTTP_UNAUTHORIZED, message: 'Username or password invalid' };
     }
 
