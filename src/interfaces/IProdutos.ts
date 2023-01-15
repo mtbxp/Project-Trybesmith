@@ -1,5 +1,6 @@
 export interface Produtos {
-  id?: Number,
-  name: String,
-  amount: String,
+  id?: number,
+  name: string,
+  amount: string,
+  orderId?: number,
 }

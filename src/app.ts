@@ -3,7 +3,6 @@ import produtosRouter from './routes/produtos.routes';
 
 const app = express();
 
-
 app.use(express.json());
 app.use('/products', produtosRouter);
 
