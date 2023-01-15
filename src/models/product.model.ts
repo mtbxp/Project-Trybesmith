@@ -8,6 +8,12 @@ class ProductModel {
     this.pool = pool;
   }
 
+  public async getAll(): Promise<Product[]> {
+    const [products] = await this.pool.execute('SELECT * from Trybesmith.products');
+
+    return products as Product[];
+  }
+
   public async create(product: Product): Promise<Product> {
     const { name, amount } = product;
 
