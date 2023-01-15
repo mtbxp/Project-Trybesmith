@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import { IUser } from '../interfaces/users.interface';
+import { ILogin } from '../interfaces/login.interface';
 
 dotenv.config();
 
@@ -12,7 +13,7 @@ export default class JWT {
     algorithm: 'HS256',
   };
 
-  public generateToken = (payload: IUser): string => {
+  public generateToken = (payload: IUser | ILogin): string => {
     const token = jwt.sign({ data: { payload } }, this.TOKEN_SECRET, this.jwtConfig);
 
     return token;

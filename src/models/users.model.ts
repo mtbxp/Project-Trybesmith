@@ -18,4 +18,12 @@ export default class UserModel {
     const { insertId } = result;
     return { id: insertId, ...user };
   };
+
+  public async login(user: string): Promise<IUser[]> {
+    const [users] = await this.connection.execute(`
+      SELECT * FROM Trybesmith.users 
+      WHERE username = '${user}'`);
+
+    return users as IUser[];
+  }
 }
