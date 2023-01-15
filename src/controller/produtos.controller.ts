@@ -15,7 +15,7 @@ export const ProdutosInsert = async (req: Request, res: Response): Promise<Respo
 export const ProdutosGet = async (req: Request, res: Response) => {
   try {
     const result = await buscarProdutos();
-    res.status(201).send(result);
+    res.status(200).send(result);
   } catch (error) {
     res.status(400).send(error);
   }
