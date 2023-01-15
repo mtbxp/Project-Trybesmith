@@ -13,7 +13,7 @@ const createProduct = async (product:Product):Promise<Product> => {
   return addedProduct;
 };
 const getAll = async ():Promise<Product[]> => {
-  const [result] = await connection.execute('SELECT * FROM trybesmith.products');
+  const [result] = await connection.execute('SELECT * FROM Trybesmith.products');
   return result as Product[];
 };
 
