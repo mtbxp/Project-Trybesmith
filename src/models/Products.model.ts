@@ -17,3 +17,8 @@ export const getAll = async (): Promise<IProdutos[]> => {
   const [Result] = await connection.execute('select * from Trybesmith.products');
   return Result as IProdutos[];
 };
+
+export const getById = async (id: number): Promise<IProdutos[]> => {
+  const [Result] = await connection.execute('select * from Trybesmith.products where id = ?', [id]);
+  return Result as IProdutos[];
+};
