@@ -1,10 +1,10 @@
 import jwt from 'jsonwebtoken';
-import { TUserWithoutPassword } from '../models/allInterfaces/interfaceUser';
+import { TUserIdName } from '../models/allInterfaces/interfaceUser';
 
 const secret = process.env.JWT_SECRET as string;
 
-const createToken = (userData: TUserWithoutPassword): string => {
-  const token = jwt.sign(userData, secret, { algorithm: 'HS256', expiresIn: '5d' });
+const createToken = (userData: TUserIdName): string => {
+  const token = jwt.sign({ ...userData }, secret, { algorithm: 'HS256', expiresIn: '5d' });
   return token;
 };
 

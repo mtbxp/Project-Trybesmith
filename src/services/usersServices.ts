@@ -1,10 +1,10 @@
 import userModel from '../models/usersModel';
-import { TUser, TUserWithoutPassword } from '../models/allInterfaces/interfaceUser';
+import { TUser, TUserIdName } from '../models/allInterfaces/interfaceUser';
 
-const addUserService = async (newUserData: TUser): Promise<TUserWithoutPassword> => {
+const addUserService = async (newUserData: TUser): Promise<TUserIdName> => {
   const newUser = await userModel.addUserModel(newUserData);
-  const { id, username, vocation, level } = newUser;
-  return { id, username, vocation, level };
+  const { id, username } = newUser;
+  return { id, username };
 };
 
 export default { addUserService };
