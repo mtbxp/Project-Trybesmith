@@ -4,11 +4,12 @@ import connection from './connection';
 
 const createProduct = async (product:Product):Promise<Product> => {
   const { name, amount } = product;
-  const [result] = await connection.execute<ResultSetHeader>(
-    'INSERT INTO trybesmith.products (name, amount) VALUES (?,?)',
+  const [{ insertId }] = await connection.execute<ResultSetHeader>(
+    'INSERT INTO Trybesmith.products (name, amount) VALUES (?,?)',
     [name, amount],
   );
-  const addedProduct = { id: result.insertId, ...product };
+  const addedProduct = { id: insertId, ...product };
+  console.log(addedProduct);
   return addedProduct;
 };
 
