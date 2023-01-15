@@ -12,7 +12,12 @@ const createProduct = async (product:Product):Promise<Product> => {
   console.log(addedProduct);
   return addedProduct;
 };
+const getAll = async ():Promise<Product[]> => {
+  const [result] = await connection.execute('SELECT * FROM trybesmith.products');
+  return result as Product[];
+};
 
 export default {
   createProduct,
+  getAll,
 };
