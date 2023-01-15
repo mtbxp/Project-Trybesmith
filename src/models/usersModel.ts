@@ -1,5 +1,5 @@
 import { ResultSetHeader } from 'mysql2/promise';
-import { TUser } from './interfaceUser';
+import { TUser } from './allInterfaces/interfaceUser';
 import connection from './connection';
 
 const addUserModel = async (newUserData: TUser): Promise<TUser> => {

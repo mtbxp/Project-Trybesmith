@@ -1,5 +1,5 @@
 import productModel from '../models/productsModels';
-import { TProduct } from '../models/interfaceProduct';
+import { TProduct } from '../models/allInterfaces/interfaceProduct';
 
 const addProductService = async (productData: TProduct): Promise<TProduct> => {
   const newProduct = await productModel.addProductModel(productData);

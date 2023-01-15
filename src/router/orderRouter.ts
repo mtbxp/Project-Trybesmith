@@ -3,6 +3,6 @@ import ordersController from '../controller/ordersController';
 
 const router = Router();
 
-router.get('/', ordersController.getAll);
+router.get('/', ordersController.getOrderController);
 
 export default router;

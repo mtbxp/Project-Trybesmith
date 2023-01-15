@@ -1,5 +1,5 @@
 import userModel from '../models/usersModel';
-import { TUser, TUserWithoutPassword } from '../models/interfaceUser';
+import { TUser, TUserWithoutPassword } from '../models/allInterfaces/interfaceUser';
 
 const addUserService = async (newUserData: TUser): Promise<TUserWithoutPassword> => {
   const newUser = await userModel.addUserModel(newUserData);

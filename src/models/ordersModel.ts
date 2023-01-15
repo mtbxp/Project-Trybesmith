@@ -1,5 +1,5 @@
 import { RowDataPacket } from 'mysql2/promise';
-import { TOrder } from './interfaceOrder';
+import { TOrder } from './allInterfaces/interfaceOrder';
 import connection from './connection';
 
 const getOrderModel = async (): Promise<TOrder[]> => {
