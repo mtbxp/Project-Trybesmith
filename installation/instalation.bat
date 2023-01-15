@@ -1,0 +1,2 @@
+@REM Este arquivo é responsavel pela instalação em WINDOWS dos pacotes de NPM necessários para execução da aplicação.
+@REM É necessário o uso do Node 16. É possivel que versões mais recentes funcionem adequadamente contudo não são recomendaveis.

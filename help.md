@@ -7,14 +7,14 @@ Aprovação: 4 requisitos.
 Aprovação em recuperação: 7 requisitos.
 
 Ultimo dia de projeto: 15/12/22
-Data Limite: 14/01/23
+Data Limite: 16/01/23
 Data limite da recuperação: ??/01/23
 
 ##
 
 <h2>Comandos locais:</h2>
 
-
+Para executar os testes inicie o servidor: <b>npm start</b> e utilize <b>npm test</b> para executar os testes locais.
 ##
 
 <h2>Testando a aplicação:</h2>
