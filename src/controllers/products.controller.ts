@@ -2,9 +2,9 @@ import { Request, Response } from 'express';
 import productsService from '../services/products.service';
 
 const createProduct = async (req: Request, res: Response) => {
-  const product = req.body;
+  const products = req.body;
   
-  const insertProduct = await productsService.createProduct(product);
+  const insertProduct = await productsService.createProduct(products);
 
   return res.status(201).json(insertProduct);
 };
