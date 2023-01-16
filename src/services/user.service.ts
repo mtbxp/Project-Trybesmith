@@ -14,6 +14,12 @@ class UserService {
 
     return result;
   }
+
+  public async findByUsername(user: User): Promise<User | undefined> {
+    const data = await this.model.findByUsername(user);
+
+    return data;
+  }
 }
 
 export default UserService;
