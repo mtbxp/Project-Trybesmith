@@ -10,7 +10,8 @@ Foram desenvolvidas todas as camadas da aplicação (Models, Service e Controlle
 Estas operações podem ser realizadas através de alguns endpoints que irão ler e escrever em um banco de dados, utilizando o MySQL, sendo estes:
 
 /products
-.
+/users
+/orders
 .
 .
 
@@ -50,15 +51,40 @@ Estas operações podem ser realizadas através de alguns endpoints que irão le
 ./src/model/productService.ts - Linha 13
 ./src/model/productController.ts - Linha 15
 
-<h4>07- Adição da rota </h4>
-./src/routes/product.router - Linha 11.
+<h4>07- Adição da rota /get para produtos</h4>
+./src/routes/product.router.ts - Linha 11.
 
-<h4>08- </h4>
-<h4>09- </h4>
-<h4>10- </h4>
-<h4>11- </h4>
+<h4>09- Criação da interface de usuário</h4>
+./src/interface/UserInterface.ts
+
+<h4>10- Criação do MSC referente a adição de usuários e sistema de validação com JWT</h4>
+./src/model/userModel.ts -
+./src/model/userService.ts -
+./src/model/userController.ts -
+
+./src/middlewares/tokenValidetion.ts
+
+<h4>11- Criação da interface de pedidos </h4>
+./src/interface/OrderInterface.ts
+
+<h4>12- Adição da rota /post para usuários </h4>
+./src/routes/user.router.ts
+
+<h4>13- Criação do MSC referente a requisição de pedidos</h4>
+./src/model/ordersModel.ts -
+./src/model/ordersService.ts -
+./src/model/ordersController.ts -
+
+
+<h4>14- </h4>
 
 <h3>C- Utilização do App</h3>
+
+* npm start - inicializa o app na porta 3000.
+* requisições podem ser feitas nas seguintes rotas:
+'/products' - Requisição e adição de produtos(get e post)
+'/users' - Requisição de pedidos(get)
+'/orders' - Adição de usuários(post)
 
 #
 <h3>D- Outras Informações</h3>
@@ -76,6 +102,7 @@ Luan Filipe Gonçalves
 [dotenv]()
 [express]()
 [typescript]()
+[JsonWebToken]()
 
 <h4>3- Instalação e utilização:</h4>
 
