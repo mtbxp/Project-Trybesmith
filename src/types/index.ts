@@ -14,3 +14,8 @@ export type TUsers = {
   password?: string 
 
 };
+
+export type TOrder = {
+  id?: number;
+  userId?: number;
+};
