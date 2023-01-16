@@ -11,5 +11,12 @@ export interface TProducts extends TNewProduct {
 export interface TOrder {
   id: number,
   userId: number,
-  productsIds: number[],
+  productsIds: number[]
+}
+
+export interface TRegister {
+  username: string,
+  vocation: string,
+  level: number,
+  password: string
 }
