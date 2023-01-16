@@ -7,6 +7,4 @@ const productModel = new ProductModel(connection);
 const productService = new ProductService(productModel);
 const productController = new ProductController(productService);
 
-export {
-    productController,
-  };
+export default productController;
