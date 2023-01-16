@@ -40,8 +40,9 @@ const validateVocation = (req: Request, res: Response, next: NextFunction) => {
 
 const validateLevel = (req: Request, res: Response, next: NextFunction) => {
   const { level } = req.body;
+  console.log(level, 'teste');  
 
-  if (!level) {
+  if (level === undefined) {
     return res.status(400).json({ message: '"level" is required' });
   }
 
