@@ -9,4 +9,4 @@ const createToken = <T extends object>(user: T): string => (
   jwt.sign({ data: user }, SECRET)
 );
 
-export default { createToken };
+export { createToken };
