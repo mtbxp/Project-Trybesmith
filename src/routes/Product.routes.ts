@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { productController } from '../msc';
+import productController from '../msc';
 
 const productRoutes = Router();
 
