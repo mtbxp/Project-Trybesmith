@@ -4,3 +4,8 @@ export interface Product {
   amount: string;
   orderId?: number;
 }
+
+export type TUser = {
+  id?: number,
+  username: string,
+};
