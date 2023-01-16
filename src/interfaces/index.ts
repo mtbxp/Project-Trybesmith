@@ -9,3 +9,9 @@ export type TUser = {
   id?: number,
   username: string,
 };
+
+export interface IUser extends TUser {
+  vocation: string,
+  level: number,
+  password: string,
+}
