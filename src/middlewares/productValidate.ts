@@ -3,13 +3,11 @@ import Joi from 'joi';
 import statusCode from '../utils/statusCode';
 
 const schema = Joi.object({
-  username: Joi.string().min(3).required(),
-  vocation: Joi.string().min(3).required(),
-  level: Joi.number().min(1).required(),
-  password: Joi.string().min(8).required(),
+  name: Joi.string().min(3).required(),
+  amount: Joi.string().min(3).required(),
 });
 
-const validateUser = async (req: Request, res: Response, next: NextFunction) => {
+const validateProduct = async (req: Request, res: Response, next: NextFunction) => {
   const user = req.body;
   
   const { error } = schema.validate(user);
@@ -23,4 +21,4 @@ const validateUser = async (req: Request, res: Response, next: NextFunction) => 
   next();
 };
 
-export default validateUser;
+export default validateProduct;
