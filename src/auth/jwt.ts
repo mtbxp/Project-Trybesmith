@@ -1,28 +1,18 @@
-import { Secret, sign, verify } from 'jsonwebtoken';
-import { UserPublic } from '../interfaces/User';
+import { sign } from 'jsonwebtoken';
+import { Payload, UserPublic } from '../interfaces/User';
 
-const secretJWT = process.env.JWT_SECRET as Secret;
+const secretJWT = 'são3hdaManhãeEuAqui';
 
 const jwtConfig = {
   algorithm: 'HS256',
   expiresIn: '1h',
 } as object;
 
-const generateToken = (user: UserPublic) => {
-  const token = sign({ data: user }, secretJWT, jwtConfig);
+const generateToken = (user: Payload | UserPublic) => {
+  const token = sign(user, secretJWT, jwtConfig);
   return token;
-};
-
-const verifyToken = (token: string) => {
-  try {
-    const result = verify(token, secretJWT);
-    return result;
-  } catch (error) {
-    return { isError: true, error };
-  }
 };
 
 export default {
   generateToken,
-  verifyToken,
 };
