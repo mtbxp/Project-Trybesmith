@@ -7,6 +7,9 @@ import UserModel from './models/User.model';
 import UserService from './services/User.service';
 import UserController from './controllers/User.controller';
 import AuthService from './services/Auth.service';
+import OrderModel from './models/Order.model';
+import OrderService from './services/Order.service';
+import OrderController from './controllers/Order.controller';
 
 const authService = new AuthService(jwt);
 
@@ -18,7 +21,12 @@ const userModel = new UserModel(connection);
 const userService = new UserService(userModel, authService);
 const userController = new UserController(userService);
 
+const orderModel = new OrderModel(connection);
+const orderService = new OrderService(orderModel);
+const orderController = new OrderController(orderService);
+
 export {
   productController,
   userController,
+  orderController
 };
