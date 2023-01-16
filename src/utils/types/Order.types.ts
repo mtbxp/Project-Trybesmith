@@ -1,16 +1,15 @@
 interface OrderRegister {
-    productsIds: number[];
-  }
+  productsIds: number[];
+}
   
-  interface Order {
-    id?: number;
-    userId: string;
-    productsIds: number[];
-  }
+interface Order {
+  id?: number;
+  userId: string;
+  productsIds: number[];
+}
   
-  interface OrderReturned extends Order {
-    id: number;
-  }
+interface OrderReturned extends Order {
+  id: number;
+}
   
-  export { OrderRegister, Order, OrderReturned };
-  
+export { OrderRegister, Order, OrderReturned }; 

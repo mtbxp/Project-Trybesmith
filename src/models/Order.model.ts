@@ -1,4 +1,4 @@
-import { Pool, ResultSetHeader } from 'mysql2/promise';
+import { Pool } from 'mysql2/promise';
 import { OrderReturned } from '../utils/types/Order.types';
 
 export default class OrderModel {

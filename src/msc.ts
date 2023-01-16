@@ -28,5 +28,5 @@ const orderController = new OrderController(orderService);
 export {
   productController,
   userController,
-  orderController
+  orderController,
 };
