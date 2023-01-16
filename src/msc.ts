@@ -19,6 +19,6 @@ const userService = new UserService(userModel, authService);
 const userController = new UserController(userService);
 
 export {
-    productController,
-    userController,
-  };
+  productController,
+  userController,
+};

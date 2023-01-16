@@ -1,5 +1,5 @@
 import UserModel from '../models/User.model';
-import { User } from '../utils/types/User.types';
+import User from '../utils/types/User.types';
 import AuthService from './Auth.service';
 
 export default class UserService {

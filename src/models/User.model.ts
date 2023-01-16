@@ -1,5 +1,5 @@
 import { Pool, ResultSetHeader } from 'mysql2/promise';
-import { User } from '../utils/types/User.types';
+import User from '../utils/types/User.types';
 
 export default class UserModel {
   constructor(private connection: Pool) {
@@ -21,5 +21,4 @@ export default class UserModel {
 
     return +insertId;
   }
-
 }
