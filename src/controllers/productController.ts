@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import ProductService from '../services/productService';
+import statusCodes from '../utils/statusCodes';
 
 export default class ProductController {
   constructor(private productService = new ProductService()) { }
@@ -7,13 +8,13 @@ export default class ProductController {
   public getAll = async (_req: Request, res: Response) => {
     const products = await this.productService.getAll();
 
-    res.status(200).json(products);
+    res.status(statusCodes.OK).json(products);
   };
 
   public create = async (req: Request, res: Response) => {
     const product = req.body;
     const productCreated = await this.productService.create(product);
     
-    res.status(201).json(productCreated);
+    res.status(statusCodes.CREATED).json(productCreated);
   };
 }

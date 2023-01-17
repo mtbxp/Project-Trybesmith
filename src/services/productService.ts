@@ -1,6 +1,6 @@
 import connection from '../models/connection';
 import ProductModel from '../models/productModel';
-import { Product } from '../models/interfaces/productInterface';
+import { Product } from '../utils/interfaces/productInterface';
 
 export default class ProductService {
   constructor(public model = new ProductModel(connection)) { }
