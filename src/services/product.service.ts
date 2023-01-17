@@ -20,6 +20,10 @@ class ProductService {
 
     return result;
   }
+
+  public async update(productsIds: number[], id: number) {
+    await this.model.update(productsIds, id);
+  }
 }
 
 export default ProductService;

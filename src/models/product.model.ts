@@ -24,6 +24,15 @@ class ProductModel {
 
     return { id: insertId, name, amount };
   }
+
+  public async update(productsIds: number[], id: number) {
+    await Promise.all(productsIds.map(async (productsId) => {
+      await this.pool.execute<ResultSetHeader>(
+        'UPDATE Trybesmith.products SET order_id = ? WHERE id = ?', 
+        [id, productsId],
+      );
+    }));
+  }
 }
 
 export default ProductModel;

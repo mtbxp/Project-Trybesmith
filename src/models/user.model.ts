@@ -19,7 +19,7 @@ class UserModel {
     return { username, vocation, level };
   }
 
-  public async findByUsername(user: User): Promise<User | undefined> {
+  public async findByUsername(user: User): Promise<User> {
     const { username } = user;
 
     const [[data]] = await this.pool.execute<RowDataPacket[]>(
@@ -27,7 +27,7 @@ class UserModel {
       [username],
     );
 
-    return data as User | undefined;
+    return data as User;
   }
 }
 

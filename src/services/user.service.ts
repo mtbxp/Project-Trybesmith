@@ -15,7 +15,7 @@ class UserService {
     return result;
   }
 
-  public async findByUsername(user: User): Promise<User | undefined> {
+  public async findByUsername(user: User): Promise<User> {
     const data = await this.model.findByUsername(user);
 
     return data;
