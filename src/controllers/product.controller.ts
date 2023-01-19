@@ -9,6 +9,12 @@ const create = async (req: Request, res: Response): Promise<void> => {
   res.status(status).json(data);
 };
 
+const getAll = async (req: Request, res: Response): Promise<void> => {
+  const { status, data } = await productService.getAll();
+  res.status(status).json(data);
+};
+
 export default { 
   create,
+  getAll,
 };
