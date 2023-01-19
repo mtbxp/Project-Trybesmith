@@ -1,9 +1,15 @@
-import express from 'express';
+import express, { Application } from 'express';
+import 'express-async-errors';
 
-const app = express();
+// import httpErrorMiddleware from '';
+import productRouter from './routes/products.route';
+
+const app: Application = express();
 
 app.use(express.json());
 
-export default app;
+app.use('/products', productRouter);
 
-// trybesmith project started 
+// app.use(httpErrorMiddleware);
+
+export default app;
