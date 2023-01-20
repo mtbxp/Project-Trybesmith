@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-import { NewUser } from '../utils/interfaces/userInterface';
 
 dotenv.config();
 
@@ -11,7 +10,7 @@ const jwtConfig = {
   expiresIn: '7d',
 };
 
-export default function createToken(user: NewUser) {
-  const token = jwt.sign({ user }, secret, jwtConfig as object);
+export default function createToken<T>(data: T): string {
+  const token = jwt.sign({ data }, secret, jwtConfig as object);
   return token;
 }
