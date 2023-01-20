@@ -8,7 +8,7 @@ const create = async (product: IProduct): Promise<Product> => {
         VALUES (?, ?)`;
   const values = [name, amount];
 
-  const [result] = await connection.execute<ResultSetHeader & Product>(query, values);
+  const [result] = await connection.execute<ResultSetHeader>(query, values);
   const { insertId: id } = result;
 
   const newProduct: Product = { ...product, id }; 

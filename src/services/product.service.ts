@@ -1,5 +1,5 @@
 import { IProduct } from '../interfaces/index';
-import productModel from '../models/products.model';
+import productModel from '../models/product.model';
 
 const create = async (product: IProduct) => {
   const data = await productModel.create(product);

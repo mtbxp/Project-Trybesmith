@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { IProduct } from '../interfaces';
 
-import productService from '../services/products.service';
+import productService from '../services/product.service';
 
 const create = async (req: Request, res: Response): Promise<void> => {
   const product = req.body as IProduct;
@@ -9,7 +9,7 @@ const create = async (req: Request, res: Response): Promise<void> => {
   res.status(status).json(data);
 };
 
-const getAll = async (req: Request, res: Response): Promise<void> => {
+const getAll = async (_req: Request, res: Response): Promise<void> => {
   const { status, data } = await productService.getAll();
   res.status(status).json(data);
 };
