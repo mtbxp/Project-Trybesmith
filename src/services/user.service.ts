@@ -1,6 +1,11 @@
 import createTokenJWT from '../auth/jwtFunctions';
-import { IUser } from '../interfaces';
+import { ILogin, IUser } from '../interfaces';
 import userModel from '../models/user.model';
+import HttpException from '../shared/http.exception';
+
+const MESSAGES = {
+  UNAUTHORIZED: 'Username or password invalid',
+};
 
 const create = async (user: IUser) => {
   const id = await userModel.create(user);
@@ -12,6 +17,24 @@ const create = async (user: IUser) => {
   };
 };
 
+const login = async (userCredentials: ILogin) => {
+  const user = await userModel.getByUsername(userCredentials.username);
+  if (!user) {
+    throw new HttpException(401, MESSAGES.UNAUTHORIZED);
+  }
+  if (user.password !== userCredentials.password) {
+    throw new HttpException(401, MESSAGES.UNAUTHORIZED);
+  }
+  const { id, username } = user;
+  const payload = { id, name: username };
+  const token = createTokenJWT(payload);
+  return {
+    status: 200,
+    token,
+  };
+};
+
 export default {
   create,
+  login,
 };
