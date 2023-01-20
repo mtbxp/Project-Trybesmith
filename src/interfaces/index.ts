@@ -23,3 +23,9 @@ export interface JwtPayload {
   id: number, 
   name: string,
 }
+
+export interface IOrder {
+  id: number, 
+  userId: number,
+  productsIds: number[],
+}
