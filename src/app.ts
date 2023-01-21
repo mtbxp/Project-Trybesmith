@@ -20,4 +20,3 @@ app.use('/orders', orderRouter);
 app.use(httpErrorMiddleware);
 
 export default app;
-// teste

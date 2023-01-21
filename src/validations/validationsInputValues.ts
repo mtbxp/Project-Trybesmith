@@ -1,7 +1,7 @@
-import { IProduct } from '../types';
-import addProductSchema from './schema';
+import { IProduct, IUser } from '../types';
+import { addUserSchema, addProductSchema } from './schema';
 
-const validateNewProduct = (product: IProduct) => {
+export const validateNewProduct = (product: IProduct) => {
   const { name, amount } = product;
   const { error } = addProductSchema.validate({ name, amount });
   if (error) {
@@ -17,4 +17,18 @@ const validateNewProduct = (product: IProduct) => {
   };
 };
 
-export default validateNewProduct;
+export const validateNewUser = (user: IUser) => {
+  const { username, vocation, level, password } = user;
+  const { error } = addUserSchema.validate({ username, vocation, level, password });
+  if (error) {
+    const [type, message] = error.message.split('|');
+    return {
+      type, 
+      message,
+    };
+  }
+  return {
+    type: null, 
+    message: '',
+  };
+};

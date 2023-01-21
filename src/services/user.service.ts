@@ -1,3 +1,4 @@
+import { validateNewUser } from '../validations/validationsInputValues';
 import createTokenJWT from '../auth/jwtFunctions';
 import { ILogin, IUser } from '../types';
 import userModel from '../models/user.model';
@@ -8,6 +9,13 @@ const MESSAGES = {
 };
 
 const create = async (user: IUser) => {
+  const error = validateNewUser(user);
+  if (error.type) {
+    return {
+      status: Number(error.type),
+      error: { message: error.message },
+    };
+  }
   const id = await userModel.create(user);
   const payload = { id, name: user.username };
   const token = createTokenJWT(payload);

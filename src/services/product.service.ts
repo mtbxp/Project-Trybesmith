@@ -1,6 +1,6 @@
 import { IProduct } from '../types/index';
 import productModel from '../models/product.model';
-import validateNewProduct from '../validations/validationsInputValues';
+import { validateNewProduct } from '../validations/validationsInputValues';
 
 const create = async (product: IProduct) => {
   const error = validateNewProduct(product);
