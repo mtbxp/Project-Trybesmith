@@ -2,6 +2,7 @@ import Joi from 'joi';
 
 const productSchema = Joi.string().min(3).required();
 const userSchema = Joi.string().required();
+const orderSchema = Joi.array().items(Joi.number().required()).required();
 
 export const addProductSchema = Joi.object({
   name: productSchema.messages({
@@ -32,3 +33,12 @@ export const addUserSchema = Joi.object({
     'string.min': '422|"password" length must be at least 8 characters long',
   }),
 });
+
+export const addOrderSchema = Joi.object({
+  productsIds: orderSchema.messages({
+    'array.base': '422|"productsIds" must be an array',
+    'array.includesRequiredUnknowns': '422|"productsIds" must include only numbers',
+  }),
+});
+
+// Fonte: https://joi.dev/api/?v=17.7.0

@@ -1,36 +1,39 @@
-export interface IProduct {
+export type IProduct = {
   name: string;
   amount: string;
   orderId?: number,
-}
+};
 
-export interface Product extends IProduct {
+export type Product = {
   id: number,
-}
+} & IProduct;
 
-export interface IUser {
+export type IUser = {
   username: string, 
   vocation: string,
   level: number,
   password: string,
-}
+};
 
-export interface User extends IUser {
+export type User = {
   id: number,
-}
+} & IUser;
 
-export interface JwtPayload {
+export type JwtPayload = {
   id: number, 
   name: string,
-}
+};
 
-export interface IOrder {
-  id: number, 
-  userId: number,
+export type IOrder = {
+  userId?: number,
   productsIds: number[],
-}
+};
 
-export interface ILogin {
+export type Order = {
+  user: JwtPayload,
+} & IOrder;
+
+export type ILogin = {
   username: string,
   password: string
-}
+};

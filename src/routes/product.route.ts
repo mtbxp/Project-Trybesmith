@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import productController from '../controllers/product.controller';
-import validateProductsFields from '../middlewares/validateProductsField';
+import validateProductsFields from '../middlewares/validateProductField';
 
 const router: Router = Router();
 
