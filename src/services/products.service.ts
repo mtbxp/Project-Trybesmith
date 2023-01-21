@@ -14,8 +14,8 @@ class ProductService {
     return Products;
   }
 
-  public create(book: Product): Promise<Product> {
-    return this.model.create(book);
+  public create(product: Product): Promise<Product> {
+    return this.model.create(product);
   }
 }
 
