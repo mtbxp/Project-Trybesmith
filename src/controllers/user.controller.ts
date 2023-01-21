@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { ILogin, IUser } from '../interfaces';
+import { ILogin, IUser } from '../types';
 import userService from '../services/user.service';
 
 const create = async (req: Request, res: Response): Promise<void> => {

@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { ILogin } from '../interfaces';
+import { ILogin } from '../types';
 import HttpException from '../shared/http.exception';
 
 const MESSAGES = {

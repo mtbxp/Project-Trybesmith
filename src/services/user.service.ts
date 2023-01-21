@@ -1,5 +1,5 @@
 import createTokenJWT from '../auth/jwtFunctions';
-import { ILogin, IUser } from '../interfaces';
+import { ILogin, IUser } from '../types';
 import userModel from '../models/user.model';
 import HttpException from '../shared/http.exception';
 

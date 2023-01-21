@@ -1,5 +1,5 @@
 import { RowDataPacket } from 'mysql2';
-import { IOrder } from '../interfaces';
+import { IOrder } from '../types';
 import connection from './connection';
 
 const getAll = async (): Promise<IOrder[]> => {

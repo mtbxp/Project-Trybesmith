@@ -1,5 +1,5 @@
 import { ResultSetHeader, RowDataPacket } from 'mysql2';
-import { IUser, User } from '../interfaces';
+import { IUser, User } from '../types';
 import connection from './connection';
 
 const create = async (user: IUser): Promise<number> => {

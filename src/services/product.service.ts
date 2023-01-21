@@ -1,7 +1,15 @@
-import { IProduct } from '../interfaces/index';
+import { IProduct } from '../types/index';
 import productModel from '../models/product.model';
+import validateNewProduct from '../validations/validationsInputValues';
 
 const create = async (product: IProduct) => {
+  const error = validateNewProduct(product);
+  if (error.type) {
+    return {
+      status: Number(error.type),
+      error: { message: error.message },
+    };
+  }
   const data = await productModel.create(product);
   return {
     status: 201,
