@@ -1,5 +1,5 @@
-import Order from '../interfaces/orderInterface';
-import OrderModel from '../models/OrderModel';
+import Order from '../interfaces/order.Interface';
+import OrderModel from '../models/Order.Model';
 
 export default class OrderService {
   public model: OrderModel;

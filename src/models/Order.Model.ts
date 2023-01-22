@@ -1,5 +1,5 @@
 import { Pool, RowDataPacket } from 'mysql2/promise';
-import Order from '../interfaces/orderInterface';
+import Order from '../interfaces/order.Interface';
 import connection from './connection';
 
 export default class OrderModel {
