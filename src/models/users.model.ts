@@ -1,11 +1,28 @@
 import { Pool, ResultSetHeader } from 'mysql2/promise';
 import User from '../interfaces/users.interface';
+import Login from '../interfaces/login.interface';
 
 export default class UserModel {
   public connection: Pool;
 
   constructor(connection: Pool) {
     this.connection = connection;
+  }
+
+  public async getByUsername(login: Login): Promise<Login> {
+    const { username, password } = login;
+    
+    const result = await this.connection.execute(
+      `
+      SELECT username, password from Trybesmith.users
+      WHERE username = ?
+      AND password = ?`,
+      [username, password],
+    );
+    const [rows] = result;
+    const [user] = rows as Login[];
+
+    return user;
   }
 
   public async create(user: User): Promise<User> {
