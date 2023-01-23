@@ -14,7 +14,7 @@ export default class UserModel {
     
     const result = await this.connection.execute(
       `
-      SELECT username, password from Trybesmith.users
+      SELECT id, username from Trybesmith.users
       WHERE username = ?
       AND password = ?`,
       [username, password],
