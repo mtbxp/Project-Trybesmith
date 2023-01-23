@@ -7,6 +7,7 @@ const loginServ = async (user: ILogin) => {
   if (result === 0) {
     return { status: 401, token: null, message: 'Username or password invalid' };
   }
+
   const token = createToken(user);
   return { status: 200, token };
 };
