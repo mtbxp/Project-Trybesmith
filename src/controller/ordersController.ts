@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import * as ordersService from '../service/ordersService';
+import ordersService from '../service/ordersService';
 
 // eslint-disable-next-line import/prefer-default-export
 export async function getAllOrders(_req:Request, res: Response) {

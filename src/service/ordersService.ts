@@ -1,7 +1,10 @@
-import * as Orders from '../models/ordersModel';
+import ordersModel from '../models/ordersModel';
 
-// eslint-disable-next-line import/prefer-default-export
-export async function getAllOrders() {
-  const data = await Orders.getAllOrders();
+async function getAllOrders() {
+  const data = await ordersModel.getAllOrders();
   return { status: 200, data };
 }
+
+export default {
+  getAllOrders,
+};
