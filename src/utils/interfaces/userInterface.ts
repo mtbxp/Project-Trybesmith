@@ -1,16 +1,14 @@
-export interface User {
-  id?: number,
-  username: string,
-  vocation: string,
-  level: number,
-  password?: string,
-}
-
 export interface NewUser {
   id?: number,
   username: string,
 }
 
-export interface Token {
-  token: string,
+export interface Credentials {
+  username: string,
+  password: string,
+}
+
+export interface User extends NewUser, Credentials {
+  vocation: string,
+  level: number,
 }

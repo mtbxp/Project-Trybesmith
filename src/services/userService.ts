@@ -1,4 +1,4 @@
-import createToken from '../auth/jwt';
+import { createToken } from '../auth/jwt';
 import connection from '../models/connection';
 import UserModel from '../models/userModel';
 import { User, NewUser } from '../utils/interfaces/userInterface';
