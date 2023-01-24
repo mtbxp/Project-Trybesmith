@@ -22,11 +22,7 @@ const verifyKey = (key: string, value: string) => {
   }
 };
 
-export default function validateProduct(
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) {
+export default function validateProduct(req: Request, res: Response, next: NextFunction) {
   const { body } = req;
   const expectedKeys = ['name', 'amount'];
 

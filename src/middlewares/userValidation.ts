@@ -41,11 +41,7 @@ const verifyLevel = (level: number) => {
   }
 };
 
-export default function validateUser(
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) {
+export default function validateUser(req: Request, res: Response, next: NextFunction) {
   const { body } = req;
   const expectedKeys = ['username', 'vocation', 'password'] as string[];
   const keysLength = [3, 3, 8] as number[];

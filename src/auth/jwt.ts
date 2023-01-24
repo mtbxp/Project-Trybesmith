@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import { TokenResult } from '../utils/interfaces/tokenResultInterface';
 
 dotenv.config();
 
@@ -15,7 +16,16 @@ export function createToken<T>(data: T): string {
   return token;
 }
 
-export function verifyToken(authorization: string): object {
-  const payload = jwt.verify(authorization, secret);
-  return payload as object;
+export function verifyToken(token: string): object {
+  const result: TokenResult = { error: null, data: null };
+
+  jwt.verify(token, secret, (err, data) => {
+    if (err) {
+      result.error = err;
+    } else {
+      result.data = data;
+    }
+  });
+
+  return result as TokenResult;
 }

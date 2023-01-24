@@ -9,7 +9,6 @@ export default class LoginService {
     const [user] = await this.model.login(username);
 
     if (!user || user.password !== password) {
-      console.log(user);
       return null;
     }
 
