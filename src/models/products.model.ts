@@ -3,7 +3,7 @@ import Products from '../interfaces/products.interface';
 import connection from './connection';
 
 class ProductsModel {
-  connection: Pool;
+  public connection: Pool;
 
   constructor() {
     this.connection = connection;
@@ -17,6 +17,12 @@ class ProductsModel {
     );
     const [{ insertId }] = result;
     return { id: insertId, ...products };
+  }
+
+  public async getAll(): Promise<Products[]> {
+    const productsAll = await this.connection.execute('SELECT * FROM Trybesmith.products');
+    const [rows] = productsAll;
+    return rows as Products[];
   }
 }
 

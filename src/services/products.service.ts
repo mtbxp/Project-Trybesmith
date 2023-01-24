@@ -1,6 +1,5 @@
-// import BadRequest
-import Products from '../interfaces/products.interface';
 import ProductsModel from '../models/products.model';
+import Products from '../interfaces/products.interface';
 
 class ProductsService {
   model: ProductsModel;
@@ -12,6 +11,11 @@ class ProductsService {
   async create(products: Products): Promise<Products> {
     const createProduct = await this.model.create(products);
     return createProduct;
+  }
+
+  public async getAll(): Promise<Products[]> {
+    const productsAll = await this.model.getAll();
+    return productsAll;
   }
 }
 
