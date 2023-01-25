@@ -1,28 +1,36 @@
-// NAME
+import { NextFunction, Request, Response } from 'express';
+import Products from '../interfaces/products.interface';
 
-// [Será validado que o campo "name" é obrigatório]
-// Se o campo "name" não for informado, o resultado retornado deverá ser um status http 400 e
-//   { "message": "\"name\" is required" }
-// [Será validado que o campo "name" tem o tipo string]
+export const nameProductValidate = (request: Request, response: Response, next: NextFunction) => {
+  const { name } = request.body as Products;
+  if (!name) {
+    return response.status(400).json({ message: '"name" is required' });
+  } 
 
-// Se o campo "name" não for do tipo string, o resultado retornado deverá ser um status http 422 e
-//   { "message": "\"name\" must be a string" }
-// [Será validado que o campo "name" é uma string com mais de 2 caracteres]
+  if (typeof name !== 'string') {
+    return response.status(422).json({ message: '"name" must be a string' });
+  }
 
-// Se o campo "name" não for uma string com mais de 2 caracteres, o resultado retornado deverá ser um status http 422 e
-//   { "message": "\"name\" length must be at least 3 characters long" }
+  if (name.length < 2) {
+    return response.status(422)
+      .json({ message: '"name" length must be at least 3 characters long' });
+  }
+  next();
+};
 
-// AMOUNT
+export const amountProductValidate = (request: Request, response: Response, next: NextFunction) => {
+  const { amount } = request.body as Products;
+  if (!amount) {
+    return response.status(400).json({ message: '"amount" is required' });
+  } 
 
-// [Será validado que o campo "amount" é obrigatório]
+  if (typeof amount !== 'string') {
+    return response.status(422).json({ message: '"amount" must be a string' });
+  }
 
-// Se o campo "amount" não for informado, o resultado retornado deverá ser um status http 400 e
-//   { "message": "\"amount\" is required" }
-// [Será validado que o campo "amount" tem o tipo string]
-
-// Se o campo "amount" não for do tipo string, o resultado retornado deverá ser um status http 422 e
-//   { "message": "\"amount\" must be a string" }
-// [Será validado que o campo "amount" é uma string com mais de 2 caracteres]
-
-// Se o campo "amount" não for uma string com mais de 2 caracteres, o resultado retornado deverá ser um status http 422 e
-//   { "message": "\"amount\" length must be at least 3 characters long" }
+  if (amount.length < 2) {
+    return response.status(422)
+      .json({ message: '"amount" length must be at least 3 characters long' });
+  }
+  next();
+};
