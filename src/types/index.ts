@@ -7,3 +7,14 @@ export type TProduct = {
 export type Product = {
   id: number;
 } & TProduct;
+
+export type TUser = {
+  username: string;
+  vocation: string;
+  level: number;
+  password: string;
+};
+
+export type User = {
+  id: number;
+} & TUser;
