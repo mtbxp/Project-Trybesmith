@@ -46,9 +46,10 @@ export const levelUsersValidate = (request: Request, response: Response, next: N
     return response.status(400).json({ message: '"level" is required' });
   } 
   
-  if (level !== Number) {
+  if (typeof level !== 'number') {
     return response.status(422).json({ message: '"level" must be a number' });
   }
+  
   next();
 };
 
