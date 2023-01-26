@@ -6,8 +6,8 @@ dotenv.config();
 
 const secret = <string>process.env.JWT_SECRET;
 
-const createToken = (user: User): string => {
-  const token = jwt.sign(user, secret, {
+const createToken = ({ id, username }: User) => {
+  const token = jwt.sign({ data: { id, username } }, secret, {
     algorithm: 'HS256',
     expiresIn: '1d',
   });  

@@ -2,7 +2,8 @@ interface User {
   username: string,
   vocation: string,
   level: number,
-  password?: string
+  password?: string,
+  id?: number
 }
 
 export default User;

@@ -9,6 +9,9 @@ export default class UserService {
     this.model = new UsersModel(connection);
   }
 
-  public create = async (user: User): Promise<void> => 
+  public create = async (user: User): Promise<User> => 
     this.model.create(user);
+
+  public login = async (login: User): Promise<User> => 
+    this.model.login(login);
 }
