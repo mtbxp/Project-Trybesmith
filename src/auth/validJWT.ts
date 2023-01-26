@@ -2,7 +2,7 @@ import { Response, Request, NextFunction } from 'express';
 import { JwtPayload } from 'jsonwebtoken';
 import { verifyToken } from './jwt';
 
-export = async (req: Request, res: Response, next: NextFunction) => {
+const validJWT = async (req: Request, res: Response, next: NextFunction) => {
   const token = req.headers.authorization;
 
   if (!token) {
@@ -18,3 +18,5 @@ export = async (req: Request, res: Response, next: NextFunction) => {
     return res.status(401).json({ message: err });
   }
 };
+
+export default validJWT;
