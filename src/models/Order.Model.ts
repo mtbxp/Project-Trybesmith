@@ -29,14 +29,14 @@ export default class OrderModel {
   public createOrder = async (body: TCurrentUser) => {
     const { productsIds, currentUser } = body;
     const query = 'INSERT INTO Trybesmith.orders (user_id) VALUES (?)';
-    const values = [currentUser.id];
+    const values = [currentUser.data.id];
     const [order] = await connection.execute<ResultSetHeader>(query, values);
     await Promise.all(productsIds.map(async (productId) => {
       const result = await this.updateProduct(productId, order.insertId);
   
       return result;
     }));
-    const result = { userId: currentUser.id, productsIds };
+    const result = { userId: currentUser.data.id, productsIds };
   
     return result;
   };

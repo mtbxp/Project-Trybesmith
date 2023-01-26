@@ -27,11 +27,15 @@ export type TOrderCreated = {
   userId: number,
   productsIds: number[]
 };
+// data para usar no Order.Model
 
 export type TCurrentUser = {
   currentUser: {
-    id: number,
-    username: string,
+    data:{
+      id: number,
+      username: string,
+
+    }
     iat: number,
     exp: number
   }
