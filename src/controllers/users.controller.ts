@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import createToken from '../auth/jwt';
-import UserService from '../service/user.service';
+import UserService from '../services/users.service';
 
 export default class UsersController {
   constructor(private userService = new UserService()) { }
