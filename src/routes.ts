@@ -7,7 +7,12 @@ import * as loginController from './controllers/login.controller';
 
 const router = Router();
 
-router.post('/products', productsController.addProduct);
+router.post(
+  '/products', 
+  productsController.validaNomeProdutos,
+  productsController.validaAmountProdutos, 
+  productsController.addProduct,
+);
 router.get('/products', productsController.listAllProducts);
 router.post('/users', usersController.addProduct);
 router.get('/orders', ordersController.listAllOrders);
