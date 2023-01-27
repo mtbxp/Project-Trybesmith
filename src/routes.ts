@@ -14,7 +14,14 @@ router.post(
   productsController.addProduct,
 );
 router.get('/products', productsController.listAllProducts);
-router.post('/users', usersController.addProduct);
+router.post(
+  '/users',
+  usersController.validaUsernameProdutos,
+  usersController.validaVocationProdutos,
+  usersController.validaLevelProdutos,
+  usersController.validaPasswordProdutos,
+  usersController.addProduct,
+);
 router.get('/orders', ordersController.listAllOrders);
 router.post('/login', loginController.loginValidation);
 
