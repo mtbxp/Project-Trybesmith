@@ -16,11 +16,16 @@ export type TUser = {
 };
 
 export type User = {
-  id: number;
+  id?: number;
 } & TUser;
 
 export type TOrder = {
   id: number;
   userId: number;
   productsIds: number[];
+};
+
+export type TLogin = {
+  username: string;
+  password: string;
 };

@@ -1,8 +1,8 @@
 import usersModel from '../models/users.model';
-import { TUser } from '../types';
+import { User } from '../types';
 import tokenGenerator from '../utils/tokenGenerator';
 
-const create = async (user:TUser) => {
+const create = async (user:User) => {
   await usersModel.create(user);
 
   const token = tokenGenerator(user);

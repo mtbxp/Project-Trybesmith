@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { TUser } from '../types';
+import { User } from '../types';
 
 const secret = process.env.JWT_SECRET || 'secret';
 
@@ -8,8 +8,8 @@ const JWT_CONFIG: object = {
   expiresIn: '7d',
 };
 
-const tokenGenerator = (user: TUser) => {
-  const token = jwt.sign(user, secret, JWT_CONFIG);
+const tokenGenerator = (user: User) => {
+  const token = jwt.sign({ ...user }, secret, JWT_CONFIG);
   return token;
 };
 
