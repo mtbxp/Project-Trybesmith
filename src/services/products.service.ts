@@ -6,9 +6,12 @@ const addProduct = async (product: Product) => {
   return insertId;
 };
 
-const a = () => {};
+const listAllProducts = async () => {
+  const products = await productsModel.listAllProducts();
+  return products;
+};
 
 export {
   addProduct,
-  a,
+  listAllProducts,
 };
