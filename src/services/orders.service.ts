@@ -1,6 +1,9 @@
 import * as ordersModel from '../models/orders.model ';
+import { AddOrder } from '../types';
 
-const addProduct = async () => {
+const addOrder = async (userId: any, product: AddOrder) => {
+  const insertId = await ordersModel.addOrder(userId, product);
+  return insertId;
 };
 
 const listAllOrders = async () => {
@@ -10,5 +13,5 @@ const listAllOrders = async () => {
 
 export {
   listAllOrders,
-  addProduct,
+  addOrder,
 };

@@ -24,5 +24,11 @@ router.post(
 );
 router.get('/orders', ordersController.listAllOrders);
 router.post('/login', loginController.loginValidation);
+router.post(
+  '/orders',
+  ordersController.validaToken,
+  ordersController.validaCampoProdutos,
+  ordersController.addOrder,
+);
 
 export default router;
