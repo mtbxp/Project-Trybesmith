@@ -13,4 +13,10 @@ const getAllOrders = async (): Promise<Order[]> => {
   return result;
 };
 
-export default { getAllOrders };
+const addOrder = async (userId: number) => {
+  const result = await connection.execute(`INSERT INTO Trybesmith.orders
+  (user_id) VALUES (?)`, [userId]);
+  return result[0] as RowDataPacket;
+};
+
+export default { getAllOrders, addOrder };

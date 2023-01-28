@@ -17,7 +17,17 @@ const getByUsername = async (username: string, password: string) => {
   );
   return result as RowDataPacket[];
 };
+
+async function getUser(username: string) {
+  const [result] = await connection.execute(
+    'SELECT * FROM Trybesmith.users WHERE username = ?',
+    [username],
+  );
+  return result as RowDataPacket[];
+}
+
 export default {
   addUser,
   getByUsername,
+  getUser,
 };

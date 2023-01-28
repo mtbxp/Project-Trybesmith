@@ -6,4 +6,15 @@ const getAllOrders = async (req: Request, res: Response) => {
   res.status(200).json(orders);
 };
 
-export default { getAllOrders };
+const createOrder = async (req: Request, res: Response) => {
+  try {
+    const { productsIds } = req.body;
+    const { user } = req.headers;
+    const result = await orderService.addOrder(productsIds, user as string);
+    res.status(201).json(result.message);
+  } catch (error) {
+    res.status(500).json({ type: 'error', message: error });
+  }
+};
+
+export default { getAllOrders, createOrder };
