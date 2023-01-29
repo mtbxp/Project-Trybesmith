@@ -12,3 +12,18 @@ export type Tuser = {
   level: number,
   password: string,
 };
+
+export type Torders = {
+  id: number,
+  userId: number,
+  productsIds?: number | number[],
+};
+
+export type Tlogin = {
+  username: string,
+  password: string,
+};
+
+export type Tmessage = {
+  message: string,
+};
