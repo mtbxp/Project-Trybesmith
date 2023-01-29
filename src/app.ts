@@ -12,4 +12,8 @@ app.use('/users', userRouter);
 app.use('/orders', orderRouter);
 app.use('/login', loginRouter);
 
+app.get('/teste', (req, res) => {
+  res.send('Hello World!');
+});
+
 export default app;
