@@ -1,4 +1,4 @@
-import { RowDataPacket } from 'mysql2';
+import { ResultSetHeader, RowDataPacket } from 'mysql2';
 import { TOrder } from '../types/index';
 import connection from './connection';
 
@@ -13,7 +13,20 @@ const getAll = async (): Promise<TOrder[]> => {
   return orders;
 };
 
+const create = async (userId: number, productsIds: number[]) => {
+  const query = 'INSERT INTO Trybesmith.orders (user_id) VALUES (?);';
+  const [{ insertId }] = await connection.execute<ResultSetHeader>(query, [userId]);
+
+  await Promise.all(productsIds.map(async (id) => {
+    const queryUpdate = 'UPDATE Trybesmith.products SET order_id = ? WHERE id = ?;';
+    await connection.execute<ResultSetHeader>(queryUpdate, [insertId, id]);
+  }));
+
+  return { userId, productsIds };
+};
+
 // fonte - https://dev.mysql.com/doc/refman/5.7/en/aggregate-functions.html#function_json-arrayagg
 export default {
   getAll,
+  create,
 };

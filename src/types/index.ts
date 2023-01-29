@@ -20,7 +20,7 @@ export type User = {
 } & TUser;
 
 export type TOrder = {
-  id: number;
+  id?: number;
   userId: number;
   productsIds: number[];
 };
@@ -28,4 +28,21 @@ export type TOrder = {
 export type TLogin = {
   username: string;
   password: string;
+};
+
+export type TBody = {
+  productsIds: number[],
+  user: {
+    id: number,
+    username: string,
+    vocation: string,
+    level: number,
+    iat: number,
+    exp: number
+  }
+};
+
+export type TOrderCreated = {
+  userId: number;
+  productsIds: number[];
 };

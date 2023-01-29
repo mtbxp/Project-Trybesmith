@@ -6,6 +6,12 @@ const getAll = async (req: Request, res: Response) => {
   res.status(status).json(data);
 };
 
+const create = async (req: Request, res: Response) => {
+  const result = await ordersService.create(req.body);
+  res.status(201).json(result);
+};
+
 export default {
   getAll,
+  create,
 };
