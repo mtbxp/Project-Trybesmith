@@ -12,16 +12,12 @@ const createToken = (userWithoutPassword: TUsers) => {
   return token;
 };
 
-// const verifyToken = (authorization) => {
-//   try {
-//     const payload = jwt.verify(authorization, secret);
-//     return payload;
-//   } catch (error) {
-//     return { error };
-//   }
-// };
+const verifyToken = (authorization: string) => {
+  const payload = jwt.verify(authorization, secret);
+  return payload;
+};
 
 export default {
   createToken,
-  // verifyToken,
+  verifyToken,
 };

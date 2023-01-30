@@ -1,6 +1,8 @@
 import usersModel from '../models/users.model';
-import { TUsers } from '../types';
+import { TLogin, TUsers } from '../types';
 import createToken from '../auth/jwtFunctions';
+import messages from '../utils/messages';
+import statuses from '../utils/statuses';
 
 const createUser = async (userInfo: TUsers) => {
   const createdUser = await usersModel.createUser(userInfo);
@@ -14,4 +16,15 @@ const createUser = async (userInfo: TUsers) => {
   return token;
 };
 
-export default { createUser };
+const logIn = async (userInfo: TLogin) => {
+  const foundUser = await usersModel.getByUser(userInfo.username);
+
+  if (!foundUser || foundUser.password !== userInfo.password) {
+    return { status: statuses.INVALID_FIELDS, error: { message: messages.INVALID_FIELDS } };
+  }
+
+  const token = createToken.createToken(foundUser);
+  return { status: statuses.SUCCESSFUL_STATUS, token };
+};
+
+export default { createUser, logIn };

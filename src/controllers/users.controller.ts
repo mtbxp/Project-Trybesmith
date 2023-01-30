@@ -7,4 +7,10 @@ const createUser = async (req: Request, res: Response) => {
   res.status(statuses.SUCCESSFULLY_CREATED).json({ token });
 };
 
-export default { createUser };
+const logIn = async (req: Request, res: Response) => {
+  const { status, token, error } = await usersService.logIn(req.body);
+
+  return error ? res.status(status).json(error) : res.status(status).json({ token });
+};
+
+export default { createUser, logIn };
