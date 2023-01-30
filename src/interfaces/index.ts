@@ -7,7 +7,7 @@ export interface Product extends IdProduct {
   id: number;
 }
 
-export interface ProductAll {
+export interface AllProducts {
   id?: number;
   name: string;
   amount: string;
