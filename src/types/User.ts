@@ -1,7 +1,7 @@
 type User = {
   username: string,
-  vocation: string,
-  level: number,
+  vocation?: string,
+  level?: number,
   password: string,
 };
 

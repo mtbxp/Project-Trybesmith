@@ -7,6 +7,21 @@ const registerUser = async (user: User) => {
   return newUser;
 };
 
+const getUsers = async () => {
+  const users = await usersModel.getUsers();
+
+  return users;
+};
+
+const findUser = async ({ username, password }: User) => {
+  const users = await getUsers();
+
+  const findU = users.find((user) => user.username === username && user.password === password);
+
+  return findU;
+};
+
 export default {
   registerUser,
+  findUser,
 };

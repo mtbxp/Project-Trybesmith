@@ -12,8 +12,6 @@ const getOrders = async (): Promise<Order[]> => {
   return result;
 };
 
-getOrders();
-
 export default {
   getOrders,
 };

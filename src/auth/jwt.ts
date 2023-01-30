@@ -7,9 +7,9 @@ dotenv.config();
 const SECRET = process.env.JWT_SECRET || 'descubra';
 
 const generateToken = (data: User) => {
-  const payload = data;
+  // const payload = data;
   
-  const token = jwt.sign(payload, SECRET, { algorithm: 'HS256', expiresIn: '1d' });
+  const token = jwt.sign({ data }, SECRET, { algorithm: 'HS256', expiresIn: '1d' });
 
   return token;
 };
