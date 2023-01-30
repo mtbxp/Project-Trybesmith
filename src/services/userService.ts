@@ -7,13 +7,15 @@ const addUser = async (user: User) => {
   return result;
 };
 
-const getByUsername = async (username: string, password: string) => {
-  const result = await userModel.getByUsername(username, password);
+const getByUsername = async (name: string, pass: string) => {
+  const result = await userModel.getByUsername(name, pass);
+  
   if (result.length === 0) {
     return { type: 401, message: 'Username or password invalid' };
   }
-  const token = createToken({ username, password });
-  return { type: 200, message: token };
+  const { id, username, password } = result[0];
+  const token = createToken({ username, password, id });
+  return { type: 200, message: token, id: result[0].id };
 };
 
 export default {

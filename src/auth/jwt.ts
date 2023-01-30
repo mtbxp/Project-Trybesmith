@@ -1,36 +1,39 @@
-import { Secret, sign, verify } from 'jsonwebtoken';
+import { sign, verify } from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import { Request, Response, NextFunction } from 'express';
 import User from '../types/User';
 
 dotenv.config();
 
-const secret: Secret = process.env.JWT_SECRET as Secret;
+const secret = 'secret';
 
 export const createToken = (payload: User) => {
   const token = sign(payload, secret, { algorithm: 'HS256', expiresIn: '1d' });
   return token;
 };
 
-export const verifyToken = (token: string) => {
-  try {
-    const decoded = verify(token, secret);
-    return decoded;
-  } catch (err) {
-    console.log(err);
-    return null;
-  }
-};
-
-export const validateToken = (req: Request, res: Response, next: NextFunction) => {
+export const validateToken = async (req: Request, res: Response, next: NextFunction) => {
   const { authorization } = req.headers;
   if (!authorization) {
     return res.status(401).json({ message: 'Token not found' });
   }
-  const token = authorization.split(' ')[1];
-  const decoded = verifyToken(token);
-  if (!decoded) {
+  try {
+    const decoded = verify(authorization, secret);
+    if (!decoded) {
+      return res.status(401).json({ message: 'Invalid token' });
+    }
+    next();
+  } catch (error) {
     return res.status(401).json({ message: 'Invalid token' });
+  // const decoded = verify(authorization, secret);
+  // if (!decoded) {
+  //   return res.status(401).json({ message: 'Invalid token' });
+  // }
+  // next();
   }
-  next();
+};
+
+export const returnInfos = (token: string) => {
+  const { username, id } = verify(token, secret) as User;
+  return { username, id };
 };
