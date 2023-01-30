@@ -6,4 +6,10 @@ const listOrders = async (req: Request, res: Response) => {
   res.status(200).json(orders);
 };
 
-export default { listOrders };
+const addOrders = async (req: Request, res: Response) => {
+  const infos = req.body;
+  const addedOrder = await ordersService.addOrders(infos);
+  res.status(201).json(addedOrder);
+};
+
+export default { listOrders, addOrders };
