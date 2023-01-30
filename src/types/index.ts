@@ -8,8 +8,8 @@ export type Product = {
 export type User = {
   id?: number,
   username: string,
-  vocation: string,
-  level: number,
+  vocation?: string,
+  level?: number,
   password?: string,
 };
 
@@ -18,3 +18,8 @@ export type Order = {
   userId: number,
   productsIds: number[],
 };
+
+export interface MessageJson {
+  type:number,
+  message: string | Promise<string>,
+}
