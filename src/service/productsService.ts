@@ -1,5 +1,5 @@
-import connection from '../model/connection';
-import ProductModel from '../model/productsModel';
+import connection from '../models/connection';
+import ProductModel from '../models/productsModel';
 import { IdProduct } from '../interfaces';
 
 export default class ProductService {
