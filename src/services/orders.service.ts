@@ -1,5 +1,7 @@
-import Orders from '../interfaces/orders.interface';
+// import { Orders, UserOrdersResponse } from '../interfaces/orders.interface';
+import { Orders } from '../interfaces/orders.interface';
 import OrdersModel from '../models/orders.model';
+// import statusCodes from '../statusCodes';
 
 class OrdersService {
   model: OrdersModel;
@@ -12,6 +14,11 @@ class OrdersService {
     const ordersAll = await this.model.getAll();
     return ordersAll;
   }
+
+  // public async create(userId: number, productsIds: number[]): Promise<UserOrdersResponse> {
+  //   const ordersCreate = await this.model.create(userId, productsIds);
+  //   return { statusCode: statusCodes.CREATED, message: ordersCreate };
+  // }
 }
 
 export default OrdersService;

@@ -14,6 +14,12 @@ class OrdersController {
       return response.status(statusCodes.INTERNAL_SERVER_ERROR).json(error);
     }
   };
+
+  // public create = async (request: Request, response: Response): Promise<void> => {
+  //   const { userId, productsIds } = request.body;
+  //   const { statusCode, message } = await this.ordersService.create(userId, productsIds);
+  //   return response.status(statusCode).json(message);
+  // };
 }
 
 export default OrdersController;
