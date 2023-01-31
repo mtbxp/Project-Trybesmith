@@ -1,4 +1,4 @@
-import Order from '../interfaces/orders.interface';
+import User from '../interfaces/users.interface';
 import connection from '../models/connection';
 import OrdersModel from '../models/orders.models';
 
@@ -9,6 +9,9 @@ export default class OrdersService {
     this.model = new OrdersModel(connection);
   }
 
-  public getAll = async (): Promise<Order[]> => 
+  public getAll = async () => 
     this.model.getAll();
+
+  public create = async (user: User, productsId: number[]) => 
+    this.model.create(user, productsId);
 }

@@ -9,7 +9,7 @@ const productController = new ProductController();
 router.post(
   '/products', 
   ProductValidation.nameValidation,
-  ProductValidation.amountCheck,
+  ProductValidation.amountValidation,
   productController.create,
 );
 router.get('/products', productController.getAll);

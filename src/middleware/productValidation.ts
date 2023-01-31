@@ -18,7 +18,7 @@ const nameValidation = (req: Request, res: Response, next: NextFunction) => {
   next();
 };
 
-const amountCheck = (req: Request, res: Response, next: NextFunction) => {
+const amountValidation = (req: Request, res: Response, next: NextFunction) => {
   const { amount } = req.body as Product;
   if (!amount) {
     return res.status(400).json({ message: '"amount" is required' });
@@ -34,4 +34,4 @@ const amountCheck = (req: Request, res: Response, next: NextFunction) => {
   next();
 };
 
-export default { nameValidation, amountCheck };
+export default { nameValidation, amountValidation };

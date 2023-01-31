@@ -9,9 +9,9 @@ export default class ProductService {
     this.productModel = new ProductModel(connection);
   }
 
-  public create = async (product: Product): Promise<Product> => 
+  public create = async (product: Product) => 
     this.productModel.create(product);
 
-  public getAll = async (): Promise<Product[]> => 
+  public getAll = async () => 
     this.productModel.getAll();
 }
