@@ -3,12 +3,8 @@ import { verify } from 'jsonwebtoken';
 
 const secret = process.env.JWT_SECRET || 'secret';
 
-const verifyToken = (token: string) => {
-  console.log(token, secret);
-  
-  const checkToken = verify(token, secret);
-  console.log(checkToken);
-  
+const verifyToken = (token: string) => { 
+  const checkToken = verify(token, secret);  
   return checkToken as object;
 };
 
@@ -16,8 +12,8 @@ const isTokenValid = async (req: Request, res: Response, next: NextFunction) => 
   const { authorization: token } = req.headers;
   if (!token) return res.status(401).json({ message: 'Token not found' });
   try {
-    verifyToken(token);
-    next();
+    const validToken = verifyToken(token);
+    req.body.user = validToken;
   } catch (error) {
     return res.status(401).json({ message: 'Invalid token' });
   }
@@ -25,9 +21,7 @@ const isTokenValid = async (req: Request, res: Response, next: NextFunction) => 
 };
 
 const isProductValid = async (req: Request, res: Response, next: NextFunction) => {
-  const { productsIds } = req.body;
-  // console.log(productsIds);
-  
+  const { productsIds } = req.body;  
   if (!productsIds) {
     return res.status(400).json({ message: '"productsIds" is required' });
   }
