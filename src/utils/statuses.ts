@@ -3,6 +3,7 @@ const statuses = {
   SUCCESSFULLY_CREATED: 201,
   MISSING_FIELDS: 400,
   INVALID_FIELDS: 401,
+  MISSING_REQUIREMENT: 422,
 };
 
 export default statuses;

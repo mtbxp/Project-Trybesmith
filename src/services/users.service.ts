@@ -20,7 +20,7 @@ const logIn = async (userInfo: TLogin) => {
   const foundUser = await usersModel.getByUser(userInfo.username);
 
   if (!foundUser || foundUser.password !== userInfo.password) {
-    return { status: statuses.INVALID_FIELDS, error: { message: messages.INVALID_FIELDS } };
+    return { status: statuses.SUCCESSFUL_STATUS, error: { message: messages.INVALID_FIELDS } };
   }
 
   const token = createToken.createToken(foundUser);

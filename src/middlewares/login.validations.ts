@@ -18,7 +18,7 @@ const validateLogin = (req: Request, res: Response, next: NextFunction) => {
 
   const { authorization } = req.headers;
   if (!authorization) {
-    return res.status(statuses.INVALID_FIELDS).json({ message: messages.TOKEN_NOT_FOUND });
+    return res.status(statuses.INVALID_FIELDS).json({ message: messages.INVALID_FIELDS });
   }
 
   try {
@@ -32,4 +32,4 @@ const validateLogin = (req: Request, res: Response, next: NextFunction) => {
   next();
 };
 
-export default { validateLogin };
+export default validateLogin;
