@@ -10,12 +10,8 @@ class OrdersService {
   }
 
   async create(orders: any) {
-    const { productsIds, userId } = orders;
-    // if (!userId.id) {
-
-    // }
-    const result = await this.model.create(productsIds, userId.id);
-    // console.log(!userId.id, 'result id service */*/*/*/*/');
+    const { productsIds, userId } = orders; 
+    const result = await this.model.create(productsIds, userId.date.id);
     return {
       status: statusCodes.CREATED,
       result,

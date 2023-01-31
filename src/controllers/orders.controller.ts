@@ -6,7 +6,6 @@ class OrdersController {
   constructor(private ordersService = new OrdersService()) { }
 
   public create = async (request: Request, response: Response): Promise<void> => {
-    console.log(request.body, 'request body');
     const { status, result } = await this.ordersService.create(request.body);
     response.status(status).json(result);
   };

@@ -65,8 +65,8 @@ export const TokenValidate = (request: Request, response: Response, next: NextFu
   }
 
   try {
-    const { payload } = jwt.verify(token as string, secret as string) as jwt.JwtPayload;
-    request.body.userId = payload;
+    const result = jwt.verify(token as string, secret as string) as jwt.JwtPayload;
+    request.body.userId = result;
     next();
   } catch (error) {
     console.log(error);
