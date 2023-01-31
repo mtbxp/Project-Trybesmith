@@ -8,4 +8,18 @@ export default class OrderController {
     const allOrders = await this.orderService.allGetOrders();
     return res.status(200).json(allOrders);
   };
+
+  public createOrder = async (req: Request, res: Response) => {
+    try {
+      const { productsIds, userId } = req.body;
+      const newOrder = await this.orderService.createOrder(productsIds, userId);
+      return res.status(201).json(newOrder);
+    } catch (e) {
+      const error = (e as Error).message;
+      return res.status(422).json({
+        message: '"productsIds" must include only numbers',
+        error,
+      });
+    }
+  };
 }
