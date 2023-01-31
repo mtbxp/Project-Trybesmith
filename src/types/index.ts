@@ -14,12 +14,16 @@ export type User = {
 };
 
 export type Order = {
-  id: number,
+  id?: number,
   userId: number,
   productsIds: number[],
 };
 
-export interface MessageJson {
+export type MessageJson = {
   type:number,
   message: string | Promise<string>,
-}
+};
+
+export type Token = {
+  id: number,
+};
