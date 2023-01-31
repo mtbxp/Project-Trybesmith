@@ -27,3 +27,8 @@ export interface AllOrders {
   userId: number,
   productsIds: [number],
 }
+
+export interface UserLogin {
+  username: string;
+  password: string;
+}
