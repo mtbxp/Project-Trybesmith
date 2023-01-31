@@ -7,4 +7,9 @@ const getAllOrders = async (_req: Request, res: Response) => {
   res.status(statuses.SUCCESSFUL_STATUS).json(allOrders);
 };
 
-export default { getAllOrders };
+const createOrder = async (req: Request, res: Response) => {
+  const createdOrder = await ordersService.createOrder(req.body);
+  res.status(statuses.SUCCESSFULLY_CREATED).json(createdOrder);
+};
+
+export default { getAllOrders, createOrder };

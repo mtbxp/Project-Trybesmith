@@ -24,9 +24,17 @@ export type TLogin = {
   password: string,
 };
 
-export type TLoggedUser = {
-  id: number,
-  username: string,
-  iat: number,
-  exp: number
+export type TOrderCreated = {
+  id?: number,
+  userId: number,
+  productsIds: number[]
 };
+
+export type TLoggedUser = {
+  loggedUser: {
+    id: number,
+    username: string,
+    iat: number,
+    exp: number
+  }
+} & TOrderCreated;

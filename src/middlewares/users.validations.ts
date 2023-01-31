@@ -38,7 +38,9 @@ const validateUsers = (req: Request, res: Response, next: NextFunction) => {
 
   if (error) {
     if (error.details[0].type !== 'any.required') {
-      return res.status(statuses.MISSING_REQUIREMENT).json({ message: error.message });
+      return res
+        .status(statuses.MISSING_REQUIREMENT)
+        .json({ message: error.message });
     }
     return res.status(statuses.MISSING_FIELDS).json({ message: error.message });
   }
