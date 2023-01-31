@@ -24,10 +24,10 @@ const getUserId = async (data: Users) => {
 };
 
 const newOrder = async (productsId: OrderData, token: string): Promise<OrderData> => {
-  const decode = decodeToken(token);
+  const decode = decodeToken(token) as Decode;
   console.log(decode);
-  const { data } = decode as Decode;
-  const userId = await getUserId(data);
+  const { username, password } = decode;
+  const userId = await getUserId({ username, password });
   const ordersAdded = await ordersModel.newOrder(productsId, Number(userId));
   return ordersAdded;
 };

@@ -1,8 +1,6 @@
 export interface Decode {
-  data: {
-    username: string, 
-    password: string,
-  },
+  username: string, 
+  password: string,
   iat: number,
-  exp: number
+  exp: number,
 }
