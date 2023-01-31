@@ -33,7 +33,7 @@ export default class OrderModel {
 
   public async createOrder(userId: number, productsIds: number[]): Promise<INewOrder> {
     const [{ insertId }] = await this.connection.execute<ResultSetHeader>(
-      'INSERT INTO Trybesmith.orders(user_id) VALUES(?);',
+      'INSERT INTO Trybesmith.orders (user_id) VALUES (?);',
       [userId],
     );
 
