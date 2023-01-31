@@ -7,8 +7,9 @@ const getAllOrders = async (req: Request, res: Response) => {
 };
 
 const newOrder = async (req: Request, res: Response) => {
+  const { authorization: token } = req.headers;
   const order = req.body;
-  const result = await ordersService.newOrder(order);
+  const result = await ordersService.newOrder(order, token as string);
   res.status(201).json(result);
 };
 

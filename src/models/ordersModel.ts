@@ -1,7 +1,8 @@
-import { ResultSetHeader } from 'mysql2';
+import { ResultSetHeader, RowDataPacket } from 'mysql2';
 import connection from './connection';
 import { Order } from '../types/Order';
 import { OrderData } from '../types/orderData';
+import { Users } from '../types/User';
 
 const getAllOrders = async (): Promise<Order[]> => {
   const [result] = await connection.execute(
@@ -12,21 +13,31 @@ const getAllOrders = async (): Promise<Order[]> => {
   return result as Order[];
 };
 
-const newOrder = async (order: OrderData): Promise<OrderData> => {
-  const { productsIds, userId } = order;
+const listAllUsers = async (): Promise<Users[]> => {
+  const [result] = await connection
+    .execute<RowDataPacket[] & Users[]>('SELECT * FROM Trybesmith.users');
+  return result;
+};
+
+const newOrder = async (productsId: OrderData, id: number): Promise<OrderData> => {
   const [{ insertId }] = await connection.execute<ResultSetHeader>(
     'INSERT INTO Trybesmith.orders (user_id) VALUES (?)',
-    [userId],
+    [id],
   );
-  const updateOrder = productsIds.map((productId) => connection.execute<ResultSetHeader>(
+  const updateOrder = productsId.productsIds.map((productId) => connection.execute<ResultSetHeader>(
     'UPDATE Trybesmith.products SET order_id = ? WHERE id = ?',
     [insertId, productId],
   ));
   await Promise.all(updateOrder);
-  return { userId, productsIds };
+  const result = {
+    productsIds: productsId.productsIds,
+    userId: id,
+  };
+  return result;
 };
 
 export default {
   getAllOrders,
   newOrder,
+  listAllUsers,
 };
