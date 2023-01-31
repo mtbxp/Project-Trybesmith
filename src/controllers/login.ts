@@ -1,5 +1,5 @@
 import { Response, Request } from 'express';
-import generateToken from '../auth/jwt';
+import { generateToken } from '../auth/jwt';
 import usersService from '../services/users..service';
 
 const login = async (req: Request, res: Response) => {

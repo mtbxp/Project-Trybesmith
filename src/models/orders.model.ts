@@ -1,4 +1,4 @@
-import { RowDataPacket } from 'mysql2/promise';
+import { RowDataPacket, ResultSetHeader } from 'mysql2/promise';
 import Order from '../types/Order';
 import connection from './connection';
 
@@ -12,6 +12,22 @@ const getOrders = async (): Promise<Order[]> => {
   return result;
 };
 
+const createOrder = async (userId: number, productsIds: number[]) => {
+  const [{ insertId }] = await connection
+    .execute<ResultSetHeader>('INSERT INTO Trybesmith.orders (user_id) values (?)', [userId]);
+
+  const arreyItens = productsIds.map(async (productId) => {
+    await connection
+      .execute<ResultSetHeader>(
+      'UPDATE Trybesmith.products SET order_id = (?) where id = (?)',
+      [insertId, productId],
+    );
+  });
+
+  await Promise.all(arreyItens);
+};
+
 export default {
   getOrders,
+  createOrder,
 };

@@ -4,6 +4,10 @@ import User from '../types/User';
 
 dotenv.config();
 
+interface UserPayload extends jwt.JwtPayload {
+  data: User;
+}
+
 const SECRET = process.env.JWT_SECRET || 'descubra';
 
 const generateToken = (data: User) => {
@@ -14,4 +18,13 @@ const generateToken = (data: User) => {
   return token;
 };
 
-export default generateToken;
+const verifyToken = (token: string) => {
+  try {
+    const data = jwt.verify(token, SECRET) as UserPayload;
+    return data;
+  } catch (e) {
+    return false;
+  }
+};
+
+export { generateToken, verifyToken };
