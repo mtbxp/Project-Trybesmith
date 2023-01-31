@@ -1,7 +1,6 @@
-// import { Orders, UserOrdersResponse } from '../interfaces/orders.interface';
 import { Orders } from '../interfaces/orders.interface';
 import OrdersModel from '../models/orders.model';
-// import statusCodes from '../statusCodes';
+import statusCodes from '../statusCodes';
 
 class OrdersService {
   model: OrdersModel;
@@ -10,15 +9,23 @@ class OrdersService {
     this.model = new OrdersModel();
   }
 
+  async create(orders: any) {
+    const { productsIds, userId } = orders;
+    // if (!userId.id) {
+
+    // }
+    const result = await this.model.create(productsIds, userId.id);
+    // console.log(!userId.id, 'result id service */*/*/*/*/');
+    return {
+      status: statusCodes.CREATED,
+      result,
+    };
+  }
+  
   public async getAll(): Promise<Orders[]> {
     const ordersAll = await this.model.getAll();
     return ordersAll;
   }
-
-  // public async create(userId: number, productsIds: number[]): Promise<UserOrdersResponse> {
-  //   const ordersCreate = await this.model.create(userId, productsIds);
-  //   return { statusCode: statusCodes.CREATED, message: ordersCreate };
-  // }
 }
 
 export default OrdersService;

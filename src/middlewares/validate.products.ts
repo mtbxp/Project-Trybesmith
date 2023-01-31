@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import { NextFunction, Request, Response } from 'express';
 import Products from '../interfaces/products.interface';
 import statusCodes from '../statusCodes';
-import { InterDecoded } from '../interfaces/orders.interface';
+// import { InterDecoded } from '../interfaces/orders.interface';
 import { secret } from './jwtConfig';
 
 export const nameProductValidate = (request: Request, response: Response, next: NextFunction) => {
@@ -46,33 +46,30 @@ export const IdProductsValidate = (request: Request, response: Response, next: N
     return response.status(statusCodes.BAD_REQUEST).json({ message: '"productsIds" is required' });
   }
 
-  if (typeof productsIds !== 'object') {
+  if (!Array.isArray(productsIds)) {
     return response.status(statusCodes.UNPROCESSABLE_ENTITY)
       .json({ message: '"productsIds" must be an array' });
   }
 
-  if (productsIds.length < 1) {
+  if (!productsIds.length) {
     return response.status(statusCodes.UNPROCESSABLE_ENTITY)
       .json({ message: '"productsIds" must include only numbers' });
   }
-
   next();
 };
 
 export const TokenValidate = (request: Request, response: Response, next: NextFunction) => {
   const token = request.headers.authorization;
-
   if (!token) {
     return response.status(statusCodes.UNAUTHORIZED).json({ message: 'Token not found' });
   }
 
   try {
-    const decoded = jwt.verify(token as string, secret as string) as InterDecoded;
-    request.body.userId = decoded.data.userId;
+    const { payload } = jwt.verify(token as string, secret as string) as jwt.JwtPayload;
+    request.body.userId = payload;
+    next();
   } catch (error) {
     console.log(error);
     return response.status(statusCodes.UNAUTHORIZED).json({ message: 'Invalid token' });
   }
-  
-  next();
 };
