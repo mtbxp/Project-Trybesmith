@@ -6,8 +6,11 @@ const jwtConfig = {
   expiresIn: '3h',
 };
 
-const secret = process.env.JWT_SECRET as string;
+const secret = process.env.JWT_SECRET as string || 'secret';
 
-const newToken = (user: Users) => sign({ data: user }, secret, jwtConfig as object);
+const newToken = (user: Users) => {
+  const result = sign({ data: user }, secret, jwtConfig as object);
+  return result;
+};
 
 export default newToken;
