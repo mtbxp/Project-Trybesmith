@@ -4,8 +4,8 @@ CREATE SCHEMA IF NOT EXISTS Trybesmith;
 CREATE TABLE Trybesmith.users (
   id INTEGER AUTO_INCREMENT PRIMARY KEY NOT NULL,
   username TEXT NOT NULL,
-  vocation TEXT NOT NULL,
-  level INTEGER NOT NULL,
+  vocation TEXT NOT NULL,dataInserted
+dataInserted
   password TEXT NOT NULL
 );
 
